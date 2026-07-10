@@ -1,13 +1,13 @@
-const CACHE='aircon-hanbai-master-v208';
-const ASSETS=['./apple-touch-icon.png?v=208','./favicon-32.png?v=208',
+const CACHE='aircon-hanbai-master-v210';
+const ASSETS=['./apple-touch-icon.png?v=210','./favicon-32.png?v=210',
   './',
-  './index.html?v=208',
-  './manifest.json?v=208',
-  './version.json?v=208',
-  './icon-180.png?v=208',
-  './icon-192.png?v=208',
-  './icon-512.png?v=208',
-  './icon-1024.png?v=208'
+  './index.html?v=210',
+  './manifest.json?v=210',
+  './version.json?v=210',
+  './icon-180.png?v=210',
+  './icon-192.png?v=210',
+  './icon-512.png?v=210',
+  './icon-1024.png?v=210'
 ];
 
 self.addEventListener('install',event=>{
@@ -33,10 +33,10 @@ self.addEventListener('fetch',event=>{
       fetch(event.request,{cache:'no-store'})
         .then(response=>{
           const copy=response.clone();
-          caches.open(CACHE).then(cache=>cache.put('./index.html?v=208',copy));
+          caches.open(CACHE).then(cache=>cache.put('./index.html?v=210',copy));
           return response;
         })
-        .catch(()=>caches.match('./index.html?v=208'))
+        .catch(()=>caches.match('./index.html?v=210'))
     );
     return;
   }
