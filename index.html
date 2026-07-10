@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=201">
-<link rel="apple-touch-icon" href="icon.svg?v=201">
-<title>エアコン販買マスター Ver.20</title>
+<link rel="manifest" href="manifest.json?v=203">
+<link rel="apple-touch-icon" href="icon.svg?v=203">
+<title>エアコン販買マスター Ver.20.3</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.20 メニュー修正 */
+/* Ver.20.3 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -471,6 +471,36 @@ body{
 @media(max-width:390px){
   .home-grid{grid-template-columns:1fr}
   .home-tile{min-height:88px}
+}
+
+
+/* iPad optimized */
+.app,.container,main{
+  max-width:1100px!important;
+  margin:0 auto!important;
+}
+.hero{min-height:420px!important}
+.hero-title-main{font-size:56px!important}
+.risa-script{font-size:44px!important}
+.home-grid{
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(220px,1fr))!important;
+ gap:18px!important;
+}
+.home-tile{min-height:150px!important}
+.card{padding:24px!important}
+.question{font-size:1.3rem!important}
+.choice{
+ min-height:68px!important;
+ font-size:1.08rem!important;
+}
+@media (max-width:1024px){
+ .home-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+@media (max-width:700px){
+ .hero-title-main{font-size:40px!important}
+ .risa-script{font-size:32px!important}
+ .home-grid{grid-template-columns:1fr!important;}
 }
 
 </style>
@@ -542,7 +572,7 @@ body{
 
   <div class="notice">
     <strong>全180問・ランク別精査済み</strong><br>
-    工事、料金、電気、メーカー提案、接客を総合的に学べます。
+    工事、料金、電気、メーカー提案、接客を総合的に学べます。正解位置は①〜④に均等配置されます。
   </div>
 </section>
 
@@ -610,6 +640,35 @@ function saveHistory(s){localStorage.setItem(HISTORY_KEY,JSON.stringify([...s]))
 function loadStatsData(){try{return JSON.parse(localStorage.getItem(STATS_KEY)||'{"answered":0,"correct":0}')}catch{return{answered:0,correct:0}}}
 function showPage(id){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');scrollTo(0,0)}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+let answerPositionBag=[];
+let lastAnswerPosition=-1;
+
+function nextBalancedPosition(choiceCount=4){
+  if(choiceCount<=1)return 0;
+
+  if(answerPositionBag.length===0){
+    answerPositionBag=shuffle([...Array(choiceCount).keys()]);
+    if(answerPositionBag[0]===lastAnswerPosition && answerPositionBag.length>1){
+      [answerPositionBag[0],answerPositionBag[1]]=[answerPositionBag[1],answerPositionBag[0]];
+    }
+  }
+
+  const position=answerPositionBag.shift();
+  lastAnswerPosition=position;
+  return position;
+}
+
+function arrangeChoicesAtBalancedPosition(choices,correctIndex){
+  const correct={text:choices[correctIndex],index:correctIndex};
+  const wrong=shuffle(
+    choices.map((text,index)=>({text,index})).filter(item=>item.index!==correctIndex)
+  );
+  const target=nextBalancedPosition(choices.length);
+  const arranged=[...wrong];
+  arranged.splice(target,0,correct);
+  return arranged;
+}
 function startQuiz(m){mode=m;showPage('quiz');nextQuestion()}
 function available(){const h=loadHistory();return QUESTIONS.filter(q=>(mode==='すべて'||q.level===mode)&&!h.has(q.id))}
 function nextQuestion(){
@@ -620,7 +679,7 @@ function nextQuestion(){
    return;
  }
  current=pool[Math.floor(Math.random()*pool.length)];
- const mixed=shuffle(current.choices.map((text,index)=>({text,index})));
+ const mixed=arrangeChoicesAtBalancedPosition(current.choices,current.answer);
  document.getElementById('levelPill').textContent=current.level;document.getElementById('catPill').textContent=current.category;
  document.getElementById('qno').textContent='Q. '+current.id.toUpperCase();
  document.getElementById('question').textContent=current.q;
@@ -671,7 +730,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=201', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=203', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -788,7 +847,7 @@ const SALES_CASES=[
     ]
   }
 ];
-let salesCase=null,salesStep=0,salesScore=0;
+let salesCase=null,salesStep=0,salesScore=0,salesDisplayedChoices=[];
 function startSalesMode(){
   salesCase=SALES_CASES[Math.floor(Math.random()*SALES_CASES.length)];
   salesStep=0;salesScore=0;showPage('sales');renderSalesStep();
@@ -799,9 +858,13 @@ function renderSalesStep(){
   salesCaseEl.innerHTML='<h3>お客様カルテ</h3><p>'+salesCase.customer+'</p>';
   salesStepLabel.textContent=step.label;
   salesOptions.innerHTML='<div class="question">'+step.q+'</div>';
-  step.choices.forEach((c,i)=>{
-    const b=document.createElement('button');b.className='choice';b.textContent=c;
-    b.onclick=()=>answerSales(i,b);salesOptions.appendChild(b);
+  salesDisplayedChoices=arrangeChoicesAtBalancedPosition(step.choices,step.a);
+  salesDisplayedChoices.forEach((item,displayIndex)=>{
+    const b=document.createElement('button');
+    b.className='choice';
+    b.textContent=`${displayIndex+1}　${item.text}`;
+    b.onclick=()=>answerSales(item.index,b);
+    salesOptions.appendChild(b);
   });
   salesResult.classList.add('hidden');
 }

@@ -1,9 +1,9 @@
-const CACHE = 'aircon-hanbai-master-v201';
+const CACHE = 'aircon-hanbai-master-v203';
 const ASSETS = [
   './',
-  './index.html?v=201',
-  './manifest.json?v=201',
-  './icon.svg?v=201'
+  './index.html?v=203',
+  './manifest.json?v=203',
+  './icon.svg?v=203'
 ];
 
 self.addEventListener('install', event => {
@@ -27,10 +27,10 @@ self.addEventListener('fetch', event => {
       fetch(event.request, {cache:'no-store'})
         .then(response => {
           const copy = response.clone();
-          caches.open(CACHE).then(cache => cache.put('./index.html?v=201', copy));
+          caches.open(CACHE).then(cache => cache.put('./index.html?v=203', copy));
           return response;
         })
-        .catch(() => caches.match('./index.html?v=201'))
+        .catch(() => caches.match('./index.html?v=203'))
     );
     return;
   }
