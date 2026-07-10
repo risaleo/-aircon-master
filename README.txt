@@ -22,3 +22,6 @@ icon-192.png
 icon-512.png
 README.txt
 sw.js
+
+
+Ver.14.1: ホーム画面追加用アイコンを指定画像へ変更。

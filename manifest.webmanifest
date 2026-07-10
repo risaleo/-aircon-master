@@ -1,8 +1,8 @@
 {
-  "name":"エアコン販売マスター Ver.14",
+  "name":"エアコン販売マスター Ver.14.1",
   "short_name":"エアコン販売",
   "description":"新人からエアコンマスターまで学べる販売・工事・接客トレーニング",
-  "start_url":"./?v=14",
+  "start_url":"./?v=14.1",
   "scope":"./",
   "display":"standalone",
   "background_color":"#eaf6ff",
