@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=200">
-<link rel="apple-touch-icon" href="icon.svg?v=200">
-<title>エアコン販買マスター Complete Edition</title>
+<link rel="manifest" href="manifest.json?v=201">
+<link rel="apple-touch-icon" href="icon.svg?v=201">
+<title>エアコン販買マスター Ver.20</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -328,17 +328,7 @@ body{
   color:#315f83;
   font-weight:800;
 }
-.complete-badge{
-  display:inline-flex;
-  margin-top:13px;
-  padding:7px 13px;
-  border-radius:999px;
-  color:#6d4f00;
-  background:linear-gradient(135deg,#fff5bd,#ffd66b);
-  font-size:12px;
-  font-weight:950;
-  box-shadow:0 7px 18px rgba(212,158,17,.2);
-}
+
 .dashboard{
   display:grid;
   grid-template-columns:1.1fr .9fr;
@@ -420,6 +410,69 @@ body{
   .home-tile{min-height:100px;padding:14px}
 }
 
+
+/* Ver.20 メニュー修正 */
+.home-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+  margin-top:14px;
+}
+.home-tile{
+  width:100%;
+  min-width:0;
+  min-height:112px;
+  padding:17px 15px;
+  border-radius:20px;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  overflow:hidden;
+  background:linear-gradient(145deg,#ffffff,#f1f8fe);
+  color:var(--navy);
+  box-shadow:0 10px 25px rgba(25,91,145,.12);
+}
+.home-tile::before{display:none!important}
+.home-tile::after{
+  position:absolute;
+  right:12px;
+  bottom:8px;
+  font-size:36px;
+  opacity:.16;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  background:none!important;
+}
+.home-tile b{position:relative;z-index:2}
+.home-tile small{position:relative;z-index:2}
+.tile-featured{
+  color:#fff;
+  background:linear-gradient(135deg,#08a9ef,#0869d8);
+}
+.tile-featured small{color:rgba(255,255,255,.82)}
+.tile-featured::after{opacity:.26}
+#levelMenu{
+  margin-top:12px;
+  padding:12px;
+  border-radius:20px;
+  background:#f3f9fe;
+  border:1px solid #dcebf6;
+}
+#levelMenu .primary{
+  min-height:auto;
+  padding:15px;
+  text-align:center;
+}
+#levelMenu .primary::before,
+#levelMenu .primary::after{display:none!important}
+@media(max-width:390px){
+  .home-grid{grid-template-columns:1fr}
+  .home-tile{min-height:88px}
+}
+
 </style>
 </head>
 <body><main class="app">
@@ -433,7 +486,7 @@ body{
       <span class="hero-title-main">❄ エアコン販買マスター</span>
       <span class="risa-script">RISA EDITION</span>
       <p class="hero-tagline">知識を、提案力へ。</p>
-      <span class="complete-badge">COMPLETE EDITION</span>
+      
     </div>
   </div>
 
@@ -452,7 +505,7 @@ body{
   </div>
 
   <div class="home-grid">
-    <button class="home-tile tile-daily primary" onclick="startDaily()">
+    <button class="home-tile tile-daily tile-featured" onclick="startDaily()">
       <b>今日のチャレンジ</b>
       <small>毎日10問</small>
     </button>
@@ -618,7 +671,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=200', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=201', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
