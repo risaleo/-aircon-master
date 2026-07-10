@@ -1,47 +1,53 @@
-const CACHE = 'aircon-hanbai-master-v206';
-const ASSETS = [
+const CACHE='aircon-hanbai-master-v208';
+const ASSETS=['./apple-touch-icon.png?v=208','./favicon-32.png?v=208',
   './',
-  './index.html?v=206',
-  './manifest.json?v=206',
-  './icon.svg?v=206'
+  './index.html?v=208',
+  './manifest.json?v=208',
+  './version.json?v=208',
+  './icon-180.png?v=208',
+  './icon-192.png?v=208',
+  './icon-512.png?v=208',
+  './icon-1024.png?v=208'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install',event=>{
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(ASSETS))
-  );
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate',event=>{
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
-      .then(() => self.clients.claim())
+      .then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key))))
+      .then(()=>self.clients.claim())
   );
 });
 
-self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate') {
+self.addEventListener('message',event=>{
+  if(event.data && event.data.type==='SKIP_WAITING')self.skipWaiting();
+});
+
+self.addEventListener('fetch',event=>{
+  if(event.request.mode==='navigate'){
     event.respondWith(
-      fetch(event.request, {cache:'no-store'})
-        .then(response => {
-          const copy = response.clone();
-          caches.open(CACHE).then(cache => cache.put('./index.html?v=206', copy));
+      fetch(event.request,{cache:'no-store'})
+        .then(response=>{
+          const copy=response.clone();
+          caches.open(CACHE).then(cache=>cache.put('./index.html?v=208',copy));
           return response;
         })
-        .catch(() => caches.match('./index.html?v=206'))
+        .catch(()=>caches.match('./index.html?v=208'))
     );
     return;
   }
 
   event.respondWith(
-    fetch(event.request, {cache:'no-store'})
-      .then(response => {
-        const copy = response.clone();
-        caches.open(CACHE).then(cache => cache.put(event.request, copy));
+    fetch(event.request,{cache:'no-store'})
+      .then(response=>{
+        const copy=response.clone();
+        caches.open(CACHE).then(cache=>cache.put(event.request,copy));
         return response;
       })
-      .catch(() => caches.match(event.request))
+      .catch(()=>caches.match(event.request))
   );
 });
