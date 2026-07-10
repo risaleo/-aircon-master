@@ -1,128 +1,77 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>エアコン接客マスター Ver.7</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>エアコン接客マスター Ver.8</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main class="app">
-  <section id="home" class="card">
-    <div class="hero">
-      <div class="snow">❄</div>
-      <h1>エアコン接客マスター</h1>
-      <p>Ver.7 シンプル実用版</p>
-    </div>
+<section id="home" class="card">
+  <div class="hero"><div class="snow">❄</div><h1>エアコン接客マスター</h1><p>Ver.8 標準工事・石綿対策対応</p></div>
+  <div class="stats"><div><span id="totalSolved">0</span><small>総回答</small></div><div><span id="accuracy">0%</span><small>正解率</small></div><div><span id="rank">新人</span><small>ランク</small></div></div>
+  <div class="menu">
+    <button onclick="showWizard()">🧮 工事料金診断</button>
+    <button onclick="showEstimate()">💰 詳細料金計算</button>
+    <button onclick="showDiagnosis()">✅ 接客チェック</button>
+    <button onclick="startQuiz('today')">🎯 今日の10問</button>
+    <button onclick="startQuiz('price')">🏷 工事料金問題</button>
+    <button onclick="startQuiz('quality')">🛠 良質工事</button>
+    <button onclick="startQuiz('talk')">👨 接客問題</button>
+    <button onclick="showScore()">🏆 成績</button>
+  </div>
+</section>
 
-    <div class="stats">
-      <div><span id="totalSolved">0</span><small>総回答</small></div>
-      <div><span id="accuracy">0%</span><small>正解率</small></div>
-      <div><span id="rank">新人</span><small>ランク</small></div>
-    </div>
+<section id="wizard" class="card hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">←</button><div><h2>工事料金診断</h2><p id="wizardProgress"></p></div></div>
+  <h3 id="wizardQuestion"></h3>
+  <div id="wizardChoices" class="choices"></div>
+  <div id="wizardResult" class="result hidden"></div>
+</section>
 
-    <div class="menu">
-      <button onclick="showWizard()">🧮 工事料金診断</button>
-      <button onclick="showEstimate()">💰 詳細料金計算</button>
-      <button onclick="showDiagnosis()">✅ 接客チェック</button>
-      <button onclick="startQuiz('today')">🎯 今日の10問</button>
-      <button onclick="startQuiz('basic')">📚 基礎知識</button>
-      <button onclick="startQuiz('price')">🏷 工事料金問題</button>
-      <button onclick="startQuiz('quality')">🛠 良質工事</button>
-      <button onclick="startQuiz('talk')">👨 接客問題</button>
-      <button onclick="showScore()">🏆 成績</button>
-    </div>
-  </section>
+<section id="estimate" class="card hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">←</button><div><h2>詳細料金計算</h2><p>チェック・数量入力方式</p></div></div>
+  <div id="estimateItems"></div>
+  <div class="totalBox"><p>概算合計</p><strong id="estimateTotal">¥0</strong></div>
+  <div id="estimateBreakdown" class="result"></div>
+  <button class="secondary" onclick="resetEstimate()">選択をリセット</button>
+  <p class="note">※正式金額は現地確認と最新版料金表で確定してください。</p>
+</section>
 
-  <section id="quiz" class="card hidden">
-    <div class="topbar">
-      <button class="back" onclick="showHome()">←</button>
-      <div>
-        <h2 id="quizTitle"></h2>
-        <p id="progressText"></p>
-      </div>
-    </div>
-    <div class="progress"><div id="progressBar"></div></div>
-    <div id="categoryBadge" class="badge"></div>
-    <h3 id="questionText"></h3>
-    <div id="choices" class="choices"></div>
-    <div id="result" class="result hidden"></div>
-    <button id="nextBtn" class="primary hidden" onclick="nextQuestion()">次へ</button>
-  </section>
+<section id="quiz" class="card hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">←</button><div><h2 id="quizTitle"></h2><p id="progressText"></p></div></div>
+  <div class="progress"><div id="progressBar"></div></div>
+  <h3 id="questionText"></h3>
+  <div id="choices" class="choices"></div>
+  <div id="result" class="result hidden"></div>
+  <button id="nextBtn" class="primary hidden" onclick="nextQuestion()">次へ</button>
+</section>
 
-  <section id="wizard" class="card hidden">
-    <div class="topbar">
-      <button class="back" onclick="showHome()">←</button>
-      <div>
-        <h2>工事料金診断</h2>
-        <p id="wizardProgress">質問 1 / 8</p>
-      </div>
-    </div>
-    <h3 id="wizardQuestion"></h3>
-    <div id="wizardChoices" class="choices"></div>
-    <div id="wizardResult" class="result hidden"></div>
-  </section>
+<section id="finish" class="card hidden">
+  <h2>結果発表</h2><div class="scoreCircle"><span id="finishScore">0</span>点</div><p id="finishMessage"></p>
+  <button class="primary" onclick="showHome()">ホームへ</button>
+</section>
 
-  <section id="estimate" class="card hidden">
-    <div class="topbar">
-      <button class="back" onclick="showHome()">←</button>
-      <div>
-        <h2>詳細料金計算</h2>
-        <p>チェック・数量入力方式</p>
-      </div>
-    </div>
-    <p class="hint">必要な工事を選ぶと、税込の概算金額と内訳を表示します。</p>
-    <div id="estimateItems"></div>
-    <div class="totalBox">
-      <p>概算合計</p>
-      <strong id="estimateTotal">¥0</strong>
-    </div>
-    <div id="estimateBreakdown" class="result"></div>
-    <button class="secondary" onclick="resetEstimate()">選択をリセット</button>
-    <p class="note">※正式金額は、現地確認と最新版料金表で確定してください。</p>
-  </section>
+<section id="diagnosis" class="card hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">←</button><h2>接客チェック</h2></div>
+  <label><input type="checkbox" class="check"> エアコン能力（kW）</label>
+  <label><input type="checkbox" class="check"> 建物の着工年月日</label>
+  <label><input type="checkbox" class="check"> 穴あけの有無</label>
+  <label><input type="checkbox" class="check"> 設置場所・何階か</label>
+  <label><input type="checkbox" class="check"> 室外機の置き場所</label>
+  <label><input type="checkbox" class="check"> 専用回路の有無</label>
+  <label><input type="checkbox" class="check"> 100V・200V</label>
+  <label><input type="checkbox" class="check"> 配管長さ</label>
+  <label><input type="checkbox" class="check"> 化粧カバー希望</label>
+  <button class="primary" onclick="checkDiagnosis()">確認する</button>
+  <div id="diagnosisResult" class="result hidden"></div>
+</section>
 
-  <section id="finish" class="card hidden">
-    <h2>結果発表</h2>
-    <div class="scoreCircle"><span id="finishScore">0</span>点</div>
-    <p id="finishMessage"></p>
-    <button class="primary" onclick="showHome()">ホームへ</button>
-    <button onclick="startQuiz('today')">もう一回</button>
-  </section>
-
-  <section id="diagnosis" class="card hidden">
-    <div class="topbar">
-      <button class="back" onclick="showHome()">←</button>
-      <h2>接客チェック</h2>
-    </div>
-    <p class="hint">確認できた項目にチェックを入れてください。</p>
-    <label><input type="checkbox" class="check"> 買い替え・新規</label>
-    <label><input type="checkbox" class="check"> 設置場所・何階か</label>
-    <label><input type="checkbox" class="check"> 室外機の置き場所</label>
-    <label><input type="checkbox" class="check"> 専用回路の有無</label>
-    <label><input type="checkbox" class="check"> 100V・200V</label>
-    <label><input type="checkbox" class="check"> 配管穴の有無</label>
-    <label><input type="checkbox" class="check"> 配管長さ</label>
-    <label><input type="checkbox" class="check"> 隠蔽配管の可能性</label>
-    <label><input type="checkbox" class="check"> 化粧カバー希望</label>
-    <label><input type="checkbox" class="check"> 搬入・作業スペース</label>
-    <button class="primary" onclick="checkDiagnosis()">確認する</button>
-    <button class="secondary" onclick="resetChecks()">チェックをリセット</button>
-    <div id="diagnosisResult" class="result hidden"></div>
-  </section>
-
-  <section id="score" class="card hidden">
-    <div class="topbar">
-      <button class="back" onclick="showHome()">←</button>
-      <h2>成績</h2>
-    </div>
-    <div class="stats big">
-      <div><span id="scoreTotal">0</span><small>総回答</small></div>
-      <div><span id="scoreCorrect">0</span><small>正解</small></div>
-      <div><span id="scoreAccuracy">0%</span><small>正解率</small></div>
-    </div>
-    <button onclick="resetStats()">成績リセット</button>
-  </section>
+<section id="score" class="card hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">←</button><h2>成績</h2></div>
+  <div class="stats big"><div><span id="scoreTotal">0</span><small>総回答</small></div><div><span id="scoreCorrect">0</span><small>正解</small></div><div><span id="scoreAccuracy">0%</span><small>正解率</small></div></div>
+</section>
 </main>
 <script src="script.js"></script>
 </body>
