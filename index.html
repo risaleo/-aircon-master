@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
-<title>エアコン販買マスター Ver.15</title>
+<link rel="manifest" href="manifest.json?v=151">
+<link rel="apple-touch-icon" href="icon.svg?v=151">
+<title>エアコン販買マスター Ver.15.1</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -283,12 +283,12 @@ button:active{transform:scale(.98)}
     <div class="hero-ac"></div>
     <div class="cool-air"></div>
     <div class="hero-brand">
-      <img src="icon.svg" alt="エアコン販買マスター">
+      <img src="icon.svg?v=151" alt="エアコン販買マスター">
     </div>
     <div class="hero-copy">
       <h1><span>エアコン</span>販買マスター</h1>
       <p class="sub">学んで、接客にもっと強くなる。</p>
-      <span class="version">Ver.15</span>
+      <span class="version">Ver.15.1</span>
     </div>
   </div>
 
@@ -394,6 +394,10 @@ function renderCheck(){if(checkList.children.length)return;CHECKS.forEach(t=>{co
 function judgeCheck(){const a=[...checkList.querySelectorAll('input')],m=a.filter(x=>!x.checked).length;checkResult.classList.remove('hidden');checkResult.innerHTML=m?`⚠️ 未確認が<strong>${m}項目</strong>あります。`: '⭕️ 確認漏れなしです。';}
 const PRICES=[['標準工事','2.2～3.6kW',20350],['標準工事','4.0～5.6kW',24750],['標準工事','6.3kW以上',28050],['設置方法','内機2階・外機1階',19800],['設置方法','内機3階・外機1階',36300],['設置方法','隠ぺい配管',8800],['設置方法','ソフトドレン取付',7700],['設置方法','屋内壁貫通',6600],['設置方法','立ち上げ工事（配管4m）',9900],['室外機','室外機移動',11000],['室外機','2段置き 2.2～3.9kW',19800],['室外機','2段置き 4.0kW以上',20900],['石綿','穴あけ事前調査',3300],['石綿','石綿対策工事',15400],['その他','当日工事',3300],['その他','運搬費（戸建て）',1100],['その他','加湿換気ホース延長1m',1100]];
 function renderPrices(){if(priceList.children.length)return;let g='';PRICES.forEach(p=>{if(p[0]!==g){g=p[0];const h=document.createElement('h3');h.className='section';h.textContent=g;priceList.appendChild(h)}const r=document.createElement('div');r.className='listrow';r.innerHTML=`<span>${p[1]}</span><strong>¥${p[2].toLocaleString()}</strong>`;priceList.appendChild(r)})}
-if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js?v=151', {updateViaCache:'none'})
+    .then(reg => reg.update())
+    .catch(() => {});
+}
 showPage('home');
 </script></body></html>
