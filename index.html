@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=204">
-<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png?v=204">
-<title>エアコン販買マスター Ver.20.4</title>
+<link rel="manifest" href="manifest.json?v=205">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png?v=205">
+<title>エアコン販買マスター Ver.20.5</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.20.4 メニュー修正 */
+/* Ver.20.5 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -539,7 +539,7 @@ body{
       <b>今日のチャレンジ</b>
       <small>毎日10問</small>
     </button>
-    <button class="home-tile tile-quiz" onclick="showLevelMenu()">
+    <button type="button" class="home-tile tile-quiz" onclick="showLevelMenu()">
       <b>練習問題</b>
       <small>初級・中級・上級</small>
     </button>
@@ -561,7 +561,7 @@ body{
     </button>
   </div>
 
-  <div id="levelMenu" class="menu hidden">
+  <div id="levelMenu" class="menu hidden" aria-label="練習問題の難易度選択">
     <button class="primary next" onclick="startQuiz('すべて')">ランダム</button>
     <div class="levelGrid">
       <button onclick="startQuiz('初級')">初級</button>
@@ -669,7 +669,18 @@ function arrangeChoicesAtBalancedPosition(choices,correctIndex){
   arranged.splice(target,0,correct);
   return arranged;
 }
-function startQuiz(m){mode=m;showPage('quiz');nextQuestion()}
+function startQuiz(m){
+  mode=m;
+  quizMode='practice';
+  quizLimit=null;
+  quizAnsweredThisRun=0;
+  dailyQuestionIds=[];
+  reviewMode=false;
+  const menu=document.getElementById('levelMenu');
+  if(menu)menu.classList.add('hidden');
+  showPage('quiz');
+  nextQuestion();
+}
 function available(){const h=loadHistory();return QUESTIONS.filter(q=>(mode==='すべて'||q.level===mode)&&!h.has(q.id))}
 function nextQuestion(){
  locked=false;document.getElementById('answerArea').classList.add('hidden');document.getElementById('choices').innerHTML='';
@@ -690,7 +701,9 @@ function nextQuestion(){
 function answer(index,btn){
  if(locked)return;locked=true;const ok=index===current.answer;
  [...document.querySelectorAll('.choice')].forEach(b=>b.disabled=true);btn.classList.add(ok?'correct':'wrong');
- const h=loadHistory();h.add(current.id);saveHistory(h);
+ const h=loadHistory();
+ if(typeof quizMode==='undefined'||quizMode==='practice')h.add(current.id);
+ saveHistory(h);
  const s=loadStatsData();s.answered++;if(ok)s.correct++;localStorage.setItem(STATS_KEY,JSON.stringify(s));
  document.getElementById('mark').textContent=ok?'⭕️':'❌';document.getElementById('explain').innerHTML=`<strong>${ok?'正解！':'不正解'}</strong><br>${current.ex}`;
  document.getElementById('answerArea').classList.remove('hidden');
@@ -730,14 +743,18 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=204', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=205', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
 
 const WRONG_KEY='aircon_complete_wrong';
 const CAT_KEY='aircon_complete_category';
-let quizLimit=null, quizAnsweredThisRun=0, reviewMode=false;
+let quizLimit=null;
+let quizAnsweredThisRun=0;
+let reviewMode=false;
+let quizMode='practice';
+let dailyQuestionIds=[];
 
 function getRank(exp){
   if(exp>=1500) return '👑 販買マスター';
@@ -759,11 +776,32 @@ function updateHome(){
   homeExpBar.style.width=Math.min(100,exp/tier*100)+'%';
 }
 function showLevelMenu(){
-  levelMenu.classList.toggle('hidden');
+  const menu=document.getElementById('levelMenu');
+  if(!menu)return;
+  menu.classList.toggle('hidden');
+  if(!menu.classList.contains('hidden')){
+    requestAnimationFrame(()=>menu.scrollIntoView({behavior:'smooth',block:'nearest'}));
+  }
 }
 function startDaily(){
-  quizLimit=10; quizAnsweredThisRun=0; reviewMode=false;
-  mode='すべて'; showPage('quiz'); nextQuestion();
+  quizMode='daily';
+  quizLimit=10;
+  quizAnsweredThisRun=0;
+  reviewMode=false;
+  mode='すべて';
+
+  const history=loadHistory();
+  let candidates=QUESTIONS.filter(q=>!history.has(q.id));
+
+  if(candidates.length<10){
+    const selectedIds=new Set(candidates.map(q=>q.id));
+    const extras=shuffle(QUESTIONS.filter(q=>!selectedIds.has(q.id)));
+    candidates=[...candidates,...extras.slice(0,10-candidates.length)];
+  }
+
+  dailyQuestionIds=shuffle(candidates).slice(0,10).map(q=>q.id);
+  showPage('quiz');
+  nextQuestion();
 }
 function loadWrong(){
   try{return new Set(JSON.parse(localStorage.getItem(WRONG_KEY)||'[]'))}catch{return new Set()}
@@ -772,16 +810,31 @@ function saveWrong(set){localStorage.setItem(WRONG_KEY,JSON.stringify([...set]))
 function startWrongReview(){
   const wrong=loadWrong();
   if(!wrong.size){alert('復習する間違い問題はありません。');return;}
-  quizLimit=null; quizAnsweredThisRun=0; reviewMode=true;
-  mode='すべて'; showPage('quiz'); nextQuestion();
+  quizMode='review';
+  quizLimit=null;
+  quizAnsweredThisRun=0;
+  reviewMode=true;
+  dailyQuestionIds=[];
+  mode='すべて';
+  showPage('quiz');
+  nextQuestion();
 }
 const originalAvailable=available;
 available=function(){
   const h=loadHistory();
-  if(reviewMode){
+
+  if(quizMode==='daily'){
+    return dailyQuestionIds
+      .filter(id=>!h.has('daily-'+id))
+      .map(id=>QUESTIONS.find(q=>q.id===id))
+      .filter(Boolean);
+  }
+
+  if(quizMode==='review'){
     const wrong=loadWrong();
     return QUESTIONS.filter(q=>wrong.has(q.id)&&!h.has('review-'+q.id));
   }
+
   return QUESTIONS.filter(q=>(mode==='すべて'||q.level===mode)&&!h.has(q.id));
 }
 const originalAnswer=answer;
@@ -790,27 +843,60 @@ answer=function(index,btn){
   const wasCorrect=index===current.answer;
   originalAnswer(index,btn);
   quizAnsweredThisRun++;
+
   const wrong=loadWrong();
   if(wasCorrect){wrong.delete(current.id)}else{wrong.add(current.id)}
   saveWrong(wrong);
 
   const cats=JSON.parse(localStorage.getItem(CAT_KEY)||'{}');
-  if(!cats[current.category]) cats[current.category]={answered:0,correct:0};
+  if(!cats[current.category])cats[current.category]={answered:0,correct:0};
   cats[current.category].answered++;
-  if(wasCorrect) cats[current.category].correct++;
+  if(wasCorrect)cats[current.category].correct++;
   localStorage.setItem(CAT_KEY,JSON.stringify(cats));
 
-  if(reviewMode){
-    const h=loadHistory(); h.add('review-'+current.id); saveHistory(h);
-  }
+  const h=loadHistory();
+  if(quizMode==='daily')h.add('daily-'+current.id);
+  if(quizMode==='review')h.add('review-'+current.id);
+  saveHistory(h);
 }
 const originalNextQuestion=nextQuestion;
 nextQuestion=function(){
-  if(quizLimit && quizAnsweredThisRun>=quizLimit){
+  if(quizMode==='daily' && quizAnsweredThisRun>=10){
+    quizLimit=null;
+    dailyQuestionIds=[];
+    quizMode='practice';
     alert('今日のチャレンジ10問が終了しました！');
-    quizLimit=null; showStats(); return;
+    showStats();
+    return;
   }
+
+  const pool=available();
+  if(!pool.length){
+    if(quizMode==='daily'){
+      quizLimit=null;
+      dailyQuestionIds=[];
+      quizMode='practice';
+      alert(`今日のチャレンジ${quizAnsweredThisRun}問が終了しました！`);
+      showStats();
+      return;
+    }
+    if(quizMode==='review'){
+      quizMode='practice';
+      reviewMode=false;
+      alert('間違い問題の復習が終了しました！');
+      showStats();
+      return;
+    }
+  }
+
   originalNextQuestion();
+
+  const progress=document.getElementById('progressText');
+  if(progress && quizMode==='daily'){
+    progress.textContent=`今日のチャレンジ ${Math.min(quizAnsweredThisRun+1,10)} / 10問`;
+  }else if(progress && quizMode==='review'){
+    progress.textContent=`間違い復習　残り ${available().length}問`;
+  }
 }
 const originalShowPage=showPage;
 showPage=function(id){
