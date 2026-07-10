@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b78d0">
 <title>エアコン販売マスター Risa Edition</title>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=101">
 </head>
 <body>
 <main class="app">
@@ -15,7 +15,7 @@
     <h1>エアコン販売マスター</h1>
     <h2>Risa Edition</h2>
     <p>販売力 × 工事知識 × 接客力</p>
-    <span class="version">Version 10.0</span>
+    <span class="version">Version 10.1</span>
   </header>
   <div class="stats">
     <div><strong id="total">0</strong><span>総回答</span></div>
@@ -30,7 +30,6 @@
     <button data-quiz="工事料金">🔧 工事料金</button>
     <button data-quiz="イレギュラー工事">🏠 イレギュラー工事</button>
     <button data-quiz="接客問題">👨 接客問題</button>
-    <button id="dictBtn">📚 工事辞典</button>
     <button id="scoreBtn">🏆 成績</button>
   </nav>
 </section>
@@ -55,18 +54,12 @@
 <section id="makers" class="screen hidden">
   <div class="top"><button class="back" data-home>←</button><h2>メーカー別特徴</h2></div>
   <div id="makerList"></div>
-  <button class="primary" id="makerQuiz">メーカー問題に挑戦</button>
+  <button class="primary" id="makerQuiz">メーカー問題10問</button>
 </section>
 
 <section id="makerDetail" class="screen hidden">
   <div class="top"><button class="back" id="backMakers">←</button><h2 id="makerName"></h2></div>
   <div id="makerContent"></div>
-</section>
-
-<section id="dictionary" class="screen hidden">
-  <div class="top"><button class="back" data-home>←</button><h2>工事辞典</h2></div>
-  <input id="search" class="search" placeholder="例：分電盤、専用回路">
-  <div id="dictList"></div>
 </section>
 
 <section id="scores" class="screen hidden">
@@ -79,6 +72,6 @@
   <div id="categoryScores"></div>
 </section>
 </main>
-<script src="script.js?v=10"></script>
+<script src="script.js?v=101"></script>
 </body>
 </html>
