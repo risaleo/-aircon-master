@@ -1,22 +1,24 @@
-# エアコン販売マスター Risa Edition Ver.13.3
+エアコン販売マスター Ver.14.0
 
-修正内容
-- 同じ問題が続きにくいように修正
-- 出題済み問題を端末内に記録
-- 未出題問題を優先
-- 全問出し切った後だけ履歴をリセット
-- 同じ文章の問題は1回の出題内で重複させない
-- iPad対応
-- 3段階レベル
-- 300問
-- エアコンアイコン
+主な更新
+- iPadで見やすい大きな文字・ボタン
+- 新人／販売力アップ／エアコンマスターの3段階
+- 工事辞典・模擬試験・チェックリストは不採用
+- お客様のお困り事を聞く接客を中心に構成
+- メーカー別特徴を収録
+- 1,010問データを自動生成して収録
+- 同じ問題が続きにくい未出題優先方式
+- 選択肢と正解位置を毎回ランダム化
+- 成績・分野別正答率を端末に保存
+- 青いエアコンアイコン
 
 GitHubへ上書きするファイル
-- index.html
-- style.css
-- script.js
-- README.txt
-- apple-touch-icon.png
-- icon-192.png
-- icon-512.png
-- manifest.webmanifest
+index.html
+style.css
+script.js
+manifest.webmanifest
+apple-touch-icon.png
+icon-192.png
+icon-512.png
+README.txt
+sw.js
