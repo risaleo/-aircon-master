@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b78d0">
 <title>エアコン販売マスター Risa Edition</title>
-<link rel="stylesheet" href="style.css?v=101">
+<link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 <main class="app">
@@ -15,23 +15,45 @@
     <h1>エアコン販売マスター</h1>
     <h2>Risa Edition</h2>
     <p>販売力 × 工事知識 × 接客力</p>
-    <span class="version">Version 10.1</span>
+    <span class="version">Version 12.0</span>
   </header>
   <div class="stats">
     <div><strong id="total">0</strong><span>総回答</span></div>
     <div><strong id="rate">0%</strong><span>正解率</span></div>
     <div><strong id="rank">新人</strong><span>ランク</span></div>
   </div>
-  <nav class="menu">
-    <button data-quiz="today">🎓 今日の5問</button>
-    <button data-quiz="エアコン基礎">📖 エアコン基礎</button>
-    <button id="makerBtn">🏭 メーカー別特徴</button>
-    <button data-quiz="電気工事">⚡ 電気工事</button>
-    <button data-quiz="工事料金">🔧 工事料金</button>
-    <button data-quiz="イレギュラー工事">🏠 イレギュラー工事</button>
-    <button data-quiz="接客問題">👨 接客問題</button>
-    <button id="scoreBtn">🏆 成績</button>
+  <nav class="level-menu">
+    <button class="level-card beginner" data-level="beginner">
+      <span class="level-icon">🌱</span>
+      <strong>新人</strong>
+      <small>基本をしっかり覚える</small>
+    </button>
+    <button class="level-card standard" data-level="standard">
+      <span class="level-icon">🧑‍💼</span>
+      <strong>販売員</strong>
+      <small>実践的な判断力を身につける</small>
+    </button>
+    <button class="level-card master" data-level="master">
+      <span class="level-icon">👑</span>
+      <strong>エアコンマスター</strong>
+      <small>難しい現場・応用問題に挑戦</small>
+    </button>
   </nav>
+</section>
+
+
+<section id="levelCategories" class="screen hidden">
+  <div class="top"><button class="back" data-home>←</button><div><h2 id="levelTitle">新人</h2><p id="levelSub">問題集を選んでください</p></div></div>
+  <div class="ipad-grid category-grid">
+    <button data-level-quiz="today">🎓 今日の5問</button>
+    <button data-level-quiz="エアコン基礎">📖 エアコン基礎</button>
+    <button id="makerBtn">🏭 メーカー別特徴</button>
+    <button data-level-quiz="電気工事">⚡ 電気工事</button>
+    <button data-level-quiz="工事料金">🔧 工事料金</button>
+    <button data-level-quiz="イレギュラー工事">🏠 イレギュラー工事</button>
+    <button data-level-quiz="接客問題">👨 接客問題</button>
+    <button id="scoreBtn">🏆 成績</button>
+  </div>
 </section>
 
 <section id="quiz" class="screen hidden">
@@ -52,7 +74,7 @@
 </section>
 
 <section id="makers" class="screen hidden">
-  <div class="top"><button class="back" data-home>←</button><h2>メーカー別特徴</h2></div>
+  <div class="top"><button class="back" id="backLevel">←</button><h2>メーカー別特徴</h2></div>
   <div id="makerList"></div>
   <button class="primary" id="makerQuiz">メーカー問題10問</button>
 </section>
@@ -72,6 +94,6 @@
   <div id="categoryScores"></div>
 </section>
 </main>
-<script src="script.js?v=101"></script>
+<script src="script.js?v=12"></script>
 </body>
 </html>
