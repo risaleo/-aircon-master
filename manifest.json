@@ -1,7 +1,7 @@
 {
-  "name": "エアコン販買マスター RISA EDITION Ver.20.5",
+  "name": "エアコン販買マスター RISA EDITION Ver.20.6",
   "short_name": "販買マスター",
-  "start_url": "./index.html?v=205",
+  "start_url": "./index.html?v=206",
   "display": "standalone",
   "background_color": "#eef7ff",
   "theme_color": "#0b79e5",

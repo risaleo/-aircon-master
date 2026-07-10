@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=205">
-<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png?v=205">
-<title>エアコン販買マスター Ver.20.5</title>
+<link rel="manifest" href="manifest.json?v=206">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png?v=206">
+<title>エアコン販買マスター Ver.20.6</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.20.5 メニュー修正 */
+/* Ver.20.6 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -606,7 +606,7 @@ body{
 <section id="sales" class="card hidden">
   <div class="top">
     <button class="back" onclick="showPage('home')">←</button>
-    <div><h2>販買モード</h2><p class="small">お客様に合う提案を考えよう</p></div>
+    <div><h2>販買モード</h2><p class="small">お客様に合う提案を考えよう（全ケース一巡まで重複なし）</p></div>
   </div>
   <div id="salesCase" class="sales-case"></div>
   <div id="salesStepLabel" class="sales-step"></div>
@@ -743,7 +743,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=205', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=206', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -934,9 +934,29 @@ const SALES_CASES=[
   }
 ];
 let salesCase=null,salesStep=0,salesScore=0,salesDisplayedChoices=[];
+let salesCaseBag=[];
+let lastSalesCaseIndex=-1;
+
+function refillSalesCaseBag(){
+  salesCaseBag=shuffle([...Array(SALES_CASES.length).keys()]);
+  if(salesCaseBag.length>1 && salesCaseBag[0]===lastSalesCaseIndex){
+    [salesCaseBag[0],salesCaseBag[1]]=[salesCaseBag[1],salesCaseBag[0]];
+  }
+}
+
+function getNextSalesCase(){
+  if(salesCaseBag.length===0)refillSalesCaseBag();
+  const index=salesCaseBag.shift();
+  lastSalesCaseIndex=index;
+  return SALES_CASES[index];
+}
+
 function startSalesMode(){
-  salesCase=SALES_CASES[Math.floor(Math.random()*SALES_CASES.length)];
-  salesStep=0;salesScore=0;showPage('sales');renderSalesStep();
+  salesCase=getNextSalesCase();
+  salesStep=0;
+  salesScore=0;
+  showPage('sales');
+  renderSalesStep();
 }
 function renderSalesStep(){
   const step=salesCase.steps[salesStep];
