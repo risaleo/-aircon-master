@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=151">
-<link rel="apple-touch-icon" href="icon.svg?v=151">
-<title>エアコン販買マスター Ver.15.1</title>
+<link rel="manifest" href="manifest.json?v=152">
+<link rel="apple-touch-icon" href="icon.svg?v=152">
+<title>エアコン販買マスター Ver.15.2</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -215,8 +215,8 @@ button:active{transform:scale(.98)}
   font-size:33px;color:#6f8498;
 }
 .menu-action.record::before{content:"📖";background:linear-gradient(135deg,#1eb0ff,#0869d8)}
-.menu-action.checking::before{content:"📋";background:linear-gradient(135deg,#27c9ca,#1599a1)}
-.menu-action.prices::before{content:"🧮";background:linear-gradient(135deg,#ffbf45,#ef8e13)}
+
+
 .menu-action small{display:block;margin-top:5px;color:#75889a;font-size:13px;font-weight:700}
 
 .notice{
@@ -256,10 +256,10 @@ button:active{transform:scale(.98)}
 .stat strong{display:block;font-size:25px;color:#0876d4}
 .progressbar{height:11px;background:#e5eef6;border-radius:99px;overflow:hidden}
 .progressbar span{display:block;height:100%;background:linear-gradient(90deg,#12b8f5,#0468d9)}
-.listrow{display:flex;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid #e6edf4}
-.section{color:#0772ca;margin:20px 0 6px}
-.check{display:flex;gap:10px;padding:13px;background:#f5faff;border-radius:15px;margin:8px 0;line-height:1.5}
-.check input{transform:scale(1.25)}
+
+
+
+
 .small{font-size:13px;color:#63788d}
 
 @media(max-width:520px){
@@ -283,12 +283,12 @@ button:active{transform:scale(.98)}
     <div class="hero-ac"></div>
     <div class="cool-air"></div>
     <div class="hero-brand">
-      <img src="icon.svg?v=151" alt="エアコン販買マスター">
+      <img src="icon.svg?v=152" alt="エアコン販買マスター">
     </div>
     <div class="hero-copy">
       <h1><span>エアコン</span>販買マスター</h1>
       <p class="sub">学んで、接客にもっと強くなる。</p>
-      <span class="version">Ver.15.1</span>
+      <span class="version">Ver.15.2</span>
     </div>
   </div>
 
@@ -304,16 +304,6 @@ button:active{transform:scale(.98)}
     <button class="menu-action record" onclick="showStats()">
       学習記録
       <small>成績と正答率を確認</small>
-    </button>
-
-    <button class="menu-action checking" onclick="showPage('check')">
-      工事聞き取りチェック
-      <small>接客で使える確認リスト</small>
-    </button>
-
-    <button class="menu-action prices" onclick="showPage('prices')">
-      主要工事料金一覧
-      <small>工事料金をすぐに確認</small>
     </button>
   </div>
 
@@ -337,16 +327,6 @@ button:active{transform:scale(.98)}
 <p id="stRemain" class="small"></p>
 <button class="primary" onclick="resetHistory()">出題履歴をリセット</button>
 </section>
-
-<section id="check" class="card hidden">
-<div class="top"><button class="back" onclick="showPage('home')">←</button><h2>工事聞き取りチェック</h2></div>
-<div id="checkList"></div><button class="primary" onclick="judgeCheck()">確認する</button><div id="checkResult" class="explain hidden"></div>
-</section>
-
-<section id="prices" class="card hidden">
-<div class="top"><button class="back" onclick="showPage('home')">←</button><h2>主要工事料金一覧</h2></div><div id="priceList"></div>
-<div class="notice">表示金額は税込の概算です。正式金額・施工可否は現地確認で確定してください。</div>
-</section>
 </main>
 <script>
 const RAW_QUESTIONS=[{"id": "b001", "level": "初級", "category": "基礎知識", "q": "APFは何を表す数値ですか？", "choices": ["年間を通した省エネ性能", "冷房能力だけ", "室外機の大きさ", "配管の長さ"], "answer": 0, "ex": "APFは通年エネルギー消費効率で、年間を通した省エネ性能の目安です。"}, {"id": "b002", "level": "初級", "category": "基礎知識", "q": "エアコンの「2.2kW」は一般に何畳用の目安ですか？", "choices": ["6畳", "8畳", "10畳", "14畳"], "answer": 0, "ex": "2.2kWは一般に主として6畳用の目安です。建物条件で必要能力は変わります。"}, {"id": "b003", "level": "初級", "category": "基礎知識", "q": "エアコン専用回路とは何ですか？", "choices": ["エアコンだけに使う回路", "照明と共用する回路", "テレビ用の回路", "屋外専用の回路"], "answer": 0, "ex": "エアコンだけに使用する専用の電気回路です。"}, {"id": "b004", "level": "初級", "category": "基礎知識", "q": "室内機から出た結露水を外へ流す部材はどれですか？", "choices": ["ドレンホース", "冷媒管", "VVFケーブル", "アース線"], "answer": 0, "ex": "ドレンホースが室内機の結露水を屋外へ排出します。"}, {"id": "b005", "level": "初級", "category": "基礎知識", "q": "冷媒配管の主な役割はどれですか？", "choices": ["室内機と室外機の間で冷媒を循環させる", "結露水を排出する", "電源を供給する", "室外機を固定する"], "answer": 0, "ex": "冷媒配管は室内機と室外機の間で冷媒を循環させます。"}, {"id": "b006", "level": "初級", "category": "基礎知識", "q": "買い替え工事で最初に確認したい内容はどれですか？", "choices": ["既設エアコンの取り外し有無", "テレビのサイズ", "冷蔵庫の容量", "Wi-Fiの速度"], "answer": 0, "ex": "既設機の取り外し、リサイクル、設置状況を確認します。"}, {"id": "b007", "level": "初級", "category": "電気", "q": "100V機から200V機へ変更する際、確認が必要なものはどれですか？", "choices": ["電圧切替とコンセント形状", "ドレンホースの色", "リモコンの電池", "室内機の色"], "answer": 0, "ex": "分電盤側の電圧切替と、対応するコンセントへの交換が必要になる場合があります。"}, {"id": "b008", "level": "初級", "category": "電気", "q": "アースの主な目的はどれですか？", "choices": ["漏電時の感電リスクを抑える", "冷房能力を上げる", "運転音を下げる", "通信速度を上げる"], "answer": 0, "ex": "漏電時に電気を逃がし、感電などのリスクを抑えるためです。"}, {"id": "b009", "level": "初級", "category": "工事", "q": "室外機を地面やベランダへ通常設置する方法はどれですか？", "choices": ["平地置き", "壁面置き", "天吊り", "屋根置き"], "answer": 0, "ex": "地面やベランダへの通常設置は平地置きです。"}, {"id": "b010", "level": "初級", "category": "工事", "q": "配管を見た目よく保護する部材はどれですか？", "choices": ["化粧カバー", "分配器", "アンテナ線", "排気ダクト"], "answer": 0, "ex": "配管化粧カバーは配管を保護し、見た目も整えます。"}, {"id": "b011", "level": "初級", "category": "接客", "q": "工事料金を案内する際、最も適切な説明はどれですか？", "choices": ["現場状況で追加工事が変わるため概算と伝える", "必ず表示金額だけで終わると断言する", "追加料金は絶対にないと伝える", "工事内容を確認せず金額だけ伝える"], "answer": 0, "ex": "店頭では概算案内とし、最終金額は現地確認で決まることを伝えます。"}, {"id": "b012", "level": "初級", "category": "接客", "q": "室外機の設置場所として確認すべき内容はどれですか？", "choices": ["地面・ベランダ・屋根・壁面など", "壁紙の色だけ", "カーテンの柄", "テレビ台の高さ"], "answer": 0, "ex": "設置方法によって追加工事や施工可否が変わります。"}, {"id": "b013", "level": "初級", "category": "安全", "q": "高所作業の可能性がある場合の対応はどれですか？", "choices": ["事前に設置状況と作業スペースを確認する", "当日まで確認しない", "料金を必ず無料にする", "脚立だけで必ず施工できると伝える"], "answer": 0, "ex": "安全な作業スペースやハシゴ設置場所を事前に確認します。"}, {"id": "b014", "level": "初級", "category": "工事", "q": "隠ぺい配管とはどのような配管ですか？", "choices": ["壁や天井内部を通る配管", "室外機の上に置く配管", "窓から垂らすだけの配管", "排水だけの配管"], "answer": 0, "ex": "壁や天井内にあらかじめ埋設された配管です。"}, {"id": "b015", "level": "初級", "category": "接客", "q": "新規穴あけの可能性がある時に確認したい建物情報はどれですか？", "choices": ["着工年月日", "郵便受けの色", "テレビのメーカー", "家族の人数だけ"], "answer": 0, "ex": "石綿事前調査の要否判断に建物の着工年月日が重要です。"}, {"id": "i001", "level": "中級", "category": "工事料金", "q": "2.2～3.6kWの新規標準工事料金はいくらですか？", "choices": ["20,350円", "24,750円", "28,050円", "19,800円"], "answer": 0, "ex": "料金表Ver.26.04.29では税込20,350円です。"}, {"id": "i002", "level": "中級", "category": "工事料金", "q": "4.0～5.6kWの新規標準工事料金はいくらですか？", "choices": ["24,750円", "20,350円", "28,050円", "36,300円"], "answer": 0, "ex": "料金表Ver.26.04.29では税込24,750円です。"}, {"id": "i003", "level": "中級", "category": "工事料金", "q": "6.3kW以上の新規標準工事料金はいくらですか？", "choices": ["28,050円", "24,750円", "20,350円", "19,800円"], "answer": 0, "ex": "料金表Ver.26.04.29では税込28,050円です。"}, {"id": "i004", "level": "中級", "category": "工事料金", "q": "内機2階・外機1階取付の料金はいくらですか？", "choices": ["19,800円", "36,300円", "11,000円", "8,800円"], "answer": 0, "ex": "税込19,800円です。"}, {"id": "i005", "level": "中級", "category": "工事料金", "q": "内機3階・外機1階取付の料金はいくらですか？", "choices": ["36,300円", "19,800円", "20,900円", "15,400円"], "answer": 0, "ex": "税込36,300円です。"}, {"id": "i006", "level": "中級", "category": "工事料金", "q": "隠ぺい配管工事の料金はいくらですか？", "choices": ["8,800円", "7,700円", "6,600円", "9,900円"], "answer": 0, "ex": "税込8,800円です。"}, {"id": "i007", "level": "中級", "category": "工事料金", "q": "ソフトドレン取付の料金はいくらですか？", "choices": ["7,700円", "8,800円", "6,600円", "11,000円"], "answer": 0, "ex": "税込7,700円です。"}, {"id": "i008", "level": "中級", "category": "工事料金", "q": "屋内壁貫通の料金はいくらですか？", "choices": ["6,600円", "7,700円", "8,800円", "9,900円"], "answer": 0, "ex": "税込6,600円です。"}, {"id": "i009", "level": "中級", "category": "工事料金", "q": "立ち上げ工事（配管4m）の料金はいくらですか？", "choices": ["9,900円", "11,000円", "8,800円", "6,600円"], "answer": 0, "ex": "税込9,900円です。"}, {"id": "i010", "level": "中級", "category": "工事料金", "q": "室外機移動の料金はいくらですか？", "choices": ["11,000円", "9,900円", "19,800円", "20,900円"], "answer": 0, "ex": "税込11,000円です。"}, {"id": "i011", "level": "中級", "category": "工事料金", "q": "室外機2段置き（2.2～3.9kW）の料金はいくらですか？", "choices": ["19,800円", "20,900円", "11,000円", "36,300円"], "answer": 0, "ex": "税込19,800円です。"}, {"id": "i012", "level": "中級", "category": "工事料金", "q": "室外機2段置き（4.0kW以上）の料金はいくらですか？", "choices": ["20,900円", "19,800円", "24,750円", "28,050円"], "answer": 0, "ex": "税込20,900円です。"}, {"id": "i013", "level": "中級", "category": "工事料金", "q": "穴あけ事前調査の料金はいくらですか？", "choices": ["3,300円", "15,400円", "1,100円", "6,600円"], "answer": 0, "ex": "税込3,300円です。"}, {"id": "i014", "level": "中級", "category": "工事料金", "q": "石綿対策工事の料金はいくらですか？", "choices": ["15,400円", "3,300円", "8,800円", "19,800円"], "answer": 0, "ex": "税込15,400円です。"}, {"id": "i015", "level": "中級", "category": "工事料金", "q": "当日工事の料金はいくらですか？", "choices": ["3,300円", "1,100円", "6,600円", "9,900円"], "answer": 0, "ex": "税込3,300円です。"}, {"id": "i016", "level": "中級", "category": "工事料金", "q": "戸建てのエアコン運搬費はいくらですか？", "choices": ["1,100円", "3,300円", "6,600円", "8,800円"], "answer": 0, "ex": "税込1,100円です。"}, {"id": "i017", "level": "中級", "category": "工事料金", "q": "加湿換気ホース延長1mの料金はいくらですか？", "choices": ["1,100円", "2,200円", "3,300円", "6,600円"], "answer": 0, "ex": "1mあたり税込1,100円です。"}, {"id": "i018", "level": "中級", "category": "工事", "q": "隠ぺい配管で特に注意する内容はどれですか？", "choices": ["既設配管や連絡電線の状態確認", "室内機の色だけ", "リモコンの電池だけ", "カタログの表紙"], "answer": 0, "ex": "既設配管の再利用可否や連絡電線、ドレン方式などの確認が必要です。"}, {"id": "i019", "level": "中級", "category": "接客", "q": "専用回路があるか不明な時の案内として適切なのはどれですか？", "choices": ["現地確認が必要と伝える", "写真だけで必ずあると断言する", "延長コードで対応すると伝える", "確認せず工事可能と伝える"], "answer": 0, "ex": "不明な場合は断定せず、現地確認が必要と案内します。"}, {"id": "i020", "level": "中級", "category": "工事", "q": "室内機2階・室外機1階で確認したい内容はどれですか？", "choices": ["配管経路と必要長さ、高所作業条件", "テレビの録画時間", "冷蔵庫のドア数", "照明の色温度"], "answer": 0, "ex": "階違い設置では配管長、高所作業、ハシゴ設置場所が重要です。"}, {"id": "i021", "level": "中級", "category": "電気", "q": "200Vエアコン設置時に確認したい内容はどれですか？", "choices": ["専用回路・電圧・コンセント形状", "室内カバーの色だけ", "ドレンホースの長さだけ", "リモコンホルダー"], "answer": 0, "ex": "専用回路、分電盤側の電圧、コンセント形状を確認します。"}, {"id": "i022", "level": "中級", "category": "安全", "q": "室外機を壁面設置する場合、店頭で必要な対応はどれですか？", "choices": ["設置条件と該当工事コードを確認する", "平地置きと同じと決めつける", "追加料金なしと断言する", "現場写真を見ない"], "answer": 0, "ex": "壁面設置は特殊金具や作業条件が関係するため、事前確認が必要です。"}, {"id": "i023", "level": "中級", "category": "接客", "q": "配管カバー希望を確認する最適なタイミングはどれですか？", "choices": ["工事受付時", "工事完了後だけ", "商品配送後だけ", "修理受付時だけ"], "answer": 0, "ex": "工事受付時に色、長さ、室内・室外の希望を確認します。"}, {"id": "i024", "level": "中級", "category": "石綿", "q": "新規穴あけで着工年月日が不明な場合の案内はどれですか？", "choices": ["事前調査や対策工事の可能性を案内する", "必ず調査不要と伝える", "穴あけできないと即断する", "建物情報を確認しない"], "answer": 0, "ex": "不明な場合は調査・対策の可能性を見込み、現地確認を案内します。"}, {"id": "i025", "level": "中級", "category": "接客", "q": "工事当日の追加料金トラブルを減らすため最も大切なことはどれですか？", "choices": ["設置条件を具体的に聞き取る", "標準工事だけ説明する", "写真確認を避ける", "不明点をそのままにする"], "answer": 0, "ex": "階数、室外機位置、穴、電源、配管経路などを具体的に確認します。"}, {"id": "a001", "level": "上級", "category": "事例判断", "q": "2.2kW機、内機2階・外機1階、隠ぺい配管の場合、登録候補として最も近い組合せはどれですか？", "choices": ["標準工事＋2階1階取付＋隠ぺい配管", "標準工事だけ", "石綿対策工事だけ", "当日工事だけ"], "answer": 0, "ex": "能力別標準工事に、階違い取付と隠ぺい配管を加えて検討します。"}, {"id": "a002", "level": "上級", "category": "事例判断", "q": "4.0kW機で新規2段置きをする場合、2段置き料金はどちらを選びますか？", "choices": ["4.0kW以上用20,900円", "2.2～3.9kW用19,800円", "室外機移動11,000円", "立ち上げ9,900円"], "answer": 0, "ex": "4.0kW以上用の2段置き料金を選びます。"}, {"id": "a003", "level": "上級", "category": "事例判断", "q": "新規穴あけあり、建物の着工年月日が確認できない場合、店頭対応として適切なのはどれですか？", "choices": ["石綿調査・対策の可能性を見込んで案内する", "調査不要と断言する", "標準工事だけで確定する", "穴あけの有無を記録しない"], "answer": 0, "ex": "着工年月日が不明なら調査や対策工事の可能性を説明します。"}, {"id": "a004", "level": "上級", "category": "事例判断", "q": "写真では専用回路か判断できない場合の最適な回答はどれですか？", "choices": ["現地確認で確定すると伝える", "専用回路ありと断言する", "延長コード使用を勧める", "工事不要と伝える"], "answer": 0, "ex": "写真だけで判断できない場合は断定せず現地確認とします。"}, {"id": "a005", "level": "上級", "category": "事例判断", "q": "内機3階・外機1階の相談で追加確認が必要な内容はどれですか？", "choices": ["安全なハシゴ設置場所と配管経路", "室内機の表示色だけ", "リモコンの形だけ", "カタログの厚さ"], "answer": 0, "ex": "高所作業条件と配管経路を必ず確認します。"}, {"id": "a006", "level": "上級", "category": "事例判断", "q": "隠ぺい配管でソフトドレンの可能性がある場合の対応はどれですか？", "choices": ["施工可否を事前確認する", "必ず施工可能と断言する", "通常ドレンと同じ扱いで記録しない", "確認せず商品を限定する"], "answer": 0, "ex": "隠ぺい配管やソフトドレンは施工条件が異なるため事前確認が必要です。"}, {"id": "a007", "level": "上級", "category": "料金計算", "q": "2.2～3.6kW標準工事20,350円＋内機2階外機1階19,800円の合計はいくらですか？", "choices": ["40,150円", "39,050円", "44,550円", "48,400円"], "answer": 0, "ex": "20,350円＋19,800円＝40,150円です。"}, {"id": "a008", "level": "上級", "category": "料金計算", "q": "4.0～5.6kW標準工事24,750円＋4.0kW以上2段置き20,900円の合計はいくらですか？", "choices": ["45,650円", "44,550円", "49,500円", "53,900円"], "answer": 0, "ex": "24,750円＋20,900円＝45,650円です。"}, {"id": "a009", "level": "上級", "category": "料金計算", "q": "6.3kW以上標準工事28,050円＋隠ぺい配管8,800円の合計はいくらですか？", "choices": ["36,850円", "35,750円", "43,450円", "47,850円"], "answer": 0, "ex": "28,050円＋8,800円＝36,850円です。"}, {"id": "a010", "level": "上級", "category": "料金計算", "q": "穴あけ事前調査3,300円＋石綿対策工事15,400円の合計はいくらですか？", "choices": ["18,700円", "17,600円", "19,800円", "22,000円"], "answer": 0, "ex": "3,300円＋15,400円＝18,700円です。"}, {"id": "a011", "level": "上級", "category": "料金計算", "q": "2.2～3.6kW標準工事20,350円＋隠ぺい配管8,800円＋屋内壁貫通6,600円の合計はいくらですか？", "choices": ["35,750円", "34,650円", "36,850円", "40,150円"], "answer": 0, "ex": "20,350円＋8,800円＋6,600円＝35,750円です。"}, {"id": "a012", "level": "上級", "category": "料金計算", "q": "4.0～5.6kW標準工事24,750円＋内機2階外機1階19,800円＋当日工事3,300円の合計はいくらですか？", "choices": ["47,850円", "46,750円", "48,950円", "50,050円"], "answer": 0, "ex": "24,750円＋19,800円＋3,300円＝47,850円です。"}, {"id": "a013", "level": "上級", "category": "料金計算", "q": "6.3kW以上標準工事28,050円＋内機3階外機1階36,300円の合計はいくらですか？", "choices": ["64,350円", "63,250円", "65,450円", "66,550円"], "answer": 0, "ex": "28,050円＋36,300円＝64,350円です。"}, {"id": "a014", "level": "上級", "category": "接客", "q": "お客様が「追加料金は絶対にない？」と質問した時の最適な回答はどれですか？", "choices": ["現場確認後に確定するため、条件により追加の可能性があると説明する", "絶対にないと断言する", "工事員に聞いてくださいだけで終える", "質問に答えない"], "answer": 0, "ex": "店頭金額は概算であり、現場条件により追加が生じる可能性を明確に伝えます。"}, {"id": "a015", "level": "上級", "category": "接客", "q": "工事受付で写真を見せてもらう際、優先して確認する組合せはどれですか？", "choices": ["室内機周辺・コンセント・室外機置場・配管穴", "テレビ画面・冷蔵庫・玄関マット", "商品箱・保証書・リモコン", "カーテン・照明・家具"], "answer": 0, "ex": "設置条件、電源、配管経路、室外機置場が分かる写真が有効です。"}, {"id": "a016", "level": "上級", "category": "安全", "q": "ハシゴを安全に掛けるスペースがない可能性がある場合の案内はどれですか？", "choices": ["現地確認で施工方法と可否を判断すると伝える", "必ず施工可能と伝える", "追加費用なしと断言する", "確認項目から外す"], "answer": 0, "ex": "安全確保が最優先のため、現地で施工方法と可否を判断します。"}, {"id": "a017", "level": "上級", "category": "電気", "q": "専用回路がない場合、店頭で最も適切な案内はどれですか？", "choices": ["専用回路工事の可能性と施工経路確認を案内する", "一般コンセントで必ず使えると伝える", "延長コードを勧める", "電気工事は不要と伝える"], "answer": 0, "ex": "専用回路増設の可能性、分電盤からの経路、施工可否を確認します。"}, {"id": "a018", "level": "上級", "category": "工事", "q": "室外機を屋根置きする相談で、平地置きと同じ扱いにできない主な理由はどれですか？", "choices": ["専用金具や高所作業条件が関係するため", "室外機の色が変わるため", "リモコンが使えないため", "冷房能力が必ず半分になるため"], "answer": 0, "ex": "屋根置きは専用金具、屋根状態、高所作業などの確認が必要です。"}, {"id": "a019", "level": "上級", "category": "工事", "q": "配管が標準長を超える可能性がある時の店頭対応はどれですか？", "choices": ["おおよその必要長と延長料金を案内する", "標準工事内と断言する", "配管長を確認しない", "室外機位置だけで判断する"], "answer": 0, "ex": "設置階や経路から長さを聞き取り、延長分を概算案内します。"}, {"id": "a020", "level": "上級", "category": "総合", "q": "工事トラブル防止の確認順として最も適切なのはどれですか？", "choices": ["設置場所→室外機→配管→電気→穴あけ・建物情報", "商品色→リモコン→カタログ→支払方法", "メーカー名だけ→価格だけ", "確認せず標準工事で登録"], "answer": 0, "ex": "設置条件を順番に確認すると、追加工事の見落としを減らせます。"}];
@@ -358,7 +338,7 @@ let mode='すべて', current=null, locked=false;
 function loadHistory(){try{return new Set(JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]'))}catch{return new Set()}}
 function saveHistory(s){localStorage.setItem(HISTORY_KEY,JSON.stringify([...s]))}
 function loadStatsData(){try{return JSON.parse(localStorage.getItem(STATS_KEY)||'{"answered":0,"correct":0}')}catch{return{answered:0,correct:0}}}
-function showPage(id){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');if(id==='check')renderCheck();if(id==='prices')renderPrices();scrollTo(0,0)}
+function showPage(id){document.querySelectorAll('main>section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');scrollTo(0,0)}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function startQuiz(m){mode=m;showPage('quiz');nextQuestion()}
 function available(){const h=loadHistory();return QUESTIONS.filter(q=>(mode==='すべて'||q.level===mode)&&!h.has(q.id))}
@@ -389,13 +369,8 @@ function answer(index,btn){
 }
 function showStats(){showPage('stats');const s=loadStatsData(),h=loadHistory(),rate=s.answered?Math.round(s.correct/s.answered*100):0;stAnswered.textContent=s.answered;stCorrect.textContent=s.correct;stRate.textContent=rate+'%';stBar.style.width=Math.min(100,h.size/QUESTIONS.length*100)+'%';stRemain.textContent=`未出題 ${Math.max(0,QUESTIONS.length-h.size)}問／全${QUESTIONS.length}問`;}
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);showStats()}}
-const CHECKS=['買い替え／新規設置','能力（kW）','設置する部屋と階数','室外機の置き場所','配管穴の有無','新規穴あけ時の着工年月日','専用回路の有無','100V／200V','コンセント形状','配管経路とおおよその長さ','隠ぺい配管・ソフトドレン','室内・室外カバー希望','高所作業とハシゴスペース','搬入経路・作業スペース','駐車場所'];
-function renderCheck(){if(checkList.children.length)return;CHECKS.forEach(t=>{const l=document.createElement('label');l.className='check';l.innerHTML=`<input type="checkbox"><span>${t}</span>`;checkList.appendChild(l)})}
-function judgeCheck(){const a=[...checkList.querySelectorAll('input')],m=a.filter(x=>!x.checked).length;checkResult.classList.remove('hidden');checkResult.innerHTML=m?`⚠️ 未確認が<strong>${m}項目</strong>あります。`: '⭕️ 確認漏れなしです。';}
-const PRICES=[['標準工事','2.2～3.6kW',20350],['標準工事','4.0～5.6kW',24750],['標準工事','6.3kW以上',28050],['設置方法','内機2階・外機1階',19800],['設置方法','内機3階・外機1階',36300],['設置方法','隠ぺい配管',8800],['設置方法','ソフトドレン取付',7700],['設置方法','屋内壁貫通',6600],['設置方法','立ち上げ工事（配管4m）',9900],['室外機','室外機移動',11000],['室外機','2段置き 2.2～3.9kW',19800],['室外機','2段置き 4.0kW以上',20900],['石綿','穴あけ事前調査',3300],['石綿','石綿対策工事',15400],['その他','当日工事',3300],['その他','運搬費（戸建て）',1100],['その他','加湿換気ホース延長1m',1100]];
-function renderPrices(){if(priceList.children.length)return;let g='';PRICES.forEach(p=>{if(p[0]!==g){g=p[0];const h=document.createElement('h3');h.className='section';h.textContent=g;priceList.appendChild(h)}const r=document.createElement('div');r.className='listrow';r.innerHTML=`<span>${p[1]}</span><strong>¥${p[2].toLocaleString()}</strong>`;priceList.appendChild(r)})}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=151', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=152', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
