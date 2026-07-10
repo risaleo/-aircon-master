@@ -23,16 +23,50 @@ function openLevel(level){
   $("levelSub").textContent=labels[level][1];
   show("levelCategories");
 }
+function getSeenKey(cat){
+  return "risaSeen_"+selectedLevel+"_"+cat;
+}
+function getSeen(cat){
+  return JSON.parse(localStorage.getItem(getSeenKey(cat))||"[]");
+}
+function saveSeen(cat,ids){
+  localStorage.setItem(getSeenKey(cat),JSON.stringify(ids));
+}
+function shuffle(arr){
+  return [...arr].sort(()=>Math.random()-.5);
+}
 function startQuiz(cat){
   const levelIndex={beginner:0,standard:1,master:2}[selectedLevel];
   let pool=cat==="today"?[...QUESTIONS]:QUESTIONS.filter(q=>q.cat===cat);
-  const leveled=pool.filter((q,i)=>{
+
+  const leveled=pool.filter(q=>{
     const num=parseInt(q.id.replace("q",""),10);
     return (num-1)%3===levelIndex;
   });
-  pool=leveled.length>=5?leveled:pool;
+  if(leveled.length>=5) pool=leveled;
+
   const count=cat==="today"?5:10;
-  quiz=pool.sort(()=>Math.random()-.5).slice(0,Math.min(count,pool.length));
+  let seen=getSeen(cat);
+  let unseen=pool.filter(q=>!seen.includes(q.id));
+
+  if(unseen.length<count){
+    seen=[];
+    unseen=[...pool];
+  }
+
+  const unique=[];
+  const usedTexts=new Set();
+  for(const q of shuffle(unseen)){
+    if(!usedTexts.has(q.q)){
+      unique.push(q);
+      usedTexts.add(q.q);
+    }
+    if(unique.length>=count) break;
+  }
+
+  quiz=unique;
+  saveSeen(cat,[...seen,...quiz.map(q=>q.id)]);
+
   index=0;correct=0;session=[];
   const levelName={beginner:"新人",standard:"販売員",master:"エアコンマスター"}[selectedLevel];
   $("quizTitle").textContent=(cat==="today"?"今日の5問":cat)+"｜"+levelName;
