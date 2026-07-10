@@ -39,8 +39,47 @@ function startQuiz(cat){
   show("quiz");
   renderQuestion();
 }
-function renderQuestion(){locked=false;const q=quiz[index];$("progressText").textContent=`問題 ${index+1} / ${quiz.length}`;$("barFill").style.width=(index/quiz.length*100)+"%";$("category").textContent=q.cat;$("question").textContent=q.q;$("choices").innerHTML="";$("explain").classList.add("hidden");$("next").classList.add("hidden");q.choices.forEach((c,i)=>{const b=document.createElement("button");b.textContent=c;b.onclick=()=>answer(i);$("choices").appendChild(b);});}
-function answer(i){if(locked)return;locked=true;const q=quiz[index],ok=i===q.answer;if(ok)correct++;session.push({cat:q.cat,ok});[...$("choices").children].forEach((b,n)=>{if(n===q.answer)b.classList.add("correct");if(n===i&&!ok)b.classList.add("wrong");});$("explain").innerHTML=`<strong>${ok?"⭕ 正解！":"❌ 不正解"}</strong><br>${q.exp}<hr><strong>販売ポイント</strong><br>${q.tip}`;$("explain").classList.remove("hidden");$("next").classList.remove("hidden");}
+function renderQuestion(){
+  locked=false;
+  const q=quiz[index];
+  $("progressText").textContent=`問題 ${index+1} / ${quiz.length}`;
+  $("barFill").style.width=(index/quiz.length*100)+"%";
+  $("category").textContent=q.cat;
+  $("question").textContent=q.q;
+  $("choices").innerHTML="";
+  $("explain").classList.add("hidden");
+  $("next").classList.add("hidden");
+
+  const shuffled=q.choices.map((text,originalIndex)=>({
+    text,
+    isCorrect:originalIndex===q.answer
+  })).sort(()=>Math.random()-.5);
+
+  shuffled.forEach(item=>{
+    const b=document.createElement("button");
+    b.textContent=item.text;
+    b.dataset.correct=item.isCorrect?"1":"0";
+    b.onclick=()=>answer(b);
+    $("choices").appendChild(b);
+  });
+}
+function answer(button){
+  if(locked)return;
+  locked=true;
+  const q=quiz[index];
+  const ok=button.dataset.correct==="1";
+  if(ok)correct++;
+  session.push({cat:q.cat,ok});
+
+  [...$("choices").children].forEach(b=>{
+    if(b.dataset.correct==="1")b.classList.add("correct");
+    if(b===button&&!ok)b.classList.add("wrong");
+  });
+
+  $("explain").innerHTML=`<strong>${ok?"⭕ 正解！":"❌ 不正解"}</strong><br>${q.exp}<hr><strong>販売ポイント</strong><br>${q.tip}`;
+  $("explain").classList.remove("hidden");
+  $("next").classList.remove("hidden");
+}
 $("next").onclick=()=>{index++;index<quiz.length?renderQuestion():finish();};
 function finish(){const s=readStats();s.total+=session.length;s.correct+=session.filter(x=>x.ok).length;session.forEach(x=>{if(!s.cats[x.cat])s.cats[x.cat]={total:0,correct:0};s.cats[x.cat].total++;if(x.ok)s.cats[x.cat].correct++;});writeStats(s);$("scoreValue").textContent=Math.round(correct/quiz.length*100);$("scoreText").textContent=`${correct} / ${quiz.length}問正解`;show("result");}
 $("makerBtn").onclick=showMakers;$("makerQuiz").onclick=()=>startQuiz("メーカー別特徴");
