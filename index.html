@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=210">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=210">
-<title>エアコン販買マスター Ver.21</title>
+<link rel="manifest" href="manifest.json?v=211">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=211">
+<title>エアコン販買マスター Ver.21.1</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.21 メニュー修正 */
+/* Ver.21.1 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -544,39 +544,246 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:899px){.v21-layout{grid-template-columns:1fr}.v21-side{grid-template-columns:1fr 1fr}.tip-card,.goal-card{grid-column:1/-1}}
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
+
+/* Ver.21.1 採用デザイン */
+.adopted-home{display:block}
+.adopted-header{
+  min-height:250px;
+  padding:32px;
+  border-radius:30px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:20px;
+  overflow:hidden;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.97),rgba(235,247,255,.92)),
+    linear-gradient(135deg,#f7fcff,#dcefff);
+  box-shadow:0 18px 45px rgba(43,104,151,.12);
+}
+.header-logo{display:flex;align-items:center;gap:24px;z-index:2}
+.mini-app-icon{
+  width:104px;height:104px;border-radius:26px;
+  display:grid;place-items:center;
+  font-size:43px;color:#fff;
+  background:linear-gradient(145deg,#2aa8ff,#0a68e6);
+  box-shadow:0 16px 30px rgba(24,122,222,.25);
+}
+.header-logo h1{
+  margin:0;color:#10395d;font-size:clamp(35px,5.2vw,58px);
+  line-height:1.05;letter-spacing:-.03em
+}
+.header-logo .risa-script{margin:12px 0 0;font-size:31px;color:#1f75d5;transform:none}
+.header-room{
+  position:relative;display:flex;justify-content:flex-end;align-items:flex-start;gap:10px;
+  background:
+    radial-gradient(circle at 72% 74%,rgba(106,172,218,.2),transparent 34%),
+    linear-gradient(180deg,rgba(255,255,255,.4),rgba(214,237,251,.65));
+  border-radius:24px;
+}
+.header-room::after{
+  content:"";position:absolute;left:15%;bottom:0;width:70%;height:32%;
+  border-radius:40px 40px 0 0;background:linear-gradient(180deg,#bcd5e6,#97bdd6);
+  opacity:.55
+}
+.wall-ac{position:absolute;right:22px;top:52px;font-size:88px;color:#fff;text-shadow:0 8px 18px rgba(41,96,139,.18);transform:scaleX(1.8)}
+.round-top-btn{
+  position:relative;z-index:3;width:48px;height:48px;padding:0;border-radius:16px;
+  background:#fff;box-shadow:0 8px 20px rgba(45,104,148,.12)
+}
+
+.status-panel{
+  margin-top:18px;padding:25px;border-radius:28px;background:#fff;
+  box-shadow:0 16px 38px rgba(39,101,151,.11);
+  display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center
+}
+.level-circle{
+  width:145px;height:145px;border-radius:50%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;position:relative;background:#fff;
+  border:12px solid #eaf3fa;box-shadow:inset 0 0 0 8px #fff
+}
+.level-circle::after{
+  content:"";position:absolute;inset:-12px;border-radius:50%;
+  border:12px solid transparent;border-top-color:#178cf0;border-right-color:#178cf0
+}
+.level-circle span{font-weight:900}.level-circle strong{font-size:48px;color:#173f61;line-height:1}
+.level-circle small{margin-top:8px;padding:5px 10px;border-radius:999px;background:#147ee5;color:#fff;font-weight:800;font-size:11px}
+.exp-area{min-width:0}.exp-row{display:flex;justify-content:space-between;font-size:18px}.exp-area p{margin:12px 0 0;color:#52748d;font-weight:700}
+.status-mini{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.status-mini div{min-width:150px;padding:18px;text-align:center;border-left:1px solid #dce9f3}
+.status-mini span{display:block;font-size:31px}.status-mini b{display:block;color:#52748d;margin:6px 0}.status-mini strong{font-size:30px;color:#173f61}
+
+.adopted-menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.adopted-card{
+  min-height:160px;padding:25px;border-radius:26px;display:grid;
+  grid-template-columns:auto 1fr auto;gap:20px;align-items:center;text-align:left;
+  border:1px solid rgba(113,168,207,.18);box-shadow:0 14px 30px rgba(39,99,147,.08)
+}
+.adopted-card .adopted-icon{
+  width:82px;height:82px;border-radius:50%;display:grid;place-items:center;
+  font-size:40px;background:rgba(255,255,255,.78);box-shadow:0 10px 22px rgba(50,108,151,.1)
+}
+.adopted-card b{display:block;font-size:25px;color:#153d60}.adopted-card small{display:block;margin-top:8px;color:#58768d;font-size:15px;line-height:1.5}
+.adopted-card .chev{font-size:40px;font-weight:300}
+.adopted-card.green{background:linear-gradient(135deg,#f5fffb,#e5fbf3)}.adopted-card.green .chev{color:#12a97f}
+.adopted-card.blue{background:linear-gradient(135deg,#f7fbff,#eaf5ff)}.adopted-card.blue .chev{color:#157ee4}
+.adopted-card.purple{background:linear-gradient(135deg,#fbf9ff,#f1ecff)}.adopted-card.purple .chev{color:#8757e8}
+.adopted-card.orange{background:linear-gradient(135deg,#fffaf3,#fff0d9)}.adopted-card.orange .chev{color:#f19a19}
+.adopted-card.red{background:linear-gradient(135deg,#fff8f8,#ffeaea)}.adopted-card.red .chev{color:#ef5a64}
+.adopted-card.gray{background:linear-gradient(135deg,#f9fbfd,#edf3f8)}.adopted-card.gray .chev{color:#4e8fcc}
+
+.recommend-card{
+  width:100%;margin-top:18px;min-height:190px;padding:28px;border-radius:28px;
+  display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center;text-align:left;
+  background:linear-gradient(110deg,#f8fcff,#e8f4fb);
+  box-shadow:0 14px 32px rgba(39,99,147,.09)
+}
+.recommend-title{display:block;font-size:20px;font-weight:900;color:#177fdc;margin-bottom:12px}
+.recommend-card strong{display:block;font-size:26px;color:#173f61;line-height:1.45}
+.recommend-card small{display:block;margin-top:6px;color:#5c7990;font-size:16px}
+.challenge-pill{display:inline-block;margin-top:18px;padding:10px 18px;border:2px solid #1680e3;border-radius:999px;color:#1680e3;font-weight:900}
+.recommend-room{height:135px;border-radius:24px;display:grid;place-items:center;font-size:72px;background:linear-gradient(145deg,#eff8fd,#dcecf6)}
+
+.bottom-nav{
+  position:sticky;bottom:10px;margin-top:18px;padding:12px 20px;border-radius:25px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:8px;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);box-shadow:0 12px 30px rgba(45,100,143,.14);z-index:20
+}
+.bottom-nav button{background:transparent;box-shadow:none;color:#738da2;min-height:auto;padding:7px}
+.bottom-nav button span{display:block;font-size:25px}.bottom-nav button b{display:block;font-size:12px;margin-top:3px}
+.bottom-nav button:first-child{color:#1381e7}
+
+@media(min-width:1000px){
+  .adopted-home{max-width:1180px;margin:auto}
+  .adopted-menu-grid{grid-template-columns:repeat(3,1fr)}
+  .adopted-card{min-height:145px;padding:20px;grid-template-columns:auto 1fr}
+  .adopted-card .chev{display:none}
+  .adopted-card .adopted-icon{width:70px;height:70px;font-size:34px}
+  .adopted-card b{font-size:21px}
+  .recommend-card{grid-template-columns:1.4fr .6fr}
+}
+@media(max-width:760px){
+  .adopted-header{min-height:210px;padding:24px;grid-template-columns:1fr}
+  .header-room{display:none}.mini-app-icon{width:78px;height:78px;border-radius:22px;font-size:34px}
+  .header-logo{gap:15px}.header-logo h1{font-size:34px}.header-logo .risa-script{font-size:25px}
+  .status-panel{grid-template-columns:auto 1fr;gap:15px;padding:18px}
+  .level-circle{width:108px;height:108px;border-width:9px}.level-circle strong{font-size:36px}
+  .status-mini{grid-column:1/-1}.status-mini div{min-width:0;border:0;background:#f5f9fc;border-radius:18px}
+  .adopted-menu-grid{grid-template-columns:1fr}
+  .adopted-card{min-height:118px;padding:18px}.adopted-card .adopted-icon{width:62px;height:62px;font-size:30px}
+  .adopted-card b{font-size:20px}.adopted-card small{font-size:13px}
+  .recommend-card{grid-template-columns:1fr}.recommend-room{display:none}
+  .bottom-nav{padding:9px 4px}.bottom-nav button span{font-size:22px}
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=210">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=211">
 </head>
 <body><main class="app">
 
 
 
-<section id="home" class="home-shell">
-<header class="v21-header">
-<button class="gear-btn" onclick="openSettings()" aria-label="設定">⚙</button>
-<div class="brand-block"><div class="brand-kicker">AIR CONDITIONER SALES TRAINING</div>
-<h1>❄ エアコン販買マスター</h1><div class="risa-script">RISA EDITION</div>
-<p>販売力は、毎日の積み重ね。</p></div></header>
-<div class="v21-layout"><section class="v21-main">
-<div class="level-panel"><div class="level-top"><div><span class="level-label">CURRENT LEVEL</span><div class="level-number">Lv.<span id="homeLevel">1</span></div></div>
-<div class="rank-area"><span>現在の称号</span><strong id="homeRank">🔰 新人スタッフ</strong></div></div>
-<div class="exp-info"><span id="homeExpText">0 EXP</span><span id="nextRankText">次の称号まであと400EXP</span></div>
-<div class="level-track"><span id="homeExpBar" style="width:0%"></span></div></div>
-<button class="daily-card" onclick="startDaily()"><div class="daily-icon">🔥</div><div class="daily-copy"><span>TODAY'S CHALLENGE</span><strong>今日のチャレンジ</strong><small>10問で販売力をウォームアップ</small></div><div class="daily-progress"><b id="dailyCountHome">0/10</b><span>START</span></div></button>
-<button class="sales-hero-card" onclick="startSalesMode()"><div class="sales-hero-icon">🛒</div><div><span class="menu-eyebrow">MAIN MODE</span><h2>販買モード</h2><p>お客様カルテから、聞き取り・メーカー提案・工事確認まで実践。</p></div><div class="go-arrow">›</div></button>
-<div class="menu-grid-v21">
-<button class="menu-card-v21" onclick="showLevelMenu()"><span class="menu-icon">📘</span><span><b>練習問題</b><small>初級・中級・上級</small></span></button>
-<button class="menu-card-v21" onclick="showStats()"><span class="menu-icon">📊</span><span><b>成績</b><small>苦手分野を確認</small></span></button>
-<button class="menu-card-v21" onclick="startWrongReview()"><span class="menu-icon">🔁</span><span><b>間違い復習</b><small>苦手だけ再挑戦</small></span></button>
-<button class="menu-card-v21" onclick="showAchievements()"><span class="menu-icon">🏅</span><span><b>実績</b><small>称号・達成記録</small></span></button>
-</div>
-<div id="levelMenu" class="level-menu-v21 hidden"><div class="level-menu-title">難易度を選択</div><button onclick="startQuiz('すべて')">🎲 ランダム</button><button onclick="startQuiz('初級')">🟢 初級</button><button onclick="startQuiz('中級')">🔵 中級</button><button onclick="startQuiz('上級')">🔴 上級</button></div>
-</section><aside class="v21-side">
-<div class="summary-card"><span>総問題数</span><strong id="totalQuestionCount">180</strong><small>ランク別精査済み</small></div>
-<div class="summary-card"><span>総合正答率</span><strong id="homeRate">0%</strong><small id="homeAnswered">回答 0問</small></div>
-<div class="tip-card"><div class="tip-head">💡 今日の販売ワンポイント</div><p id="dailyTip">お客様の希望を聞いてから、メーカー比較を始めよう。</p></div>
-<div class="goal-card"><div class="goal-head"><span>今日の目標</span><b id="goalPercent">0%</b></div><div class="goal-track"><span id="goalBar" style="width:0%"></span></div><ul><li id="goalDaily">今日のチャレンジ 10問</li><li id="goalSales">販買モード 1件</li><li id="goalPractice">練習問題 5問</li></ul></div>
-</aside></div></section>
+
+<section id="home" class="home-shell adopted-home">
+  <header class="adopted-header">
+    <div class="header-logo">
+      <div class="mini-app-icon">❄</div>
+      <div>
+        <h1>エアコン<br>販買マスター</h1>
+        <div class="risa-script">RISA EDITION</div>
+      </div>
+    </div>
+    <div class="header-room">
+      <div class="wall-ac">▭</div>
+      <button class="round-top-btn" onclick="showAchievements()" aria-label="実績">🔔</button>
+      <button class="round-top-btn" onclick="openSettings()" aria-label="設定">⚙️</button>
+    </div>
+  </header>
+
+  <div class="status-panel">
+    <div class="level-circle">
+      <span>Lv.</span>
+      <strong id="homeLevel">1</strong>
+      <small id="homeRank">新人スタッフ</small>
+    </div>
+    <div class="exp-area">
+      <div class="exp-row">
+        <b>EXP</b>
+        <span id="homeExpText">0 / 100</span>
+      </div>
+      <div class="level-track"><span id="homeExpBar" style="width:0%"></span></div>
+      <p id="nextRankText">次のレベルまであと100EXP</p>
+    </div>
+    <div class="status-mini">
+      <div><span>📅</span><b>連続記録</b><strong id="streakHome">1日</strong></div>
+      <div><span>🏆</span><b>総合正答率</b><strong id="homeRate">0%</strong></div>
+    </div>
+  </div>
+
+  <div class="adopted-menu-grid">
+    <button class="adopted-card green" onclick="startSalesMode()">
+      <span class="adopted-icon">🛒</span>
+      <div><b>販買モード</b><small>接客シミュレーションで<br>提案力を鍛える</small></div>
+      <span class="chev">›</span>
+    </button>
+
+    <button class="adopted-card blue" onclick="showLevelMenu()">
+      <span class="adopted-icon">📘</span>
+      <div><b>練習問題</b><small>基礎から応用まで<br>幅広く学ぶ</small></div>
+      <span class="chev">›</span>
+    </button>
+
+    <button class="adopted-card purple" onclick="startSalesMode()">
+      <span class="adopted-icon">👥</span>
+      <div><b>お客様カルテ</b><small>お客様タイプ別の<br>最適提案を学ぶ</small></div>
+      <span class="chev">›</span>
+    </button>
+
+    <button class="adopted-card orange" onclick="showStats()">
+      <span class="adopted-icon">📊</span>
+      <div><b>成績を見る</b><small>正解率や記録を<br>グラフでチェック</small></div>
+      <span class="chev">›</span>
+    </button>
+
+    <button class="adopted-card red" onclick="showAchievements()">
+      <span class="adopted-icon">🏆</span>
+      <div><b>実績</b><small>バッジや称号で<br>成長を確認</small></div>
+      <span class="chev">›</span>
+    </button>
+
+    <button class="adopted-card gray" onclick="openSettings()">
+      <span class="adopted-icon">⚙️</span>
+      <div><b>設定</b><small>アプリ設定や<br>各種情報を確認</small></div>
+      <span class="chev">›</span>
+    </button>
+  </div>
+
+  <div id="levelMenu" class="level-menu-v21 hidden">
+    <div class="level-menu-title">難易度を選択</div>
+    <button onclick="startQuiz('すべて')">🎲 ランダム</button>
+    <button onclick="startQuiz('初級')">🟢 初級</button>
+    <button onclick="startQuiz('中級')">🔵 中級</button>
+    <button onclick="startQuiz('上級')">🔴 上級</button>
+  </div>
+
+  <button class="recommend-card" onclick="startDaily()">
+    <div>
+      <span class="recommend-title">💡 今日のおすすめ問題</span>
+      <strong>14畳のLDK・西日が強い・犬2匹</strong>
+      <small>おすすめのエアコンと確認ポイントは？</small>
+      <span class="challenge-pill">今すぐチャレンジ ›</span>
+    </div>
+    <div class="recommend-room">🛋️</div>
+  </button>
+
+  <nav class="bottom-nav">
+    <button onclick="showPage('home')"><span>🏠</span><b>ホーム</b></button>
+    <button onclick="showLevelMenu()"><span>📖</span><b>問題</b></button>
+    <button onclick="startSalesMode()"><span>🛒</span><b>販買</b></button>
+    <button onclick="showStats()"><span>📊</span><b>成績</b></button>
+    <button onclick="openSettings()"><span>☰</span><b>メニュー</b></button>
+  </nav>
+</section>
+
 <section id="quiz" class="card hidden">
 <div class="top"><button class="back" onclick="showPage('home')">←</button><div><h2>問題</h2><p id="progressText" class="small"></p></div></div>
 <div class="pills"><span id="levelPill" class="pill"></span><span id="catPill" class="pill"></span></div>
@@ -629,7 +836,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 </section>
 
 <section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>実績</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
-<section id="settingsPage" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>設定</h2></div><div class="settings-list"><button onclick="resetHistory()">学習記録をリセット</button><button onclick="applyAppUpdate()">最新版を確認して更新</button></div><p class="small">エアコン販買マスター RISA EDITION Ver.21</p></section>
+<section id="settingsPage" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>設定</h2></div><div class="settings-list"><button onclick="resetHistory()">学習記録をリセット</button><button onclick="applyAppUpdate()">最新版を確認して更新</button></div><p class="small">エアコン販買マスター RISA EDITION Ver.21.1</p></section>
 </main>
 
 <div id="updateBanner" class="update-banner hidden" role="dialog" aria-live="polite">
@@ -756,7 +963,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=210', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=211', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1007,7 +1214,7 @@ function finishSales(){
 }
 
 
-const APP_VERSION='21.0';
+const APP_VERSION='21.1';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1018,7 +1225,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.21 を適用できます。');
+        showUpdateBanner('最新版 Ver.21.1 を適用できます。');
         return;
       }
     }
@@ -1088,5 +1295,35 @@ const oldAnswerV21=answer;answer=function(index,btn){const before=quizAnsweredTh
 const oldFinishSales=finishSales;finishSales=function(){oldFinishSales();localStorage.setItem('v21_sales_done','1');localStorage.setItem('v21_sales_total',String(Number(localStorage.getItem('v21_sales_total')||0)+1))}
 window.addEventListener('load',()=>{const today=new Date().toISOString().slice(0,10);if(localStorage.getItem('v21_goal_date')!==today){localStorage.setItem('v21_goal_date',today);localStorage.setItem('v21_daily_done','0');localStorage.setItem('v21_sales_done','0');localStorage.setItem('v21_practice_done','0')}updateV21Home()});
 
-showPage('home');updateV21Home();updateHome();
+showPage('home');updateV21Home();updateAdoptedHome();updateHome();
+
+function updateAdoptedHome(){
+  const s=loadStatsData();
+  const exp=s.correct*20;
+  const level=Math.max(1,Math.floor(exp/100)+1);
+  const within=exp%100;
+  const rate=s.answered?Math.round(s.correct/s.answered*100):0;
+  const titles=[
+    [1,'新人スタッフ'],[5,'接客デビュー'],[10,'エアコンアドバイザー'],
+    [20,'販売マスター'],[30,'工事マスター'],[40,'提案マスター'],
+    [50,'エアコンエキスパート'],[70,'トップセールス'],[100,'販買レジェンド']
+  ];
+  let title='新人スタッフ';
+  titles.forEach(([lv,t])=>{if(level>=lv)title=t});
+  const values={
+    homeLevel:level,
+    homeRank:title,
+    homeExpText:`${within} / 100`,
+    nextRankText:`次のレベルまであと ${within===0?100:100-within} EXP`,
+    homeRate:rate+'%',
+    streakHome:(Number(localStorage.getItem('v21_streak')||1))+'日'
+  };
+  Object.entries(values).forEach(([id,v])=>{
+    const el=document.getElementById(id);if(el)el.textContent=v;
+  });
+  const bar=document.getElementById('homeExpBar');
+  if(bar)bar.style.width=within+'%';
+}
+window.addEventListener('load',updateAdoptedHome);
+
 </script></body></html>
