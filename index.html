@@ -1,85 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>エアコン販売マスター Risa Edition</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<main class="app">
-<section id="home" class="card">
-  <div class="hero">
-    <div class="logo">❄</div>
-    <h1>エアコン販売マスター</h1>
-    <h2>Risa Edition</h2>
-    <p>販売力 × 工事知識 × 接客力</p>
-  </div>
-  <div class="stats">
-    <div><span id="totalSolved">0</span><small>総回答</small></div>
-    <div><span id="accuracy">0%</span><small>正解率</small></div>
-    <div><span id="rank">新人</span><small>ランク</small></div>
-  </div>
-  <div class="menu">
-    <button onclick="startQuiz('today',5)">🎓 今日の5問</button>
-    <button onclick="startQuiz('基礎知識',10)">📖 基礎知識</button>
-    <button onclick="startQuiz('電気工事',10)">⚡ 電気工事</button>
-    <button onclick="startQuiz('工事料金',10)">🔧 工事料金</button>
-    <button onclick="startQuiz('イレギュラー工事',10)">🏠 イレギュラー工事</button>
-    <button onclick="startQuiz('良質工事',10)">🛠 良質工事</button>
-    <button onclick="startQuiz('接客問題',10)">👨 接客問題</button>
-    <button onclick="startQuiz('ケース問題',10)">🧠 ケース問題</button>
-    <button onclick="showExam()">📝 模擬試験</button>
-    <button onclick="startWrongQuiz()">⭐ 間違えた問題</button>
-    <button onclick="showDictionary()">📚 工事辞典</button>
-    <button onclick="showScore()">🏆 成績</button>
-  </div>
-  <footer>Version 9.0　© Risa Edition</footer>
-</section>
-
-<section id="quiz" class="card hidden">
-  <div class="topbar"><button class="back" onclick="showHome()">←</button><div><h2 id="quizTitle"></h2><p id="progressText"></p></div></div>
-  <div class="progress"><div id="progressBar"></div></div>
-  <div class="badge" id="categoryBadge"></div>
-  <h3 id="questionText"></h3>
-  <div id="choices" class="choices"></div>
-  <div id="result" class="result hidden"></div>
-  <button id="nextBtn" class="primary hidden" onclick="nextQuestion()">次へ</button>
-</section>
-
-<section id="finish" class="card hidden">
-  <h2>結果発表</h2>
-  <div class="scoreCircle"><span id="finishScore">0</span>点</div>
-  <p id="finishMessage"></p>
-  <button class="primary" onclick="showHome()">ホームへ</button>
-</section>
-
-<section id="exam" class="card hidden">
-  <div class="topbar"><button class="back" onclick="showHome()">←</button><h2>模擬試験</h2></div>
-  <div class="menu">
-    <button onclick="startQuiz('exam',20)">初級 20問</button>
-    <button onclick="startQuiz('exam',50)">中級 50問</button>
-    <button onclick="startQuiz('exam',100)">上級 100問</button>
-  </div>
-</section>
-
-<section id="dictionary" class="card hidden">
-  <div class="topbar"><button class="back" onclick="showHome()">←</button><h2>工事辞典</h2></div>
-  <input id="dictSearch" class="search" placeholder="例：分電盤、専用回路" oninput="renderDictionary()">
-  <div id="dictList"></div>
-</section>
-
-<section id="score" class="card hidden">
-  <div class="topbar"><button class="back" onclick="showHome()">←</button><h2>成績</h2></div>
-  <div class="stats big">
-    <div><span id="scoreTotal">0</span><small>総回答</small></div>
-    <div><span id="scoreCorrect">0</span><small>正解</small></div>
-    <div><span id="scoreAccuracy">0%</span><small>正解率</small></div>
-  </div>
-  <div id="categoryStats"></div>
-  <button class="secondary" onclick="resetAll()">成績をリセット</button>
-</section>
-</main>
-<script src="script.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>エアコン販売マスター Risa Edition</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<section id="home" class="card"><div class="hero"><div class="logo">❄</div><h1>エアコン販売マスター</h1><h2>Risa Edition</h2><p>販売力 × 工事知識 × 接客力</p></div><div class="stats"><div><span id="totalSolved">0</span><small>総回答</small></div><div><span id="accuracy">0%</span><small>正解率</small></div><div><span id="rank">新人</span><small>ランク</small></div></div><div class="menu">
+<button onclick="startQuiz('today',5)">🎓 今日の5問</button><button onclick="startQuiz('エアコン基礎',10)">📖 エアコン基礎</button><button onclick="showManufacturers()">🏭 メーカー別特徴</button><button onclick="startQuiz('電気工事',10)">⚡ 電気工事</button><button onclick="startQuiz('工事料金',10)">🔧 工事料金</button><button onclick="startQuiz('イレギュラー工事',10)">🏠 イレギュラー工事</button><button onclick="startQuiz('接客問題',10)">👨 接客問題</button><button onclick="showDictionary()">📚 工事辞典</button><button onclick="showScore()">🏆 成績</button></div><footer>Version 9.1 © Risa Edition</footer></section>
+<section id="quiz" class="card hidden"><div class="topbar"><button class="back" onclick="showHome()">←</button><div><h2 id="quizTitle"></h2><p id="progressText"></p></div></div><div class="progress"><div id="progressBar"></div></div><div class="badge" id="categoryBadge"></div><h3 id="questionText"></h3><div id="choices" class="choices"></div><div id="result" class="result hidden"></div><button id="nextBtn" class="primary hidden" onclick="nextQuestion()">次へ</button></section>
+<section id="finish" class="card hidden"><h2>結果発表</h2><div class="scoreCircle"><span id="finishScore">0</span>点</div><p id="finishMessage"></p><button class="primary" onclick="showHome()">ホームへ</button></section>
+<section id="manufacturers" class="card hidden"><div class="topbar"><button class="back" onclick="showHome()">←</button><h2>メーカー別特徴</h2></div><div id="manufacturerList"></div><button class="primary" onclick="startQuiz('メーカー別特徴',10)">メーカー問題に挑戦</button></section>
+<section id="manufacturerDetail" class="card hidden"><div class="topbar"><button class="back" onclick="showManufacturers()">←</button><h2 id="mName"></h2></div><div id="mContent"></div></section>
+<section id="dictionary" class="card hidden"><div class="topbar"><button class="back" onclick="showHome()">←</button><h2>工事辞典</h2></div><input id="dictSearch" class="search" placeholder="例：分電盤、専用回路" oninput="renderDictionary()"><div id="dictList"></div></section>
+<section id="score" class="card hidden"><div class="topbar"><button class="back" onclick="showHome()">←</button><h2>成績</h2></div><div class="stats big"><div><span id="scoreTotal">0</span><small>総回答</small></div><div><span id="scoreCorrect">0</span><small>正解</small></div><div><span id="scoreAccuracy">0%</span><small>正解率</small></div></div><div id="categoryStats"></div></section>
+</main><script src="script.js"></script></body></html>
