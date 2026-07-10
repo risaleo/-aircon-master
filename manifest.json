@@ -1,10 +1,10 @@
 {
-  "name": "エアコン販売マスター Risa Edition",
-  "short_name": "販売マスター",
+  "name": "エアコン販買マスター Risa Edition",
+  "short_name": "販買マスター",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#eaf5ff",
-  "theme_color": "#0068b7",
+  "background_color": "#eef7ff",
+  "theme_color": "#0677e8",
   "icons": [
     {
       "src": "icon.svg",

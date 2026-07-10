@@ -6,38 +6,321 @@
 <meta name="theme-color" content="#0068b7">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>エアコン販売マスター Ver.15</title>
+<title>エアコン販買マスター Ver.15</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:linear-gradient(160deg,#e5f3ff,#f8fbff);color:#17324d}
-.app{max-width:680px;margin:auto;padding:12px} .card{background:#fff;border-radius:24px;padding:18px;min-height:calc(100vh - 24px);box-shadow:0 12px 35px #174f8220}
-.hidden{display:none!important} .hero{background:linear-gradient(135deg,#0874c9,#0bb1ff);color:#fff;border-radius:22px;padding:20px;text-align:center}
-.hero img{width:92px;height:92px;border-radius:21px} h1{font-size:27px;margin:8px 0 2px} .sub{opacity:.95;margin:0} .version{display:inline-block;background:#ffffff27;padding:6px 11px;border-radius:999px;margin-top:8px;font-weight:700}
-.menu{display:grid;gap:11px;margin-top:15px} button{border:0;border-radius:16px;padding:15px;width:100%;font-size:17px;font-weight:800;background:#eaf5ff;color:#163c60;box-shadow:0 4px 10px #00000010}
-button:active{transform:scale(.985)} .primary{background:#0068b7;color:white} .levelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.top{display:flex;align-items:center;gap:10px;margin-bottom:12px} .back{width:44px;height:44px;padding:0;border-radius:50%} .top h2,.top p{margin:0}
-.pills{display:flex;gap:7px;flex-wrap:wrap} .pill{padding:5px 10px;border-radius:999px;background:#eaf5ff;color:#0068b7;font-size:13px;font-weight:800}
-.qno{font-weight:900;color:#0068b7;margin-top:16px} .question{font-size:22px;line-height:1.55;font-weight:800;margin:8px 0 16px}
-.choices{display:grid;gap:10px} .choice{text-align:left;background:#f4f9fe;border:2px solid transparent} .choice.correct{background:#edfbee;border-color:#3eb767;color:#135b2e} .choice.wrong{background:#fff0f0;border-color:#e95858;color:#862222}
-.resultMark{font-size:80px;text-align:center;line-height:1.1} .explain{margin-top:12px;border-radius:16px;padding:14px;background:#f6faff;line-height:1.7}
-.next{margin-top:12px} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0} .stat{background:#f4f9fe;border-radius:15px;padding:12px;text-align:center} .stat strong{display:block;font-size:24px;color:#0068b7}
-.progressbar{height:10px;background:#e5eef6;border-radius:99px;overflow:hidden} .progressbar span{display:block;height:100%;background:#15a5ee}
-.notice{margin-top:14px;padding:12px;background:#fff7dc;border-radius:14px;color:#715400;line-height:1.55;font-size:14px}
-.listrow{display:flex;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid #e6edf4} .section{color:#0068b7;margin:20px 0 6px}
-.check{display:flex;gap:10px;padding:12px;background:#f5faff;border-radius:14px;margin:8px 0;line-height:1.5} .check input{transform:scale(1.25)}
-.small{font-size:13px;color:#63788d} @media(max-width:430px){.app{padding:7px}.card{padding:14px;border-radius:18px}h1{font-size:23px}.question{font-size:20px}button{font-size:16px}}
+:root{
+  --navy:#0d2d54;
+  --blue:#0677e8;
+  --sky:#22b7f4;
+  --pale:#edf7ff;
+  --white:#ffffff;
+  --green:#22b96f;
+  --purple:#8955e8;
+  --orange:#f4a321;
+  --shadow:0 12px 30px rgba(25,91,145,.13);
+}
+*{box-sizing:border-box}
+html{background:#eef7ff}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  color:var(--navy);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(34,183,244,.18),transparent 25%),
+    radial-gradient(circle at 90% 15%,rgba(137,85,232,.10),transparent 23%),
+    linear-gradient(180deg,#f8fcff 0%,#edf7ff 100%);
+}
+button{font:inherit;-webkit-tap-highlight-color:transparent}
+.app{max-width:720px;margin:auto;padding:10px}
+.card{
+  min-height:calc(100vh - 20px);
+  background:rgba(255,255,255,.93);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:30px;
+  padding:16px;
+  box-shadow:0 18px 45px rgba(18,78,126,.14);
+  backdrop-filter:blur(12px);
+}
+.hidden{display:none!important}
+
+/* ホーム */
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:310px;
+  border-radius:26px;
+  padding:27px 22px 24px;
+  text-align:left;
+  color:var(--navy);
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.98),rgba(226,246,255,.92)),
+    linear-gradient(135deg,#fff,#dff4ff);
+  box-shadow:inset 0 0 0 1px rgba(8,119,232,.08);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:290px;height:290px;border-radius:50%;
+  top:-145px;left:-85px;
+  background:linear-gradient(135deg,rgba(31,181,244,.32),rgba(6,119,232,.08));
+}
+.hero::after{
+  content:"❄";
+  position:absolute;
+  right:24px;top:92px;
+  font-size:58px;
+  color:rgba(25,164,235,.22);
+  transform:rotate(12deg);
+}
+.hero-ac{
+  position:absolute;
+  right:20px;top:24px;
+  width:185px;height:62px;border-radius:14px;
+  background:linear-gradient(180deg,#fff,#eaf4fb);
+  box-shadow:0 12px 24px rgba(23,72,109,.18);
+  border:1px solid #e7f0f6;
+}
+.hero-ac::before{
+  content:"";
+  position:absolute;left:18px;right:18px;bottom:10px;height:8px;
+  border-radius:6px;background:#b9d4e8;
+}
+.hero-ac::after{
+  content:"";
+  position:absolute;right:18px;top:16px;width:7px;height:7px;
+  border-radius:50%;background:#2ca7eb;
+}
+.cool-air{
+  position:absolute;right:45px;top:79px;width:125px;height:72px;
+  background:repeating-linear-gradient(110deg,transparent 0 13px,rgba(31,181,244,.22) 14px 19px,transparent 20px 31px);
+  filter:blur(1px);
+  transform:skewX(-8deg);
+}
+.hero-brand{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:12px;
+  margin-top:14px;
+}
+.hero img{
+  width:76px;height:76px;border-radius:22px;
+  box-shadow:0 12px 26px rgba(6,119,232,.22);
+}
+.hero-copy{position:relative;z-index:2;margin-top:30px;max-width:470px}
+.hero h1{
+  margin:0;
+  font-size:clamp(30px,7vw,48px);
+  line-height:1.13;
+  letter-spacing:.01em;
+  font-weight:950;
+  text-shadow:0 3px 0 #fff;
+}
+.hero h1 span{display:block;color:var(--blue)}
+.sub{
+  margin:12px 0 0;
+  color:#397197;
+  font-size:16px;
+  font-weight:700;
+}
+.version{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  padding:7px 13px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff6c8,#ffe18b);
+  color:#7d5b00;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 6px 16px rgba(230,172,20,.17);
+}
+.version::before{content:"★";color:#f4ae00}
+
+/* メニュー */
+.menu{display:grid;gap:12px;margin-top:14px}
+button{
+  border:0;
+  border-radius:19px;
+  padding:16px;
+  width:100%;
+  font-size:17px;
+  font-weight:900;
+  color:var(--navy);
+  background:#fff;
+  box-shadow:var(--shadow);
+  transition:.16s ease;
+}
+button:active{transform:scale(.98)}
+.primary{
+  position:relative;
+  min-height:96px;
+  padding:17px 62px 17px 74px;
+  text-align:left;
+  color:#fff;
+  background:linear-gradient(135deg,#0aa2f0,#0468d9 75%);
+  overflow:hidden;
+}
+.primary::before{
+  content:"?";
+  position:absolute;left:18px;top:20px;
+  width:48px;height:48px;border-radius:50%;
+  display:grid;place-items:center;
+  color:#096edb;background:#fff;
+  font-size:29px;font-weight:950;
+}
+.primary::after{
+  content:"›";
+  position:absolute;right:18px;top:25px;
+  width:45px;height:45px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.22);
+  font-size:38px;line-height:1;
+}
+.levelGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.levelGrid button{
+  min-height:126px;
+  padding:18px 8px 12px;
+  font-size:20px;
+  background:#fff;
+}
+.levelGrid button:nth-child(1){color:var(--green);background:linear-gradient(180deg,#fff,#edfff5)}
+.levelGrid button:nth-child(2){color:var(--blue);background:linear-gradient(180deg,#fff,#eef7ff)}
+.levelGrid button:nth-child(3){color:var(--purple);background:linear-gradient(180deg,#fff,#f6efff)}
+.levelGrid button::before{
+  display:block;margin:0 auto 8px;
+  width:45px;height:45px;border-radius:50%;
+  font-size:26px;line-height:45px;
+}
+.levelGrid button:nth-child(1)::before{content:"🌱";background:#daf8e8}
+.levelGrid button:nth-child(2)::before{content:"📊";background:#dceeff}
+.levelGrid button:nth-child(3)::before{content:"👑";background:#efe2ff}
+
+.menu-action{
+  position:relative;
+  min-height:82px;
+  padding:15px 55px 15px 78px;
+  text-align:left;
+  background:linear-gradient(90deg,#fff,#f8fbff);
+}
+.menu-action::before{
+  position:absolute;left:16px;top:14px;
+  width:52px;height:52px;border-radius:16px;
+  display:grid;place-items:center;
+  font-size:27px;color:#fff;
+  box-shadow:0 8px 16px rgba(23,102,174,.18);
+}
+.menu-action::after{
+  content:"›";
+  position:absolute;right:20px;top:21px;
+  font-size:33px;color:#6f8498;
+}
+.menu-action.record::before{content:"📖";background:linear-gradient(135deg,#1eb0ff,#0869d8)}
+.menu-action.checking::before{content:"📋";background:linear-gradient(135deg,#27c9ca,#1599a1)}
+.menu-action.prices::before{content:"🧮";background:linear-gradient(135deg,#ffbf45,#ef8e13)}
+.menu-action small{display:block;margin-top:5px;color:#75889a;font-size:13px;font-weight:700}
+
+.notice{
+  position:relative;
+  margin-top:14px;
+  padding:17px 15px 17px 58px;
+  border-radius:19px;
+  color:#295578;
+  line-height:1.65;
+  font-size:14px;
+  background:linear-gradient(135deg,#e7f5ff,#f5faff);
+  border:1px solid #dbeefe;
+}
+.notice::before{
+  content:"🛡️";
+  position:absolute;left:16px;top:18px;font-size:28px;
+}
+
+/* 共通画面 */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.back{width:44px;height:44px;padding:0;border-radius:50%;box-shadow:none;background:#edf6fd;color:#106eb7}
+.top h2,.top p{margin:0}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{padding:6px 11px;border-radius:999px;background:#eaf5ff;color:#076fca;font-size:13px;font-weight:900}
+.qno{font-weight:950;color:#0578dc;margin-top:18px}
+.question{font-size:22px;line-height:1.55;font-weight:900;margin:8px 0 16px}
+.choices{display:grid;gap:11px}
+.choice{text-align:left;background:#f7fbff;border:2px solid #e7f1f9;box-shadow:none}
+.choice.correct{background:#edfbee;border-color:#3eb767;color:#135b2e}
+.choice.wrong{background:#fff0f0;border-color:#e95858;color:#862222}
+.resultMark{font-size:80px;text-align:center;line-height:1.1}
+.explain{margin-top:12px;border-radius:17px;padding:15px;background:#f4f9fe;line-height:1.7}
+.next{margin-top:12px;min-height:auto;text-align:center;padding:15px}
+.next::before,.next::after{display:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.stat{background:#f4f9fe;border-radius:16px;padding:12px;text-align:center}
+.stat strong{display:block;font-size:25px;color:#0876d4}
+.progressbar{height:11px;background:#e5eef6;border-radius:99px;overflow:hidden}
+.progressbar span{display:block;height:100%;background:linear-gradient(90deg,#12b8f5,#0468d9)}
+.listrow{display:flex;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid #e6edf4}
+.section{color:#0772ca;margin:20px 0 6px}
+.check{display:flex;gap:10px;padding:13px;background:#f5faff;border-radius:15px;margin:8px 0;line-height:1.5}
+.check input{transform:scale(1.25)}
+.small{font-size:13px;color:#63788d}
+
+@media(max-width:520px){
+  .app{padding:6px}
+  .card{padding:12px;border-radius:22px}
+  .hero{min-height:286px;padding:22px 17px}
+  .hero-ac{width:150px;height:52px;right:15px}
+  .cool-air{right:30px;top:69px}
+  .hero img{width:65px;height:65px}
+  .hero-copy{margin-top:32px}
+  .hero h1{font-size:34px}
+  .primary{font-size:18px}
+  .levelGrid button{font-size:18px}
+}
 </style>
 </head>
 <body><main class="app">
+
 <section id="home" class="card">
-<div class="hero"><img src="icon.svg" alt=""><h1>エアコン販売マスター</h1><p class="sub">Risa Edition</p><span class="version">Ver.15 重複防止版</span></div>
-<div class="menu">
-<button class="primary" onclick="startQuiz('すべて')">ランダム問題を始める</button>
-<div class="levelGrid"><button onclick="startQuiz('初級')">初級</button><button onclick="startQuiz('中級')">中級</button><button onclick="startQuiz('上級')">上級</button></div>
-<button onclick="showStats()">学習記録</button>
-<button onclick="showPage('check')">工事聞き取りチェック</button>
-<button onclick="showPage('prices')">主要工事料金一覧</button>
-</div>
-<div class="notice">同じ問題は、全問題を一巡するまで再出題されません。問題文と選択肢が同じ重複データも起動時に除外します。</div>
+  <div class="hero">
+    <div class="hero-ac"></div>
+    <div class="cool-air"></div>
+    <div class="hero-brand">
+      <img src="icon.svg" alt="エアコン販買マスター">
+    </div>
+    <div class="hero-copy">
+      <h1><span>エアコン</span>販買マスター</h1>
+      <p class="sub">学んで、接客にもっと強くなる。</p>
+      <span class="version">Ver.15</span>
+    </div>
+  </div>
+
+  <div class="menu">
+    <button class="primary" onclick="startQuiz('すべて')">ランダム問題を始める</button>
+
+    <div class="levelGrid">
+      <button onclick="startQuiz('初級')">初級</button>
+      <button onclick="startQuiz('中級')">中級</button>
+      <button onclick="startQuiz('上級')">上級</button>
+    </div>
+
+    <button class="menu-action record" onclick="showStats()">
+      学習記録
+      <small>成績と正答率を確認</small>
+    </button>
+
+    <button class="menu-action checking" onclick="showPage('check')">
+      工事聞き取りチェック
+      <small>接客で使える確認リスト</small>
+    </button>
+
+    <button class="menu-action prices" onclick="showPage('prices')">
+      主要工事料金一覧
+      <small>工事料金をすぐに確認</small>
+    </button>
+  </div>
+
+  <div class="notice">
+    <strong>安心して学習できます</strong><br>
+    同じ問題は、全問題を一巡するまで再出題されません。
+  </div>
 </section>
 
 <section id="quiz" class="card hidden">
