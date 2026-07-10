@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>エアコン接客マスター Ver.4</title>
+  <title>エアコン接客マスター Ver.5</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="hero">
       <div class="snow">❄</div>
       <h1>エアコン接客マスター</h1>
-      <p>Ver.4 新人教育 強化版</p>
+      <p>Ver.5 工事料金計算つき</p>
     </div>
 
     <div class="stats">
@@ -27,7 +27,7 @@
       <button onclick="startQuiz('price')">💰 工事料金</button>
       <button onclick="startQuiz('quality')">🛠 良質工事</button>
       <button onclick="startQuiz('talk')">👨 接客問題</button>
-      <button onclick="showPriceFlow()">🧮 工事料金診断</button>
+      <button onclick="showEstimate()">🧮 工事料金計算</button>
       <button onclick="showDiagnosis()">🧾 接客チェック</button>
       <button onclick="showScore()">🏆 成績</button>
     </div>
@@ -49,17 +49,27 @@
     <button id="nextBtn" class="primary hidden" onclick="nextQuestion()">次へ</button>
   </section>
 
-  <section id="priceFlow" class="card hidden">
+  <section id="estimate" class="card hidden">
     <div class="topbar">
       <button class="back" onclick="showHome()">←</button>
       <div>
-        <h2>工事料金診断</h2>
-        <p id="flowProgress">質問 1 / 8</p>
+        <h2>工事料金計算</h2>
+        <p>料金表ベースの概算</p>
       </div>
     </div>
-    <h3 id="flowQuestion"></h3>
-    <div id="flowChoices" class="choices"></div>
-    <div id="flowResult" class="result hidden"></div>
+
+    <p class="hint">必要な工事にチェックを入れると、税込の概算合計を表示します。</p>
+
+    <div id="estimateItems"></div>
+
+    <div class="totalBox">
+      <p>概算合計</p>
+      <strong id="estimateTotal">¥0</strong>
+    </div>
+
+    <div id="estimateBreakdown" class="result"></div>
+
+    <p class="note">※送っていただいた料金表を元にした概算です。正式金額は現地確認・最新版料金表で確定してください。</p>
   </section>
 
   <section id="finish" class="card hidden">
