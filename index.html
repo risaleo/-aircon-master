@@ -381,8 +381,8 @@ button{cursor:pointer}
 <button class="mainbtn" onclick="startRandomSales()"><div class="circle">👥</div><div><h2>販買モード</h2><b>実際の接客をシミュレーション</b><p>お客様対応を通して、販売スキルを磨きましょう。</p></div><span style="font-size:42px">›</span></button>
 <div class="menu">
 <button onclick="showCases()"><span class="ico">👤</span><b>お客様カルテ</b><p>お客様を選んで接客練習</p></button>
-<button onclick="startQuiz('all')"><span class="ico">📖</span><b>練習問題</b><p>180問からランダム出題</p></button>
-<button onclick="startQuiz('price')"><span class="ico">🧮</span><b>工事料金</b><p>工事料金問題だけを出題</p></button>
+<button onclick="openPracticeQuiz()"><span class="ico">📖</span><b>練習問題</b><p>180問からランダム出題</p></button>
+<button onclick="openPriceQuiz()"><span class="ico">🧮</span><b>工事料金</b><p>工事料金問題だけを出題</p></button>
 <button onclick="showStats()"><span class="ico">📊</span><b>成績・分析</b><p>正答率と学習状況を確認</p></button>
 <button onclick="showHistory()"><span class="ico">🏆</span><b>学習記録・実績</b><p>学習履歴と達成数を確認</p></button>
 
@@ -616,21 +616,147 @@ function finishSales(){
   updateHome();
 }
 
-function startQuiz(type){quizPool=shuffle(type==="price"?PRICE_QUESTIONS:QUESTIONS);quizIndex=0;quizCorrect=0;document.getElementById("quizTitle").textContent=type==="price"?"工事料金":"練習問題";showPage("quiz");nextQuiz()}
-function nextQuiz(){if(quizIndex>=Math.min(10,quizPool.length))return finishQuiz();currentQuiz=quizPool[quizIndex];document.getElementById("quizProgress").textContent=(quizIndex+1)+" / "+Math.min(10,quizPool.length);document.getElementById("quizQuestion").textContent=currentQuiz.q;const c=document.getElementById("quizChoices");c.innerHTML="";quizDisplayedChoices=shuffledWithOriginalIndex(currentQuiz.choices);
-quizDisplayedChoices.forEach((item,displayIndex)=>{
-  const b=document.createElement("button");
-  b.className="choice";
-  b.textContent=(displayIndex+1)+"　"+item.text;
-  b.dataset.originalIndex=String(item.index);
-  b.onclick=()=>answerQuiz(item.index,b);
-  c.appendChild(b);
-});document.getElementById("quizExplain").classList.add("hidden");document.getElementById("quizNext").classList.add("hidden");updateBookmarkButtons()}
-function answerQuiz(i,btn){document.querySelectorAll("#quizChoices button").forEach(b=>b.disabled=true);const ok=i===currentQuiz.answer;btn.classList.add(ok?"correct":"wrong");if(ok)quizCorrect++;else{const good=[...document.querySelectorAll("#quizChoices button")]
-  .find(b=>Number(b.dataset.originalIndex)===currentQuiz.answer);
-if(good)good.classList.add("correct")}const s=getStats();s.answered++;if(ok)s.correct++;saveStats(s);const e=document.getElementById("quizExplain");e.textContent=currentQuiz.ex;e.classList.remove("hidden");quizIndex++;document.getElementById("quizNext").classList.remove("hidden");recordHistory((document.getElementById("quizTitle").textContent)+"："+(ok?"正解":"不正解"))}
-function finishQuiz(){document.getElementById("quizQuestion").textContent="終了";document.getElementById("quizChoices").innerHTML=`<div class="report"><h2>${quizCorrect} / ${Math.min(10,quizPool.length)} 正解</h2><button class="primary" onclick="showPage('home')">ホームへ戻る</button></div>`;document.getElementById("quizNext").classList.add("hidden");document.getElementById("quizExplain").classList.add("hidden");updateHome()}
 
+function openPracticeQuiz(){
+  openQuizMode("all");
+}
+
+function openPriceQuiz(){
+  openQuizMode("price");
+}
+
+function openQuizMode(mode){
+  const source = mode==="price" ? PRICE_QUESTIONS : QUESTIONS;
+  const valid = Array.isArray(source) ? source.filter(q =>
+    q &&
+    typeof q.q==="string" &&
+    Array.isArray(q.choices) &&
+    q.choices.length>=2 &&
+    Number.isInteger(q.answer) &&
+    q.answer>=0 &&
+    q.answer<q.choices.length
+  ) : [];
+
+  if(valid.length===0){
+    alert(mode==="price"
+      ? "工事料金の問題データがありません。"
+      : "練習問題のデータがありません。");
+    return;
+  }
+
+  quizPool=shuffle(valid);
+  quizIndex=0;
+  quizCorrect=0;
+  currentQuiz=null;
+
+  const title=document.getElementById("quizTitle");
+  if(title)title.textContent=mode==="price" ? "工事料金" : "練習問題";
+
+  showPage("quiz");
+  const bookmark=document.getElementById("quizBookmarkBtn");
+  if(bookmark)bookmark.classList.remove("hidden");
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const max=Math.min(10,quizPool.length);
+
+  if(quizIndex>=max){
+    finishQuiz();
+    return;
+  }
+
+  currentQuiz=quizPool[quizIndex];
+
+  const progress=document.getElementById("quizProgress");
+  const question=document.getElementById("quizQuestion");
+  const choices=document.getElementById("quizChoices");
+  const explain=document.getElementById("quizExplain");
+  const next=document.getElementById("quizNext");
+
+  if(!progress || !question || !choices || !explain || !next){
+    alert("問題画面の読み込みに失敗しました。");
+    showPage("home");
+    return;
+  }
+
+  progress.textContent=(quizIndex+1)+" / "+max;
+  question.textContent=currentQuiz.q;
+  choices.innerHTML="";
+  explain.textContent="";
+  explain.classList.add("hidden");
+  next.classList.add("hidden");
+
+  quizDisplayedChoices=shuffledWithOriginalIndex(currentQuiz.choices);
+
+  quizDisplayedChoices.forEach((item,displayIndex)=>{
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="choice";
+    button.textContent=(displayIndex+1)+"　"+item.text;
+    button.dataset.originalIndex=String(item.index);
+    button.onclick=()=>answerQuiz(item.index,button);
+    choices.appendChild(button);
+  });
+
+  updateBookmarkButtons();
+}
+
+function answerQuiz(originalIndex,button){
+  if(!currentQuiz)return;
+
+  const buttons=[...document.querySelectorAll("#quizChoices button")];
+  buttons.forEach(b=>b.disabled=true);
+
+  const correct=originalIndex===currentQuiz.answer;
+  button.classList.add(correct ? "correct" : "wrong");
+
+  if(correct){
+    quizCorrect++;
+  }else{
+    const correctButton=buttons.find(
+      b=>Number(b.dataset.originalIndex)===currentQuiz.answer
+    );
+    if(correctButton)correctButton.classList.add("correct");
+  }
+
+  const stats=getStats();
+  stats.answered++;
+  if(correct)stats.correct++;
+  saveStats(stats);
+
+  const explain=document.getElementById("quizExplain");
+  explain.textContent=currentQuiz.ex || (correct ? "正解です。" : "正解を確認しましょう。");
+  explain.classList.remove("hidden");
+
+  recordHistory(
+    (document.getElementById("quizTitle")?.textContent || "問題")+
+    "："+(correct ? "正解" : "不正解")
+  );
+
+  quizIndex++;
+  document.getElementById("quizNext").classList.remove("hidden");
+}
+
+function nextQuiz(){
+  renderQuizQuestion();
+}
+
+function finishQuiz(){
+  const max=Math.min(10,quizPool.length);
+  document.getElementById("quizProgress").textContent="";
+  document.getElementById("quizQuestion").textContent="終了";
+  document.getElementById("quizChoices").innerHTML=`
+    <div class="report">
+      <h2>${quizCorrect} / ${max} 正解</h2>
+      <button class="primary" onclick="showPage('home')">ホームへ戻る</button>
+    </div>`;
+  document.getElementById("quizExplain").classList.add("hidden");
+  document.getElementById("quizNext").classList.add("hidden");
+  const bookmark=document.getElementById("quizBookmarkBtn");
+  if(bookmark)bookmark.classList.add("hidden");
+  updateHome();
+}
 
 function showStats(){showPage("statsPage");const s=getStats(),rate=s.answered?Math.round(s.correct/s.answered*100):0;document.getElementById("statsGrid").innerHTML=`<div class="stat"><span>回答数</span><strong>${s.answered}</strong></div><div class="stat"><span>正答率</span><strong>${rate}%</strong></div><div class="stat"><span>販買モード</span><strong>${s.sales}件</strong></div>`}
 function recordHistory(text){let h=[];try{h=JSON.parse(localStorage.getItem(K.history)||"[]")}catch{}h.unshift({date:new Date().toLocaleString("ja-JP"),text});localStorage.setItem(K.history,JSON.stringify(h.slice(0,100)))}
@@ -715,6 +841,15 @@ function renderBookmarks(){
     list.appendChild(card);
   });
 }
+
+
+window.addEventListener("load",()=>{
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.getRegistrations().then(regs=>{
+      regs.forEach(reg=>reg.update());
+    }).catch(()=>{});
+  }
+});
 
 </script>
 </body></html>
