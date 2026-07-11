@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=217">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=217">
-<title>エアコン販買マスター Ver.21.7</title>
+<link rel="manifest" href="manifest.json?v=220">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=220">
+<title>エアコン販買マスター Ver.22 Premium</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.21.7 メニュー修正 */
+/* Ver.22 Premium メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.21.7 採用デザイン */
+/* Ver.22 Premium 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -684,112 +684,207 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 .question::first-line{font-weight:950}
 
 
-/* Ver.21.7 業務研修アプリ風 */
+/* =========================================
+   Ver.22 Premium 固定デザイン
+========================================= */
 body{
-  background:linear-gradient(180deg,#f3f8fc 0%,#edf4f8 100%);
-  color:#20384b;
+  background:
+    radial-gradient(circle at 8% 0%,rgba(78,181,244,.18),transparent 28%),
+    linear-gradient(180deg,#f4faff 0%,#edf6fb 55%,#f8fbfd 100%);
+  color:#183b57;
 }
-.business-home{display:block;max-width:1180px;margin:0 auto}
-.business-header{
-  position:relative;padding:32px 34px;border-radius:26px;
-  background:#fff;border:1px solid #dbe7ef;
-  box-shadow:0 12px 32px rgba(42,81,109,.08)
+.app{max-width:1180px!important;padding:16px!important}
+.premium-home{display:block;max-width:1160px;margin:0 auto}
+
+.premium-hero{
+  min-height:270px;padding:34px;border-radius:30px;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:20px;
+  background:linear-gradient(130deg,#ffffff 0%,#edf8ff 54%,#dcefff 100%);
+  border:1px solid rgba(255,255,255,.94);
+  box-shadow:0 22px 54px rgba(40,103,151,.14)
 }
-.business-kicker{font-size:11px;font-weight:900;letter-spacing:.16em;color:#4b86b4}
-.business-header h1{margin:7px 0 0;font-size:clamp(32px,5vw,50px);color:#173c59}
-.business-header .risa-script{margin-top:6px;color:#4d83aa;font-size:30px;transform:none}
-.business-header p{margin:13px 0 0;color:#60798c;font-weight:700}
-.header-settings{
-  position:absolute;right:22px;top:22px;width:46px;height:46px;padding:0;border-radius:14px;
-  background:#f5f8fa;box-shadow:none;border:1px solid #d8e4ec
+.premium-hero::before{
+  content:"";position:absolute;right:-70px;top:-120px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,148,226,.25),transparent 68%)
+}
+.hero-copy{position:relative;z-index:2}
+.hero-kicker{font-size:11px;letter-spacing:.15em;font-weight:900;color:#3685bc}
+.premium-hero h1{margin:7px 0 0;font-size:clamp(36px,5.4vw,58px);line-height:1.05;color:#123a5c}
+.premium-hero .risa-script{font-size:32px;margin-top:9px;color:#367eb5;transform:none}
+.premium-hero p{font-weight:750;color:#5c7890;margin:10px 0 0}
+.hero-progress{max-width:520px;margin-top:25px;padding:16px 18px;border-radius:19px;background:rgba(255,255,255,.78);backdrop-filter:blur(12px)}
+.hero-progress-row{display:flex;justify-content:space-between;align-items:center;font-weight:900;color:#315f80}
+.hero-progress-row strong{font-size:25px;color:#147ed1}
+.hero-progress-track{height:10px;margin:9px 0;border-radius:99px;background:#dceaf3;overflow:hidden}
+.hero-progress-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#30b8ee,#147bd8)}
+.hero-progress small{color:#718a9d}
+
+.hero-visual{position:relative;min-height:210px;z-index:2}
+.hero-aircon{
+  position:absolute;right:36px;top:42px;width:250px;height:74px;border-radius:17px;
+  background:linear-gradient(180deg,#fff,#e9f1f6);box-shadow:0 14px 30px rgba(37,89,126,.19)
+}
+.aircon-slot{position:absolute;left:20px;right:20px;bottom:16px;height:8px;border-radius:6px;background:#bdccd7}
+.aircon-light{position:absolute;right:20px;top:16px;width:8px;height:8px;border-radius:50%;background:#4bc091}
+.hero-breeze{position:absolute;right:58px;top:125px;color:#63aee0;font-size:30px;letter-spacing:10px;transform:rotate(-7deg)}
+.hero-plant{position:absolute;right:10px;bottom:3px;font-size:68px}
+.premium-settings{
+  position:absolute;right:22px;top:20px;z-index:5;width:48px;height:48px;padding:0;border-radius:16px;
+  background:rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(44,95,132,.12)
 }
 
-.learning-summary{
-  margin-top:16px;padding:22px;border-radius:24px;background:#fff;border:1px solid #dbe7ef;
-  box-shadow:0 10px 26px rgba(42,81,109,.07);
-  display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center
+.premium-status{
+  margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px
 }
-.summary-main span{display:block;font-size:13px;font-weight:850;color:#5d788d}
-.summary-main strong{display:block;margin:4px 0 8px;font-size:34px;color:#1e6fa8}
-.summary-main small{color:#7a909f}
-.business-progress{height:10px;background:#e5edf3;border-radius:999px;overflow:hidden;margin-bottom:8px}
-.business-progress span{display:block;height:100%;background:linear-gradient(90deg,#3e9bd4,#1976b4)}
-.summary-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.summary-metrics div{padding:14px;border-left:1px solid #dbe7ef;text-align:center}
-.summary-metrics span{display:block;font-size:12px;color:#6e8697}.summary-metrics strong{display:block;margin-top:5px;font-size:24px;color:#234d6a}
+.premium-status div{
+  padding:18px 20px;border-radius:21px;background:#fff;border:1px solid #deebf3;
+  box-shadow:0 10px 25px rgba(40,88,123,.07)
+}
+.premium-status span{display:block;font-size:12px;color:#6f899b;font-weight:800}
+.premium-status strong{display:block;margin-top:5px;font-size:27px;color:#174c71}
 
-.business-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
-.business-card{
-  min-height:125px;padding:21px;border-radius:22px;background:#fff;border:1px solid #dce7ef;
-  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;text-align:left;
-  box-shadow:0 9px 22px rgba(42,81,109,.06);color:#223d52
+.premium-menu{margin-top:16px}
+.premium-main-card{
+  width:100%;min-height:170px;padding:26px;border-radius:28px;
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;text-align:left;
+  background:linear-gradient(135deg,#f5fbff,#e8f6fd);
+  border:1px solid #cfe5f2;box-shadow:0 17px 38px rgba(38,98,141,.11);color:#173f60
 }
-.business-card.primary-card{
-  grid-column:1/-1;min-height:155px;background:linear-gradient(135deg,#eef8fd,#e2f1f8);
-  border-color:#cfe1ec
+.main-card-icon{
+  width:82px;height:82px;border-radius:24px;display:grid;place-items:center;
+  font-size:39px;background:#fff;box-shadow:0 10px 25px rgba(48,105,145,.12)
 }
-.business-icon{
-  width:62px;height:62px;border-radius:18px;display:grid;place-items:center;
-  background:#edf4f8;font-size:30px
-}
-.primary-card .business-icon{width:76px;height:76px;font-size:38px;background:#fff}
-.card-label{font-size:10px;font-weight:900;letter-spacing:.14em;color:#4e89b4}
-.business-card h2,.business-card h3{margin:3px 0 5px;color:#173c59}
-.business-card h2{font-size:28px}.business-card h3{font-size:20px}
-.business-card p{margin:0;color:#647c8e;line-height:1.55}
-.card-arrow{font-size:38px;color:#7ea2ba}
+.main-card-copy span{font-size:10px;letter-spacing:.14em;font-weight:900;color:#4388b7}
+.main-card-copy h2{font-size:29px;margin:4px 0 6px}
+.main-card-copy p{margin:0;color:#617d91;line-height:1.55;font-weight:650}
+.main-card-copy small{display:block;margin-top:8px;color:#3582b5;font-weight:850}
+.main-card-customer{min-width:165px;padding:15px;border-radius:19px;background:rgba(255,255,255,.78);text-align:center}
+.customer-mini-avatar{font-size:43px}
+.main-card-customer b,.main-card-customer span{display:block}
+.main-card-customer b{font-size:13px;color:#4d6e84}.main-card-customer span{margin-top:4px;font-size:12px;color:#728a9a}
+.premium-main-card i{font-style:normal;font-size:45px;color:#2a8fd0}
 
-.level-menu-business{
-  margin-top:14px;padding:15px;border-radius:20px;background:#fff;border:1px solid #dbe7ef;
+.premium-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:13px}
+.premium-card{
+  min-height:135px;padding:20px;border-radius:23px;background:#fff;border:1px solid #deebf3;
+  box-shadow:0 10px 25px rgba(40,88,123,.07);text-align:left;color:#203f57
+}
+.premium-card-icon{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
+  font-size:25px;background:#eef6fb;margin-bottom:11px
+}
+.premium-card b{display:block;font-size:18px}.premium-card small{display:block;margin-top:5px;color:#71899a;font-weight:650}
+
+.premium-level-menu{
+  margin-top:13px;padding:15px;border-radius:21px;background:#fff;border:1px solid #dce9f1;
   display:grid;grid-template-columns:repeat(4,1fr);gap:10px
 }
-.level-menu-business .level-menu-title{grid-column:1/-1;font-weight:900;color:#315f7d}
-.level-menu-business button{min-height:52px}
+.premium-level-menu .level-menu-title{grid-column:1/-1;font-weight:900;color:#315f7c}
+.premium-level-menu button{min-height:54px}
 
-.today-training{
-  margin-top:16px;padding:23px;border-radius:24px;background:#fff;border:1px solid #dbe7ef;
-  box-shadow:0 10px 24px rgba(42,81,109,.06)
+.today-case-card{
+  margin-top:16px;padding:27px;border-radius:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+  background:linear-gradient(135deg,#ffffff,#ecf7fd);border:1px solid #d7e8f2;
+  box-shadow:0 12px 29px rgba(39,91,129,.08)
 }
-.today-head{display:flex;justify-content:space-between;gap:16px;align-items:center}
-.today-head span{font-size:12px;font-weight:850;color:#668093}.today-head h2{margin:5px 0 0;color:#173c59}
-.today-head button{min-width:130px;background:#1978b5;color:#fff}
-.checklist-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}
-.checklist-preview span{padding:11px 12px;border-radius:12px;background:#f4f8fa;color:#4e687a;font-weight:700;font-size:13px}
+.today-label{font-size:10px;letter-spacing:.15em;font-weight:900;color:#3d89ba}
+.today-case-card h2{font-size:25px;margin:7px 0 6px;color:#183f5e}
+.today-case-card p{margin:0;color:#647f91;line-height:1.6}
+.today-case-card button{width:auto;margin-top:16px;background:#187fbe;color:#fff}
+.today-family{font-size:79px;padding:20px;border-radius:25px;background:#eff7fc}
 
-.business-note{
-  margin-top:16px;padding:18px 21px;border-radius:20px;background:#f7fafc;border:1px solid #dbe7ef
+.premium-tip{
+  margin-top:16px;padding:20px;border-radius:22px;background:#fff;border:1px solid #dce9f1;
+  display:flex;gap:15px;align-items:flex-start
 }
-.business-note strong{color:#235c82}.business-note p{margin:7px 0 0;color:#60798b;line-height:1.65}
+.tip-icon{font-size:27px}.premium-tip span{font-weight:900;color:#2a668c}.premium-tip p{margin:6px 0 0;color:#607b8e;line-height:1.6}
+.premium-footer{text-align:center;padding:25px 10px;color:#6d8596;font-size:13px;font-weight:750}
 
-.achievement-item.unlocked{
-  background:#eef6fb!important;border:1px solid #cfe1ec!important
+/* 販買モード */
+.premium-sales-page{max-width:1160px!important}
+.sales-progress-line{height:8px;background:#e2edf4;border-radius:99px;overflow:hidden;margin:12px 0 20px}
+.sales-progress-line span{display:block;width:0;height:100%;background:linear-gradient(90deg,#39b7ea,#197bc5);transition:width .3s ease}
+.premium-sales-layout{display:grid;grid-template-columns:.82fr 1.25fr .65fr;gap:16px;align-items:start}
+.premium-customer-card,.premium-conversation-panel,.premium-checklist{
+  background:#fff;border:1px solid #dce8f0;border-radius:25px;box-shadow:0 12px 28px rgba(38,84,118,.08)
 }
+.premium-customer-card{padding:22px;position:sticky;top:15px}
+.customer-case-no{font-size:11px;letter-spacing:.12em;font-weight:900;color:#5484a5}
+.customer-avatar-large{
+  width:150px;height:150px;margin:18px auto 13px;border-radius:50%;display:grid;place-items:center;
+  font-size:76px;background:linear-gradient(145deg,#edf8ff,#d8ebf7);box-shadow:inset 0 0 0 8px #fff,0 12px 25px rgba(43,98,138,.13)
+}
+.customer-badge{display:inline-block;padding:6px 11px;border-radius:999px;background:#187fc5;color:#fff;font-size:12px;font-weight:900}
+.customer-title{font-size:21px;margin:13px 0 5px;color:#173f5d}
+.customer-sub{color:#6b8495;font-size:13px}
+.customer-first-word{margin-top:16px;padding:15px;border-radius:17px;background:#f3f8fb;color:#365b75;line-height:1.6;font-weight:750}
+.customer-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+.customer-facts span{padding:10px;border-radius:12px;background:#f5f9fb;font-size:12px;color:#567184;font-weight:700}
 
-@media(min-width:900px){
-  #sales .sales-layout-ipad{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}
-  #sales .sales-case{position:sticky;top:18px}
-  #quiz .choices{grid-template-columns:1fr 1fr}
+.premium-conversation-panel{padding:25px;min-height:540px}
+.premium-step-label{color:#3c83b1;font-weight:900;letter-spacing:.05em}
+.premium-sales-options .question{
+  margin-top:10px;padding:20px;border-radius:19px;background:#f1f8fc;
+  font-size:22px;line-height:1.55;color:#193e5a
+}
+.premium-sales-options .choice{min-height:68px;border-radius:17px;background:#fff;border:1px solid #d5e6f1;font-size:16px}
+.premium-sales-options .choice:hover{border-color:#79b9df;background:#f6fbfe}
+
+.premium-checklist{padding:19px;position:sticky;top:15px}
+.premium-checklist h3{margin:0 0 14px;font-size:17px}
+.check-row{display:flex;align-items:center;gap:9px;padding:10px 4px;border-bottom:1px solid #edf2f5;color:#6c8292;font-size:13px}
+.check-row:last-child{border:0}.check-row .check-dot{
+  width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#edf3f7;color:#a6b5bf;font-size:12px
+}
+.check-row.done{color:#275b7c;font-weight:800}.check-row.done .check-dot{background:#238acb;color:#fff}
+.report-sheet{padding:23px;border-radius:23px;background:#fff;border:1px solid #dbe8f0;box-shadow:0 12px 28px rgba(40,85,119,.08)}
+.report-title{text-align:center;margin-bottom:20px}.report-title span{font-size:11px;letter-spacing:.14em;color:#5c8cab;font-weight:900}.report-title h2{margin:5px 0;color:#153e5c}
+.report-grade{font-size:58px;font-weight:950;color:#157bc0;text-align:center;margin:10px 0}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.report-grid div{padding:12px;border-radius:14px;background:#f4f8fb;display:flex;justify-content:space-between;color:#49687c}
+.report-comment{margin-top:15px;padding:16px;border-radius:16px;background:#eef7fc;color:#3e6178;line-height:1.7}
+.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+
+/* カルテライブラリ */
+.customer-library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:17px 0}
+.customer-library-card{padding:18px;border-radius:21px;background:#fff;border:1px solid #dce8ef;box-shadow:0 9px 22px rgba(42,83,113,.06)}
+.library-avatar{height:95px;border-radius:17px;display:grid;place-items:center;font-size:51px;background:linear-gradient(145deg,#edf7fc,#ddeef7)}
+.customer-library-card .badge{display:inline-block;margin-top:12px;padding:4px 9px;border-radius:999px;background:#e9f3f9;color:#2d739e;font-size:11px;font-weight:900}
+.customer-library-card h3{margin:8px 0 5px;color:#173f5c}.customer-library-card p{margin:0;color:#6b8393;font-size:13px;line-height:1.5}
+
+@media(max-width:920px){
+  .premium-sales-layout{grid-template-columns:.85fr 1.15fr}
+  .premium-checklist{grid-column:1/-1;position:static;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+  .premium-checklist h3{grid-column:1/-1}
+  .check-row{border:0;background:#f5f9fb;border-radius:12px;padding:9px}
 }
 @media(max-width:760px){
-  .business-header{padding:26px 20px}.business-header h1{font-size:34px}
-  .learning-summary{grid-template-columns:1fr;padding:18px}
-  .summary-metrics{grid-template-columns:repeat(3,1fr)}
-  .summary-metrics div{padding:10px 6px}
-  .business-grid{grid-template-columns:1fr}
-  .business-card.primary-card{grid-column:auto}
-  .level-menu-business{grid-template-columns:1fr 1fr}
-  .today-head{align-items:flex-start;flex-direction:column}
-  .today-head button{width:100%}
-  .checklist-preview{grid-template-columns:1fr 1fr}
+  .app{padding:10px!important}
+  .premium-hero{grid-template-columns:1fr;min-height:230px;padding:26px 20px}
+  .hero-visual{display:none}.premium-hero h1{font-size:35px}.premium-hero .risa-script{font-size:27px}
+  .premium-status{grid-template-columns:repeat(3,1fr);gap:8px}
+  .premium-status div{padding:13px 8px;text-align:center}.premium-status strong{font-size:21px}
+  .premium-main-card{grid-template-columns:auto 1fr auto;padding:19px;min-height:145px}
+  .main-card-customer{display:none}.main-card-icon{width:65px;height:65px;font-size:31px}
+  .main-card-copy h2{font-size:24px}
+  .premium-card-grid{grid-template-columns:1fr 1fr;gap:9px}
+  .premium-card{min-height:120px;padding:16px}
+  .today-case-card{grid-template-columns:1fr}.today-family{display:none}
+  .premium-sales-layout{grid-template-columns:1fr}
+  .premium-customer-card,.premium-checklist{position:static}
+  .premium-checklist{display:grid;grid-template-columns:1fr 1fr}
+  .customer-library-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:430px){
-  .summary-metrics{grid-template-columns:1fr 1fr}
-  .summary-metrics div:last-child{grid-column:1/-1}
-  .checklist-preview{grid-template-columns:1fr}
+@media(max-width:460px){
+  .premium-status{grid-template-columns:1fr 1fr}.premium-status div:last-child{grid-column:1/-1}
+  .premium-card-grid{grid-template-columns:1fr 1fr}
+  .premium-level-menu{grid-template-columns:1fr 1fr}
+  .customer-library-grid{grid-template-columns:1fr}
+  .report-grid{grid-template-columns:1fr}
 }
 
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=217">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=220">
 </head>
 <body><main class="app">
 
@@ -797,89 +892,108 @@ body{
 
 
 
-<section id="home" class="home-shell business-home">
-  <header class="business-header">
-    <div>
-      <div class="business-kicker">AIR CONDITIONER SALES TRAINING</div>
+<section id="home" class="home-shell premium-home">
+  <header class="premium-hero">
+    <div class="hero-copy">
+      <div class="hero-kicker">AIR CONDITIONER SALES TRAINING</div>
       <h1>エアコン販買マスター</h1>
       <div class="risa-script">RISA EDITION</div>
-      <p>販売・工事受付・提案力を、実践形式で確認する研修アプリ</p>
+      <p>販売・受付・工事を、実践で身につける。</p>
+
+      <div class="hero-progress">
+        <div class="hero-progress-row">
+          <span>今日の学習</span>
+          <strong id="todayProgressText">0%</strong>
+        </div>
+        <div class="hero-progress-track"><span id="todayProgressBar" style="width:0%"></span></div>
+        <small id="todayProgressSub">今日のチャレンジ・販買モード・練習問題</small>
+      </div>
     </div>
-    <button class="header-settings" onclick="openSettings()" aria-label="設定">⚙️</button>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-aircon">
+        <span class="aircon-slot"></span>
+        <span class="aircon-light"></span>
+      </div>
+      <div class="hero-breeze">〰 〰 〰</div>
+      <div class="hero-plant">🪴</div>
+    </div>
+
+    <button class="premium-settings" onclick="openSettings()" aria-label="設定">⚙️</button>
   </header>
 
-  <section class="learning-summary">
-    <div class="summary-main">
-      <span>本日の学習状況</span>
-      <strong id="todayProgressText">0%</strong>
-      <div class="business-progress"><span id="todayProgressBar" style="width:0%"></span></div>
-      <small>今日のチャレンジ・販買モード・練習問題の達成状況</small>
+  <section class="premium-status">
+    <div>
+      <span>学習レベル</span>
+      <strong id="homeLevelCompact">Lv.1</strong>
     </div>
-    <div class="summary-metrics">
-      <div><span>総問題数</span><strong id="totalQuestionCount">180</strong></div>
-      <div><span>総合正答率</span><strong id="homeRate">0%</strong></div>
-      <div><span>学習レベル</span><strong id="homeLevelCompact">Lv.1</strong></div>
+    <div>
+      <span>総合正答率</span>
+      <strong id="homeRate">0%</strong>
+    </div>
+    <div>
+      <span>収録問題</span>
+      <strong id="totalQuestionCount">180問</strong>
     </div>
   </section>
 
-  <section class="business-grid">
-    <button class="business-card primary-card" onclick="startSalesMode()">
-      <div class="business-icon">🛒</div>
-      <div>
-        <span class="card-label">MAIN TRAINING</span>
+  <section class="premium-menu">
+    <button class="premium-main-card" onclick="startSalesMode()">
+      <div class="main-card-icon">🛒</div>
+      <div class="main-card-copy">
+        <span>MAIN TRAINING</span>
         <h2>販買モード</h2>
-        <p>お客様カルテを確認し、聞き取り・メーカー提案・工事確認まで実践します。</p>
+        <p>お客様カルテを確認し、聞き取り・工事確認・提案まで実践。</p>
+        <small id="salesCaseCountHome">12ケース収録</small>
       </div>
-      <span class="card-arrow">›</span>
+      <div class="main-card-customer">
+        <div class="customer-mini-avatar">👨‍👩‍👧</div>
+        <b>本日のお客様</b>
+        <span>買い替え・標準</span>
+      </div>
+      <i>›</i>
     </button>
 
-    <button class="business-card" onclick="showLevelMenu()">
-      <div class="business-icon">📘</div>
-      <div>
-        <h3>練習問題</h3>
-        <p>初級・中級・上級から選択</p>
-      </div>
-      <span class="card-arrow">›</span>
-    </button>
+    <div class="premium-card-grid">
+      <button class="premium-card" onclick="showLevelMenu()">
+        <span class="premium-card-icon">📘</span>
+        <b>練習問題</b>
+        <small>180問から出題</small>
+      </button>
 
-    <button class="business-card" onclick="startWrongReview()">
-      <div class="business-icon">🔁</div>
-      <div>
-        <h3>苦手問題</h3>
-        <p>間違えた問題を優先して復習</p>
-      </div>
-      <span class="card-arrow">›</span>
-    </button>
+      <button class="premium-card" onclick="startWrongReview()">
+        <span class="premium-card-icon">🔁</span>
+        <b>苦手問題</b>
+        <small>間違えた問題を復習</small>
+      </button>
 
-    <button class="business-card" onclick="showStats()">
-      <div class="business-icon">📊</div>
-      <div>
-        <h3>成績</h3>
-        <p>カテゴリ別正答率と学習履歴</p>
-      </div>
-      <span class="card-arrow">›</span>
-    </button>
+      <button class="premium-card" onclick="showCustomerLibrary()">
+        <span class="premium-card-icon">👥</span>
+        <b>お客様カルテ</b>
+        <small>ケースを一覧で確認</small>
+      </button>
 
-    <button class="business-card" onclick="showAchievements()">
-      <div class="business-icon">📋</div>
-      <div>
-        <h3>学習記録</h3>
-        <p>達成状況と習熟度を確認</p>
-      </div>
-      <span class="card-arrow">›</span>
-    </button>
+      <button class="premium-card" onclick="showStats()">
+        <span class="premium-card-icon">📊</span>
+        <b>成績</b>
+        <small>正答率と苦手分野</small>
+      </button>
 
-    <button class="business-card" onclick="openSettings()">
-      <div class="business-icon">⚙️</div>
-      <div>
-        <h3>設定</h3>
-        <p>更新確認・学習記録の管理</p>
-      </div>
-      <span class="card-arrow">›</span>
-    </button>
+      <button class="premium-card" onclick="showAchievements()">
+        <span class="premium-card-icon">📋</span>
+        <b>学習記録</b>
+        <small>達成状況を確認</small>
+      </button>
+
+      <button class="premium-card" onclick="openSettings()">
+        <span class="premium-card-icon">⚙️</span>
+        <b>設定</b>
+        <small>更新・記録管理</small>
+      </button>
+    </div>
   </section>
 
-  <div id="levelMenu" class="level-menu-business hidden">
+  <div id="levelMenu" class="premium-level-menu hidden">
     <div class="level-menu-title">練習問題の難易度</div>
     <button onclick="startQuiz('すべて')">ランダム</button>
     <button onclick="startQuiz('初級')">初級</button>
@@ -887,29 +1001,27 @@ body{
     <button onclick="startQuiz('上級')">上級</button>
   </div>
 
-  <section class="today-training">
-    <div class="today-head">
-      <div>
-        <span>本日の推奨トレーニング</span>
-        <h2>受付漏れを防ぐ確認練習</h2>
-      </div>
-      <button onclick="startDaily()">10問開始</button>
+  <section class="today-case-card">
+    <div>
+      <span class="today-label">TODAY'S CASE</span>
+      <h2>15年使ったリビングエアコン</h2>
+      <p>買い替え受付で、既存配管・電源・室外機位置を確認します。</p>
+      <button onclick="startSalesMode()">受付を始める</button>
     </div>
+    <div class="today-family">👨‍👩‍👧‍👦</div>
+  </section>
 
-    <div class="checklist-preview">
-      <span>□ 新規設置／買い替え</span>
-      <span>□ 畳数・部屋条件</span>
-      <span>□ 専用回路・電圧</span>
-      <span>□ 配管・室外機</span>
-      <span>□ 取り外し・既存配管</span>
-      <span>□ ご予算・重視機能</span>
+  <section class="premium-tip">
+    <div class="tip-icon">💡</div>
+    <div>
+      <span>今日の販売ヒント</span>
+      <p id="dailyTip">おすすめ機種を説明する前に、お客様の困りごとを確認しましょう。</p>
     </div>
   </section>
 
-  <section class="business-note">
-    <strong>今日の販売ワンポイント</strong>
-    <p id="dailyTip">商品説明の前に、お客様の設置条件と優先順位を確認しましょう。</p>
-  </section>
+  <footer class="premium-footer">
+    一人ひとりのお客様に、最適な一台を。
+  </footer>
 </section>
 
 <section id="quiz" class="card hidden">
@@ -939,14 +1051,44 @@ body{
 
 
 
-<section id="sales" class="card hidden">
-  <div class="top">
+
+<section id="sales" class="card hidden premium-sales-page">
+  <div class="top premium-page-top">
     <button class="back" onclick="showPage('home')">←</button>
-    <div><h2>販買モード</h2><p class="small">お客様に合う提案を考えよう（全ケース一巡まで重複なし）</p></div>
+    <div>
+      <h2>販買モード</h2>
+      <p class="small">受付から提案まで、実際の流れで確認します。</p>
+    </div>
   </div>
-  <div class="sales-layout-ipad"><div id="salesCase" class="sales-case"></div><div class="sales-answer-pane"><div id="salesStepLabel" class="sales-step"></div>
-  <div id="salesOptions" class="sales-options"></div>
-  <div id="salesResult" class="hidden"></div></div></div>
+
+  <div class="sales-progress-line">
+    <span id="salesProgressFill"></span>
+  </div>
+
+  <div class="premium-sales-layout">
+    <aside id="salesCase" class="premium-customer-card"></aside>
+
+    <main class="premium-conversation-panel">
+      <div id="salesStepLabel" class="sales-step premium-step-label"></div>
+      <div id="salesOptions" class="sales-options premium-sales-options"></div>
+      <div id="salesResult" class="hidden"></div>
+    </main>
+
+    <aside id="salesChecklist" class="premium-checklist"></aside>
+  </div>
+</section>
+
+
+<section id="customerLibrary" class="card hidden premium-library-page">
+  <div class="top premium-page-top">
+    <button class="back" onclick="showPage('home')">←</button>
+    <div>
+      <h2>お客様カルテ</h2>
+      <p class="small">接客ケースの概要を確認できます。</p>
+    </div>
+  </div>
+  <div id="customerLibraryGrid" class="customer-library-grid"></div>
+  <button onclick="showPage('home')">ホームへ戻る</button>
 </section>
 
 <section id="stats" class="card hidden">
@@ -963,7 +1105,7 @@ body{
   <button onclick="showPage('home')">ホームへ戻る</button>
 </section>
 
-<section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>学習記録</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
+<section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>実績</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
 
 
 <section id="settingsPage" class="card hidden">
@@ -982,7 +1124,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.21.7</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22 Premium</p>
 </section>
 
 
@@ -1112,7 +1254,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=217', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=220', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1273,38 +1415,11 @@ showPage=function(id){
   if(id==='home') updateHome();
 }
 
-const SALES_CASES=[
-  {
-    customer:'40代ご夫婦・18畳LDK・犬2匹・花粉症・共働き',
-    steps:[
-      {label:'STEP 1　最初の確認',q:'最初に優先して確認する内容は？',choices:['使用時間・空気の悩み・予算・工事条件','メーカー名だけ','本体色だけ','値引きだけ'],a:0},
-      {label:'STEP 2　メーカー比較',q:'比較候補として適切なのは？',choices:['ダイキン・東芝・SHARPなど','三菱電機だけ','日立だけ','価格最安の一社だけ'],a:0},
-      {label:'STEP 3　工事確認',q:'工事で確認すべき内容は？',choices:['専用回路・室外機置場・配管・取り外し','畳数だけ','メーカーだけ','リモコンだけ'],a:0},
-      {label:'STEP 4　クロージング',q:'適切な説明は？',choices:['ご希望に合う理由と工事条件を整理して比較します','一番売れているのでこれです','今日だけなので急いでください','高いほど必ず良いです'],a:0}
-    ]
-  },
-  {
-    customer:'70代ご夫婦・8畳寝室・直風が苦手・操作の簡単さ重視',
-    steps:[
-      {label:'STEP 1　要望整理',q:'最優先の比較軸は？',choices:['操作性と気流の当たり方','空気清浄だけ','本体色だけ','最大能力だけ'],a:0},
-      {label:'STEP 2　メーカー比較',q:'比較候補として考えやすいのは？',choices:['三菱電機・東芝など','日立だけ','SHARPだけ','富士通ゼネラルだけ'],a:0},
-      {label:'STEP 3　確認方法',q:'操作性はどう確認する？',choices:['実機のリモコン・表示を見てもらう','カタログ表紙だけ','販売員の好みで決める','価格だけ見る'],a:0},
-      {label:'STEP 4　説明',q:'適切な案内は？',choices:['使いやすさと風の感じ方を比較しましょう','一番高い機種が正解です','人気順で決めます','メーカーはどこでも同じです'],a:0}
-    ]
-  },
-  {
-    customer:'30代ご夫婦・新築20畳LDK・掃除が苦手・内部清潔重視',
-    steps:[
-      {label:'STEP 1　確認',q:'最初に分けて聞くべき内容は？',choices:['フィルター・熱交換器・ファンのどこを重視するか','メーカー名だけ','色だけ','予算だけ'],a:0},
-      {label:'STEP 2　メーカー比較',q:'比較候補として適切なのは？',choices:['日立・富士通ゼネラルなど','SHARPだけ','東芝だけ','三菱電機だけ'],a:0},
-      {label:'STEP 3　工事',q:'新築で必要な工事確認は？',choices:['専用回路・配管穴・室外機・化粧カバー','商品色だけ','リモコンだけ','保証だけ'],a:0},
-      {label:'STEP 4　提案',q:'適切な説明は？',choices:['清潔機能の対象部位を比較して選びましょう','掃除機能は全社同じです','高い機種なら全部自動です','メーカー名だけで決めましょう'],a:0}
-    ]
-  }
-];
+const SALES_CASES=[{"id":"S001","title":"15年使ったリビングエアコン","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧‍👦","customer":"40代ご夫婦・お子様2人","home":"木造2階","room":"LDK18畳","extra":"犬2匹・西日あり","budget":"25万円前後","first":"「最近冷えにくくて、電気代も気になります。」","checklist":["困りごと","使用部屋","電源","既存配管","室外機","予算","重視機能"],"steps":[{"label":"STEP 1　困りごと","q":"最初に確認する内容は？","choices":["現在の症状・使用年数・使い方","希望メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用環境","q":"次に確認したい内容は？","choices":["畳数・日当たり・使用時間・ペット","カタログの色","人気順位","在庫数だけ"],"a":0,"check":"使用部屋"},{"label":"STEP 3　工事確認","q":"買い替えで必要な確認は？","choices":["電源・既存配管・室外機位置・取り外し","本体色だけ","保証だけ","メーカーだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"提案のまとめ方として適切なのは？","choices":["省エネ・長時間使用・工事条件を理由に比較する","一番高い機種を勧める","人気だけで決める","値引きだけで決める"],"a":0,"check":"重視機能"}]},{"id":"S002","title":"初めての子ども部屋","type":"新規設置","difficulty":"初級","avatar":"👩‍👧","customer":"30代のお母様・小学生のお子様","home":"木造2階","room":"子ども部屋6畳","extra":"配管穴なし","budget":"12万円前後","first":"「子ども部屋に初めて付けたいです。」","checklist":["新規設置","使用部屋","専用回路","穴あけ","室外機","予算","操作性"],"steps":[{"label":"STEP 1　設置条件","q":"新規設置で最初に確認することは？","choices":["部屋・建物・専用回路・配管穴","メーカー名だけ","色だけ","保証だけ"],"a":0,"check":"新規設置"},{"label":"STEP 2　電気","q":"専用回路が不明な時の案内は？","choices":["分電盤・コンセントを現地確認する","必ずあると伝える","延長コードを使う","確認不要と伝える"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"穴あけ時に確認する内容は？","choices":["建物情報・穴位置・室外機置場","壁紙の色だけ","家具だけ","リモコンだけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"子ども部屋で重視したい内容は？","choices":["操作性・静音・適切な能力","最大価格","メーカー人気だけ","デザインだけ"],"a":0,"check":"操作性"}]},{"id":"S003","title":"寝室を静かにしたいご夫婦","type":"買い替え","difficulty":"初級","avatar":"👴👵","customer":"70代ご夫婦","home":"木造平屋","room":"寝室8畳","extra":"直風が苦手","budget":"15万円前後","first":"「寝る時に音と風が気になるんです。」","checklist":["困りごと","使用時間","操作性","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　ご要望","q":"最初の比較軸は？","choices":["静音・気流・操作性","最大能力だけ","色だけ","人気だけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用状況","q":"寝室で確認したい内容は？","choices":["就寝時間・風の当たり方・設定温度","テレビの大きさ","冷蔵庫容量","照明色"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機位置","本体色だけ","カタログだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["実機のリモコンと気流機能を比較する","高いほど静かと断言する","全社同じと伝える","価格だけで決める"],"a":0,"check":"操作性"}]},{"id":"S004","title":"ペットのための24時間冷房","type":"買い替え","difficulty":"標準","avatar":"👩🐶","customer":"一人暮らし・犬1匹","home":"マンション","room":"LDK14畳","extra":"昼間は犬が留守番","budget":"20万円前後","first":"「犬のために夏はほぼ付けっぱなしです。」","checklist":["ペット","使用時間","省エネ","電源","室外機","既存配管","予算"],"steps":[{"label":"STEP 1　生活条件","q":"最初に聞く内容は？","choices":["使用時間・留守時間・設定温度","メーカー名だけ","本体色","値引き"],"a":0,"check":"使用時間"},{"label":"STEP 2　提案軸","q":"重要な比較軸は？","choices":["省エネ・安定運転・温度管理","最大風量だけ","デザインだけ","価格だけ"],"a":0,"check":"省エネ"},{"label":"STEP 3　工事","q":"マンションで確認することは？","choices":["室外機置場・配管経路・管理規約","戸建て用屋根置き","庭の広さ","屋根材"],"a":0,"check":"室外機"},{"label":"STEP 4　説明","q":"適切な伝え方は？","choices":["長時間使用を前提に電気代と快適性を比較する","人気機種だけ勧める","一番安い機種にする","機能説明をしない"],"a":0,"check":"ペット"}]},{"id":"S005","title":"新築20畳LDKの機種選び","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👶","customer":"30代ご夫婦・赤ちゃん","home":"新築木造2階","room":"LDK20畳","extra":"吹き抜け・西日あり","budget":"35万円前後","first":"「新築なので、長く安心して使えるものがいいです。」","checklist":["新築","畳数","吹き抜け","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　部屋条件","q":"能力選定で重要な内容は？","choices":["畳数・吹き抜け・日当たり・断熱","畳数だけ","メーカーだけ","本体色だけ"],"a":0,"check":"畳数"},{"label":"STEP 2　電気","q":"新規設置で確認する内容は？","choices":["専用回路・電圧・コンセント","テレビ端子","Wi-Fi","照明"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"新築で確認する内容は？","choices":["穴あけ・配管経路・室外機・化粧カバー","価格だけ","リモコンだけ","保証だけ"],"a":0,"check":"配管穴"},{"label":"STEP 4　提案","q":"提案理由として適切なのは？","choices":["部屋負荷と長期使用を基準に比較する","人気だけで決める","高額機なら何でも良い","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S006","title":"マンションの隠ぺい配管","type":"買い替え","difficulty":"応用","avatar":"👨‍👩","customer":"50代ご夫婦","home":"マンション","room":"LDK16畳","extra":"既存隠ぺい配管","budget":"28万円前後","first":"「配管は壁の中に入っているみたいです。」","checklist":["買い替え","隠ぺい配管","配管径","電源","ドレン","室外機","現地確認"],"steps":[{"label":"STEP 1　配管","q":"最初に必要な案内は？","choices":["隠ぺい配管の状態と適合を現地確認する","必ず再利用可能と伝える","新品配管は不可と伝える","確認不要と伝える"],"a":0,"check":"隠ぺい配管"},{"label":"STEP 2　確認項目","q":"隠ぺい配管で確認する内容は？","choices":["配管径・長さ・状態・ドレン方式","壁紙色","家具配置だけ","リモコン"],"a":0,"check":"配管径"},{"label":"STEP 3　電気","q":"電源で確認する内容は？","choices":["電圧・専用回路・コンセント","照明回路","テレビ回路","Wi-Fi"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["施工可否と追加工事は現地確認後に確定する","店頭で総額確約する","必ず標準工事と伝える","配管確認を省略する"],"a":0,"check":"現地確認"}]},{"id":"S007","title":"高齢ご夫婦の暖房相談","type":"買い替え","difficulty":"標準","avatar":"👵👴","customer":"70代ご夫婦","home":"木造平屋","room":"和室10畳","extra":"冬の暖房を重視","budget":"22万円前後","first":"「冬が寒くて、暖房をしっかり使いたいです。」","checklist":["暖房","部屋条件","使用時間","電源","既存配管","室外機","操作性"],"steps":[{"label":"STEP 1　暖房条件","q":"最初に確認したい内容は？","choices":["地域・部屋条件・使用時間・希望温度","冷房だけ","色だけ","人気だけ"],"a":0,"check":"暖房"},{"label":"STEP 2　比較軸","q":"暖房提案で確認する性能は？","choices":["低温時暖房能力・霜取り時の快適性","冷房能力だけ","本体幅だけ","リモコン色"],"a":0,"check":"部屋条件"},{"label":"STEP 3　操作性","q":"高齢のお客様に必要な確認は？","choices":["リモコン表示・ボタン・自動運転","アプリ操作だけ","最上位機だけ","カタログだけ"],"a":0,"check":"操作性"},{"label":"STEP 4　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","テレビ位置","冷蔵庫位置","照明"],"a":0,"check":"電源"}]},{"id":"S008","title":"共働き夫婦の帰宅前冷房","type":"買い替え","difficulty":"標準","avatar":"👨‍💼👩‍💼","customer":"30代共働き夫婦","home":"戸建て","room":"LDK18畳","extra":"昼間留守・帰宅後すぐ冷やしたい","budget":"30万円前後","first":"「帰宅した時にすぐ涼しいと助かります。」","checklist":["生活時間","速暖冷房","アプリ","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　生活","q":"最初に確認する内容は？","choices":["帰宅時間・使用時間・操作方法","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"生活時間"},{"label":"STEP 2　機能","q":"比較したい内容は？","choices":["立ち上がり・遠隔操作・省エネ","本体色","カタログ厚さ","人気だけ"],"a":0,"check":"速暖冷房"},{"label":"STEP 3　操作","q":"遠隔操作を提案する時の確認は？","choices":["対応機種・通信環境・使い方","スマホ色","テレビメーカー","冷蔵庫容量"],"a":0,"check":"アプリ"},{"label":"STEP 4　工事","q":"買い替えの工事確認は？","choices":["電源・配管・室外機・取り外し","保証だけ","ポイントだけ","色だけ"],"a":0,"check":"電源"}]},{"id":"S009","title":"海に近い戸建ての塩害相談","type":"新規設置","difficulty":"応用","avatar":"👨🏠","customer":"50代男性","home":"海沿いの戸建て","room":"LDK18畳","extra":"潮風が強い地域","budget":"30万円前後","first":"「海が近いので、室外機が錆びないか心配です。」","checklist":["塩害","設置距離","風向","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　地域条件","q":"最初に確認する内容は？","choices":["海からの距離・潮風・設置場所","メーカー名だけ","色だけ","畳数だけ"],"a":0,"check":"塩害"},{"label":"STEP 2　仕様","q":"提案時に確認する内容は？","choices":["耐塩害・耐重塩害仕様の対象条件","通常機で必ず問題ない","室内機色","リモコン"],"a":0,"check":"設置距離"},{"label":"STEP 3　設置","q":"室外機で確認することは？","choices":["風向・雨掛かり・離隔・点検スペース","室内照明","テレビ位置","冷蔵庫"],"a":0,"check":"室外機"},{"label":"STEP 4　案内","q":"適切な説明は？","choices":["環境条件に合う仕様と設置方法を確認する","錆びないと断言する","価格だけで決める","確認不要と伝える"],"a":0,"check":"風向"}]},{"id":"S010","title":"一人暮らしの6畳寝室","type":"買い替え","difficulty":"初級","avatar":"👩","customer":"20代女性","home":"賃貸マンション","room":"寝室6畳","extra":"夜だけ使用","budget":"10万円前後","first":"「寝る時だけ使うので、シンプルなもので大丈夫です。」","checklist":["管理規約","使用時間","静音","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　住居","q":"賃貸で最初に確認することは？","choices":["管理会社・工事許可・既存設備","メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"管理規約"},{"label":"STEP 2　使用","q":"寝室で確認したい内容は？","choices":["使用時間・静音・風向","最大風量だけ","人気だけ","最上位機だけ"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","家具の色","Wi-Fi","テレビ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切な提案は？","choices":["必要機能と予算を整理して選ぶ","安い機種だけ示す","高い機種だけ示す","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S011","title":"掃除を楽にしたいご家庭","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧","customer":"40代ご家族","home":"木造2階","room":"LDK16畳","extra":"フィルター掃除が苦手","budget":"27万円前後","first":"「なるべく掃除が少なくて済むものがいいです。」","checklist":["掃除の悩み","対象部位","使用時間","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　悩み","q":"最初に分けて確認する内容は？","choices":["フィルター・熱交換器・ファンのどこを重視するか","メーカー名だけ","本体色","価格だけ"],"a":0,"check":"掃除の悩み"},{"label":"STEP 2　機能比較","q":"説明時に大切なことは？","choices":["自動清掃の対象部位と手入れ方法を説明する","全社同じと伝える","完全に掃除不要と伝える","価格だけ伝える"],"a":0,"check":"対象部位"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・配管・室外機・取り外し","色だけ","リモコンだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切なまとめ方は？","choices":["お手入れ負担と予算のバランスで比較する","最上位機だけ勧める","人気だけで決める","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S012","title":"2台まとめて新規設置","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👧‍👦🏠","customer":"30代ご家族","home":"新築戸建て","room":"LDK18畳・寝室8畳","extra":"2台同時設置","budget":"45万円前後","first":"「リビングと寝室をまとめてお願いしたいです。」","checklist":["設置台数","各部屋","専用回路","穴あけ","室外機","配管経路","予算"],"steps":[{"label":"STEP 1　台数","q":"最初に整理することは？","choices":["各部屋の畳数・使い方・設置台数","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"設置台数"},{"label":"STEP 2　電気","q":"2台新規設置で確認することは？","choices":["各部屋の専用回路・電圧・分電盤","テレビ回路","照明だけ","Wi-Fi"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"工事で確認する内容は？","choices":["穴あけ・配管経路・室外機置場・化粧カバー","本体色","リモコン","保証だけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"まとめ買い提案で適切なのは？","choices":["部屋ごとの優先条件と総予算を整理する","両方同じ最上位機にする","価格だけで決める","メーカーを一社に限定する"],"a":0,"check":"予算"}]}];
 let salesCase=null,salesStep=0,salesScore=0,salesDisplayedChoices=[];
 let salesCaseBag=[];
 let lastSalesCaseIndex=-1;
+let salesCompletedChecks=new Set();
 
 function refillSalesCaseBag(){
   salesCaseBag=shuffle([...Array(SALES_CASES.length).keys()]);
@@ -1312,58 +1427,153 @@ function refillSalesCaseBag(){
     [salesCaseBag[0],salesCaseBag[1]]=[salesCaseBag[1],salesCaseBag[0]];
   }
 }
-
 function getNextSalesCase(){
   if(salesCaseBag.length===0)refillSalesCaseBag();
   const index=salesCaseBag.shift();
   lastSalesCaseIndex=index;
   return SALES_CASES[index];
 }
-
 function startSalesMode(){
   salesCase=getNextSalesCase();
   salesStep=0;
   salesScore=0;
+  salesCompletedChecks=new Set();
   showPage('sales');
   renderSalesStep();
 }
+function renderCustomerCard(){
+  const el=document.getElementById('salesCase');
+  el.innerHTML=`
+    <div class="customer-case-no">${salesCase.id} / ${salesCase.difficulty}</div>
+    <div class="customer-avatar-large">${salesCase.avatar}</div>
+    <span class="customer-badge">${salesCase.type}</span>
+    <h3 class="customer-title">${salesCase.title}</h3>
+    <div class="customer-sub">${salesCase.customer}</div>
+    <div class="customer-first-word">${salesCase.first}</div>
+    <div class="customer-facts">
+      <span>🏠 ${salesCase.home}</span>
+      <span>📍 ${salesCase.room}</span>
+      <span>ℹ️ ${salesCase.extra}</span>
+      <span>💰 ${salesCase.budget}</span>
+    </div>`;
+}
+function renderChecklist(){
+  const box=document.getElementById('salesChecklist');
+  box.innerHTML='<h3>受付チェック</h3>';
+  salesCase.checklist.forEach(item=>{
+    const row=document.createElement('div');
+    row.className='check-row'+(salesCompletedChecks.has(item)?' done':'');
+    row.innerHTML=`<span class="check-dot">${salesCompletedChecks.has(item)?'✓':'·'}</span><span>${item}</span>`;
+    box.appendChild(row);
+  });
+}
+function updateSalesProgress(){
+  const fill=document.getElementById('salesProgressFill');
+  if(fill)fill.style.width=((salesStep/salesCase.steps.length)*100)+'%';
+}
 function renderSalesStep(){
   const step=salesCase.steps[salesStep];
-  salesCaseEl=document.getElementById('salesCase');
-  salesCaseEl.innerHTML='<h3>お客様カルテ</h3><p>'+salesCase.customer+'</p>';
-  salesStepLabel.textContent=step.label;
-  salesOptions.innerHTML='<div class="question">'+step.q+'</div>';
+  renderCustomerCard();
+  renderChecklist();
+  updateSalesProgress();
+
+  const label=document.getElementById('salesStepLabel');
+  const options=document.getElementById('salesOptions');
+  const result=document.getElementById('salesResult');
+
+  label.textContent=step.label;
+  options.innerHTML='<div class="question">'+step.q+'</div>';
   salesDisplayedChoices=arrangeChoicesAtBalancedPosition(step.choices,step.a);
+
   salesDisplayedChoices.forEach((item,displayIndex)=>{
     const b=document.createElement('button');
     b.className='choice';
     b.textContent=`${displayIndex+1}　${item.text}`;
     b.onclick=()=>answerSales(item.index,b);
-    salesOptions.appendChild(b);
+    options.appendChild(b);
   });
-  salesResult.classList.add('hidden');
+  result.classList.add('hidden');
 }
 function answerSales(i,btn){
-  [...salesOptions.querySelectorAll('button')].forEach(b=>b.disabled=true);
-  const ok=i===salesCase.steps[salesStep].a;
+  const options=document.getElementById('salesOptions');
+  [...options.querySelectorAll('button')].forEach(b=>b.disabled=true);
+
+  const step=salesCase.steps[salesStep];
+  const ok=i===step.a;
   btn.classList.add(ok?'correct':'wrong');
-  if(ok)salesScore+=25;
+
+  if(ok){
+    salesScore+=25;
+    if(step.check)salesCompletedChecks.add(step.check);
+  }
+
+  renderChecklist();
+
   setTimeout(()=>{
     salesStep++;
-    if(salesStep<salesCase.steps.length) renderSalesStep();
+    if(salesStep<salesCase.steps.length)renderSalesStep();
     else finishSales();
   },650);
 }
 function finishSales(){
-  salesOptions.innerHTML='';
-  salesStepLabel.textContent='RESULT';
-  let rank=salesScore===100?'👑 パーフェクト':salesScore>=75?'💎 Excellent':salesScore>=50?'🥈 Good':'🔰 Try Again';
-  salesResult.classList.remove('hidden');
-  salesResult.innerHTML='<div class="resultMark">'+(salesScore>=75?'⭕️':'📘')+'</div><div class="explain"><strong>販買スコア '+salesScore+'点</strong><br>'+rank+'<br><br>お客様の要望・工事条件・比較理由を順番に整理することが大切です。</div><button class="primary next" onclick="startSalesMode()">別のお客様に挑戦</button><button onclick="showPage(\'home\')">ホームへ戻る</button>';
+  document.getElementById('salesProgressFill').style.width='100%';
+  document.getElementById('salesOptions').innerHTML='';
+  document.getElementById('salesStepLabel').textContent='販売レポート';
+
+  const grade=salesScore===100?'A':salesScore>=75?'B+':salesScore>=50?'B':'C';
+  const missing=salesCase.checklist.filter(x=>!salesCompletedChecks.has(x));
+  const good=salesCompletedChecks.size>=3
+    ? '設置条件とお客様のご要望を順番に確認できています。'
+    : 'お客様の困りごとから確認すると、提案につなげやすくなります。';
+  const next=missing.length
+    ? `次回は「${missing.slice(0,2).join('・')}」も確認しましょう。`
+    : '聞き漏れなく受付できました。工事条件まで整理できています。';
+
+  const result=document.getElementById('salesResult');
+  result.classList.remove('hidden');
+  result.innerHTML=`
+    <div class="report-sheet">
+      <div class="report-title">
+        <span>SALES REPORT</span>
+        <h2>${salesCase.title}</h2>
+      </div>
+      <div class="report-grade">${grade}</div>
+      <div class="report-grid">
+        <div><span>聞き取り</span><b>${salesScore>=75?'A':'B'}</b></div>
+        <div><span>工事確認</span><b>${salesCompletedChecks.size>=3?'A':'B'}</b></div>
+        <div><span>提案</span><b>${salesScore>=75?'A':'B'}</b></div>
+        <div><span>総合</span><b>${grade}</b></div>
+      </div>
+      <div class="report-comment"><strong>良かった点</strong><br>${good}</div>
+      <div class="report-comment"><strong>次回のポイント</strong><br>${next}</div>
+      <div class="report-actions">
+        <button class="primary" onclick="startSalesMode()">別のお客様</button>
+        <button onclick="showPage('home')">ホームへ戻る</button>
+      </div>
+    </div>`;
+
+  localStorage.setItem('v22_sales_done','1');
+  localStorage.setItem('v22_sales_total',String(Number(localStorage.getItem('v22_sales_total')||0)+1));
+  updatePremiumHome();
+}
+function showCustomerLibrary(){
+  showPage('customerLibrary');
+  const grid=document.getElementById('customerLibraryGrid');
+  grid.innerHTML='';
+  SALES_CASES.forEach(c=>{
+    const div=document.createElement('article');
+    div.className='customer-library-card';
+    div.innerHTML=`
+      <div class="library-avatar">${c.avatar}</div>
+      <span class="badge">${c.type}・${c.difficulty}</span>
+      <h3>${c.title}</h3>
+      <p>${c.customer}<br>${c.home}／${c.room}</p>`;
+    grid.appendChild(div);
+  });
 }
 
 
-const APP_VERSION='21.7';
+const APP_VERSION='22.0';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1374,7 +1584,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.21.7 を適用できます。');
+        showUpdateBanner('最新版 Ver.22 Premium を適用できます。');
         return;
       }
     }
@@ -1441,7 +1651,6 @@ function updateGoalPanel(){const d=Number(localStorage.getItem('v21_daily_done')
 function showAchievements(){showPage('achievements');const s=loadStatsData(),exp=s.correct*20,items=[['🏅','初めての10問',s.answered>=10,'10問回答'],['🎯','100問クリア',s.answered>=100,'100問回答'],['💯','正解100問',s.correct>=100,'100問正解'],['🛒','販買チャレンジャー',Number(localStorage.getItem('v21_sales_total')||0)>=5,'販買モード5件'],['👑','販売マスター',exp>=1900,'1,900EXP達成']],g=document.getElementById('achievementGrid');g.innerHTML='';items.forEach(([i,t,o,d])=>{const x=document.createElement('div');x.className='achievement-item '+(o?'unlocked':'');x.innerHTML='<div class="icon">'+(o?i:'🔒')+'</div><b>'+t+'</b><small>'+d+'</small>';g.appendChild(x)})}
 function openSettings(){showPage('settingsPage')}const oldUpdateHome=updateHome;updateHome=function(){oldUpdateHome();updateV21Home()}
 const oldAnswerV21=answer;answer=function(index,btn){const before=quizAnsweredThisRun;oldAnswerV21(index,btn);if(quizAnsweredThisRun>before){if(quizMode==='daily')localStorage.setItem('v21_daily_done',String(quizAnsweredThisRun));if(quizMode==='practice')localStorage.setItem('v21_practice_done',String(Number(localStorage.getItem('v21_practice_done')||0)+1))}}
-const oldFinishSales=finishSales;finishSales=function(){oldFinishSales();localStorage.setItem('v21_sales_done','1');localStorage.setItem('v21_sales_total',String(Number(localStorage.getItem('v21_sales_total')||0)+1))}
 window.addEventListener('load',()=>{const today=new Date().toISOString().slice(0,10);if(localStorage.getItem('v21_goal_date')!==today){localStorage.setItem('v21_goal_date',today);localStorage.setItem('v21_daily_done','0');localStorage.setItem('v21_sales_done','0');localStorage.setItem('v21_practice_done','0')}updateV21Home()});
 
 showPage('home');updateV21Home();updateAdoptedHome();updateHome();
@@ -1479,23 +1688,32 @@ window.addEventListener('load',updateAdoptedHome);
 
 
 
-function updateBusinessHome(){
+const PREMIUM_TIPS=[
+  'おすすめ機種を説明する前に、お客様の困りごとを確認しましょう。',
+  '買い替えでは、既存配管・電源・室外機位置を早めに確認しましょう。',
+  '新規設置では、専用回路・穴あけ・室外機置場が重要です。',
+  '畳数だけでなく、日当たり・吹き抜け・使用人数も確認しましょう。',
+  'メーカー名ではなく、このお客様に合う理由を伝えましょう。',
+  '工事費は概算であることと、追加工事の可能性を丁寧に伝えましょう。'
+];
+function updatePremiumHome(){
   const s=loadStatsData();
-  const rate=s.answered?Math.round(s.correct/s.answered*100):0;
+  const rate=s.answered?Math.round((s.correct/s.answered)*100):0;
   const exp=s.correct*20;
   const level=Math.max(1,Math.floor(exp/100)+1);
 
   const daily=Number(localStorage.getItem('v21_daily_done')||0);
-  const sales=Number(localStorage.getItem('v21_sales_done')||0);
+  const sales=Number(localStorage.getItem('v22_sales_done')||0);
   const practice=Number(localStorage.getItem('v21_practice_done')||0);
-  const completed=[daily>=10,sales>=1,practice>=5].filter(Boolean).length;
-  const progress=Math.round(completed/3*100);
+  const complete=[daily>=10,sales>=1,practice>=5].filter(Boolean).length;
+  const progress=Math.round((complete/3)*100);
 
   const values={
-    totalQuestionCount:QUESTIONS.length,
-    homeRate:rate+'%',
+    todayProgressText:progress+'%',
     homeLevelCompact:'Lv.'+level,
-    todayProgressText:progress+'%'
+    homeRate:rate+'%',
+    totalQuestionCount:QUESTIONS.length+'問',
+    salesCaseCountHome:SALES_CASES.length+'ケース収録'
   };
   Object.entries(values).forEach(([id,value])=>{
     const el=document.getElementById(id);
@@ -1504,7 +1722,17 @@ function updateBusinessHome(){
 
   const bar=document.getElementById('todayProgressBar');
   if(bar)bar.style.width=progress+'%';
+
+  const tip=document.getElementById('dailyTip');
+  if(tip)tip.textContent=PREMIUM_TIPS[Math.floor(Date.now()/86400000)%PREMIUM_TIPS.length];
 }
-window.addEventListener('load',updateBusinessHome);
+window.addEventListener('load',()=>{
+  const today=new Date().toISOString().slice(0,10);
+  if(localStorage.getItem('v22_goal_date')!==today){
+    localStorage.setItem('v22_goal_date',today);
+    localStorage.setItem('v22_sales_done','0');
+  }
+  updatePremiumHome();
+});
 
 </script></body></html>
