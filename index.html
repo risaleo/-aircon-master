@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=222">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=222">
-<title>エアコン販買マスター Ver.22.2 Fixed UI</title>
+<link rel="manifest" href="manifest.json?v=223">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=223">
+<title>エアコン販買マスター Ver.22.3 Fixed UI</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22.2 Fixed UI メニュー修正 */
+/* Ver.22.3 Fixed UI メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22.2 Fixed UI 採用デザイン */
+/* Ver.22.3 Fixed UI 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22.2 Fixed UI 固定デザイン
+   Ver.22.3 Fixed UI 固定デザイン
 ========================================= */
 body{
   background:
@@ -884,7 +884,7 @@ body{
 }
 
 
-/* Ver.22.2 Fixed UI — このデザインを固定 */
+/* Ver.22.3 Fixed UI — このデザインを固定 */
 body{
   background:#f5f8fb!important;
   color:#102f57!important;
@@ -1007,8 +1007,70 @@ body{
   }
 }
 
+
+/* Ver.22.3 人物・家族画像を絶対に見切らせない */
+.fixed-profile-left{
+  min-width:0!important;
+}
+.fixed-profile-left img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  padding:10px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  border-radius:14px!important;
+}
+
+.fixed-customer-message{
+  grid-template-columns:116px minmax(0,1fr)!important;
+  align-items:center!important;
+}
+.fixed-customer-message img{
+  width:116px!important;
+  height:116px!important;
+  aspect-ratio:1 / 1!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  border:1px solid #edf2f6!important;
+  border-radius:50%!important;
+  overflow:visible!important;
+}
+
+@media(max-width:760px){
+  .fixed-customer-message{
+    grid-template-columns:98px minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+  .fixed-customer-message img{
+    width:98px!important;
+    height:98px!important;
+    padding:7px!important;
+  }
+  .fixed-profile-left img{
+    max-height:none!important;
+    padding:12px!important;
+  }
+}
+@media(max-width:390px){
+  .fixed-customer-message{
+    grid-template-columns:88px minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+  .fixed-customer-message img{
+    width:88px!important;
+    height:88px!important;
+    padding:6px!important;
+  }
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=222">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=223">
 </head>
 <body><main class="app">
 
@@ -1287,7 +1349,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22.2 Fixed UI</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.3 Fixed UI</p>
 </section>
 
 
@@ -1417,7 +1479,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=222', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=223', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1736,7 +1798,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.2';
+const APP_VERSION='22.3';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1747,7 +1809,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22.2 Fixed UI を適用できます。');
+        showUpdateBanner('最新版 Ver.22.3 Fixed UI を適用できます。');
         return;
       }
     }
