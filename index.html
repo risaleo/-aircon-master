@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=220">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=220">
-<title>エアコン販買マスター Ver.22 Premium</title>
+<link rel="manifest" href="manifest.json?v=221">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=221">
+<title>エアコン販買マスター Ver.22.1 Fixed UI</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22 Premium メニュー修正 */
+/* Ver.22.1 Fixed UI メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22 Premium 採用デザイン */
+/* Ver.22.1 Fixed UI 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22 Premium 固定デザイン
+   Ver.22.1 Fixed UI 固定デザイン
 ========================================= */
 body{
   background:
@@ -883,8 +883,94 @@ body{
   .report-grid{grid-template-columns:1fr}
 }
 
+
+/* Ver.22.1 Fixed UI — このデザインを固定 */
+body{
+  background:#f5f8fb!important;
+  color:#102f57!important;
+}
+.app{max-width:1180px!important;padding:12px!important}
+
+.fixed-home{display:block;max-width:720px;margin:0 auto;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 16px 48px rgba(34,61,88,.09)}
+.fixed-topbar{
+  height:78px;padding:0 28px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  background:#fff;border-bottom:1px solid #edf1f5
+}
+.fixed-menu-btn,.fixed-bell{background:transparent!important;box-shadow:none!important;color:#082e63!important;font-size:28px;padding:0!important;min-height:auto!important}
+.fixed-bell{position:relative;font-size:30px}.fixed-bell i{position:absolute;width:8px;height:8px;border-radius:50%;background:#ff4c55;right:0;top:0}
+.fixed-brand{font-size:26px;font-weight:900;color:#082e63;letter-spacing:.01em}.fixed-brand span{color:#1e97ef;font-size:34px;vertical-align:-3px}
+
+.fixed-learning-card{
+  margin:18px 26px;padding:28px 30px;border-radius:22px;min-height:290px;display:grid;
+  grid-template-columns:1.15fr .85fr;gap:18px;overflow:hidden;
+  background:linear-gradient(115deg,#f6fbff 0%,#e6f4ff 62%,#dceeff 100%);
+  border:1px solid #b9ddfb;box-shadow:0 10px 28px rgba(45,116,170,.08)
+}
+.fixed-eyebrow{font-size:15px;font-weight:900;color:#153a66}
+.fixed-level-row{display:flex;align-items:end;gap:28px;margin-top:18px}.fixed-level-row strong{font-size:50px;line-height:1;color:#1d67db}.fixed-level-row b{padding-bottom:7px;font-size:18px}
+.fixed-progress-row{display:flex;gap:16px;align-items:center;margin-top:16px}.fixed-progress{height:12px;flex:1;background:#d8e3ee;border-radius:99px;overflow:hidden}.fixed-progress span{display:block;height:100%;background:linear-gradient(90deg,#1875f2,#0a56c4);border-radius:99px}.fixed-progress-row strong{font-size:28px;color:#1765d3}
+.fixed-learning-copy>p{margin:12px 0 18px;font-weight:800;color:#325d86}
+.fixed-today-point{padding:15px 18px;border-radius:15px;background:rgba(255,255,255,.58);display:grid;gap:8px}.fixed-today-point b{color:#174d8b}.fixed-today-point span{font-size:14px;font-weight:800;line-height:1.55}
+.fixed-aircon-visual{position:relative;min-height:230px;overflow:hidden}.fixed-aircon-visual img{width:125%;height:100%;object-fit:cover;object-position:center;border-radius:18px;mix-blend-mode:multiply}
+
+.fixed-sales-banner{
+  width:calc(100% - 52px);margin:0 26px 16px;padding:24px 28px;border-radius:20px;min-height:144px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;text-align:left;color:#fff;
+  background:linear-gradient(110deg,#1774ef,#073e94);box-shadow:0 15px 28px rgba(20,85,183,.24)
+}
+.fixed-sales-icon{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);font-size:42px}
+.fixed-sales-copy h2{margin:0 0 8px;font-size:32px}.fixed-sales-copy b{display:block;font-size:18px}.fixed-sales-copy p{margin:8px 0 0;font-size:14px;color:#e9f4ff}
+.fixed-chevron{font-size:46px;opacity:.9}
+
+.fixed-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 26px}
+.fixed-menu-grid button{
+  position:relative;min-height:220px;padding:20px 15px;border-radius:18px;background:#fff!important;color:#102f57!important;
+  border:1px solid #dfe7ee;box-shadow:0 7px 20px rgba(35,71,106,.05);text-align:center
+}
+.fixed-card-icon{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 13px;font-size:31px}
+.fixed-card-icon.blue{background:#e6f2ff}.fixed-card-icon.green{background:#edf8e5}.fixed-card-icon.orange{background:#fff1d9}.fixed-card-icon.purple{background:#f0e8ff}.fixed-card-icon.coral{background:#ffe8ea}.fixed-card-icon.cyan{background:#e3f8fb}
+.fixed-menu-grid b{display:block;font-size:18px}.fixed-menu-grid em{display:block;margin-top:5px;font-style:normal;font-size:13px;font-weight:900;color:#2b87e6}.fixed-menu-grid button:nth-child(2) em{color:#3d9a3e}.fixed-menu-grid button:nth-child(3) em{color:#e28a13}.fixed-menu-grid button:nth-child(4) em{color:#7850e4}.fixed-menu-grid button:nth-child(5) em{color:#eb5c69}.fixed-menu-grid button:nth-child(6) em{color:#19a2bb}
+.fixed-menu-grid p{margin:12px 0 0;font-size:11px;line-height:1.65;color:#526c84}.fixed-menu-grid i{position:absolute;right:10px;bottom:10px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid #cfd9e2;font-style:normal;font-size:22px}
+
+.fixed-mission{margin:14px 26px 0;padding:15px 20px;display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;border-radius:16px;background:#f7fbff;border:1px solid #dce8f2}
+.fixed-mission>span{font-size:32px;color:#1a8aea}.fixed-mission b{color:#1a74cc}.fixed-mission p{margin:4px 0 0;font-weight:900}.fixed-mission strong{font-size:24px;color:#135cd0}.fixed-mission i{font-size:30px;font-style:normal}
+.fixed-level-menu{margin:12px 26px;padding:12px;border-radius:16px;background:#fff;border:1px solid #dce6ee;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fixed-bottom-nav{margin-top:15px;height:80px;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #dfe8ef}
+.fixed-bottom-nav button{background:transparent!important;box-shadow:none!important;color:#6b7d91!important;padding:8px!important}.fixed-bottom-nav button.active{color:#1878ef!important}.fixed-bottom-nav span{display:block;font-size:26px}.fixed-bottom-nav b{display:block;font-size:11px;margin-top:3px}
+
+/* お客様カルテ */
+.fixed-customer-page,.fixed-simulation-page,.fixed-talk-page{max-width:720px!important;margin:0 auto!important;padding:0!important;border-radius:26px!important;overflow:hidden!important;background:#fff!important}
+.fixed-sub-header{height:78px;padding:0 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid #edf1f5}.fixed-sub-header h2{text-align:center;margin:0;font-size:22px}.fixed-sub-header button{background:transparent!important;box-shadow:none!important;color:#0c4fa5!important;padding:0!important;min-height:auto!important;font-weight:900}.fixed-sub-header>button:first-child{font-size:38px}.fixed-new-btn{font-size:14px}
+.fixed-profile-card{margin:18px 24px;padding:18px;border-radius:18px;background:linear-gradient(135deg,#fffef7,#fff9ec);border:1px solid #efdfbf;display:grid;grid-template-columns:1fr 1.08fr;gap:18px}
+.fixed-profile-badges{display:flex;gap:10px}.fixed-profile-badges span,.fixed-profile-badges b{padding:5px 10px;border-radius:8px;font-size:12px}.fixed-profile-badges span{background:#eef7df}.fixed-profile-badges b{background:#e8f2ff;color:#166ed4}
+.fixed-profile-left img{width:100%;height:265px;object-fit:cover;object-position:center;border-radius:13px;margin-top:12px}
+.fixed-profile-right h3{font-size:19px;margin:5px 0 14px}.fixed-profile-right ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.fixed-profile-right li{padding:10px 12px;border-radius:9px;background:rgba(255,255,255,.9);font-weight:800;font-size:14px}
+.fixed-profile-tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:9px}.fixed-profile-tags span{padding:8px 13px;border-radius:10px;background:#fff;border:1px solid #eadfc8;font-size:12px;font-weight:800}
+.fixed-start-customer{width:calc(100% - 48px);margin:0 24px 18px;background:#086bef!important;color:#fff!important}
+.fixed-library-title{padding:0 24px 10px;font-weight:900}.fixed-customer-page .customer-library-grid{padding:0 24px 24px}
+
+/* 接客シミュレーション */
+.fixed-stepper{padding:16px 28px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px;border-bottom:1px solid #e8eef3}.fixed-stepper div{text-align:center;position:relative}.fixed-stepper div::after{content:"";position:absolute;top:13px;left:57%;width:86%;height:2px;background:#d7e0e8}.fixed-stepper div:last-child::after{display:none}.fixed-stepper span{position:relative;z-index:2;width:27px;height:27px;margin:auto;border-radius:50%;display:grid;place-items:center;background:#e1e6eb;color:#46596b;font-weight:900}.fixed-stepper .active span{background:#0872ed;color:#fff}.fixed-stepper b{display:block;margin-top:8px;font-size:11px;color:#364f69}.fixed-stepper .active b{color:#0771e8}
+.fixed-conversation{padding:20px 24px}.fixed-customer-message{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center}.fixed-customer-message img{width:72px;height:82px;object-fit:cover;border-radius:50%}.fixed-customer-message>div{position:relative;padding:17px;border-radius:16px;background:#fff;border:1px solid #dce5ed}.fixed-customer-message b{font-size:14px}.fixed-customer-message p{margin:8px 0 0;line-height:1.6}.fixed-customer-message small{position:absolute;right:12px;bottom:8px;color:#8192a1}
+.fixed-you-box{margin-top:18px;padding:20px;border-radius:17px;background:#fff;border:1px solid #dce5ed}.fixed-you-box>b{color:#1674db}.fixed-you-box h3{margin:12px 0 16px}.fixed-sales-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fixed-sales-options .choice{min-height:64px;background:#fff!important;color:#173c61!important;border:1px solid #d6e1ea!important;border-radius:12px!important;box-shadow:none!important;text-align:left!important;font-weight:800!important}
+.fixed-answer-guide{margin:0 24px 24px;padding:13px;border-radius:10px;background:#eaf0f7;color:#7b8794;text-align:center}
+.fixed-stop-btn{font-size:13px}
+.fixed-talk-grid{padding:22px;display:grid;gap:12px}.fixed-talk-grid article{padding:18px;border-radius:16px;background:#f7fbff;border:1px solid #dce9f3}.fixed-talk-grid b{color:#126ccf}.fixed-talk-grid p{margin:8px 0 0;line-height:1.65}
+
+/* モバイル */
+@media(max-width:760px){
+  .app{padding:0!important}
+  .fixed-home,.fixed-customer-page,.fixed-simulation-page,.fixed-talk-page{border-radius:0!important;max-width:none!important}
+  .fixed-topbar{padding:0 18px}.fixed-brand{font-size:20px}.fixed-brand span{font-size:28px}
+  .fixed-learning-card{margin:12px 14px;padding:22px 18px;grid-template-columns:1fr;min-height:auto}.fixed-aircon-visual{height:165px;min-height:0}.fixed-aircon-visual img{width:100%}
+  .fixed-level-row strong{font-size:43px}.fixed-sales-banner{width:calc(100% - 28px);margin:0 14px 12px;padding:19px}.fixed-sales-icon{width:68px;height:68px;font-size:32px}.fixed-sales-copy h2{font-size:25px}.fixed-sales-copy p{display:none}
+  .fixed-menu-grid{padding:0 14px;grid-template-columns:repeat(2,1fr)}.fixed-menu-grid button{min-height:190px;padding:16px 10px}.fixed-menu-grid p{font-size:10px}.fixed-mission{margin:12px 14px 0}.fixed-level-menu{margin:10px 14px}
+  .fixed-profile-card{margin:14px;grid-template-columns:1fr}.fixed-profile-left img{height:260px}.fixed-start-customer{width:calc(100% - 28px);margin:0 14px 16px}.fixed-profile-right li{font-size:13px}
+  .fixed-sales-options{grid-template-columns:1fr}.fixed-stepper{padding:13px 12px}.fixed-stepper b{font-size:9px}.fixed-stepper div::after{width:80%}
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=220">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=221">
 </head>
 <body><main class="app">
 
@@ -892,136 +978,120 @@ body{
 
 
 
-<section id="home" class="home-shell premium-home">
-  <header class="premium-hero">
-    <div class="hero-copy">
-      <div class="hero-kicker">AIR CONDITIONER SALES TRAINING</div>
-      <h1>エアコン販買マスター</h1>
-      <div class="risa-script">RISA EDITION</div>
-      <p>販売・受付・工事を、実践で身につける。</p>
 
-      <div class="hero-progress">
-        <div class="hero-progress-row">
-          <span>今日の学習</span>
-          <strong id="todayProgressText">0%</strong>
-        </div>
-        <div class="hero-progress-track"><span id="todayProgressBar" style="width:0%"></span></div>
-        <small id="todayProgressSub">今日のチャレンジ・販買モード・練習問題</small>
-      </div>
-    </div>
-
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-aircon">
-        <span class="aircon-slot"></span>
-        <span class="aircon-light"></span>
-      </div>
-      <div class="hero-breeze">〰 〰 〰</div>
-      <div class="hero-plant">🪴</div>
-    </div>
-
-    <button class="premium-settings" onclick="openSettings()" aria-label="設定">⚙️</button>
+<section id="home" class="fixed-home">
+  <header class="fixed-topbar">
+    <button class="fixed-menu-btn" aria-label="メニュー">☰</button>
+    <div class="fixed-brand"><span>❄</span> エアコン販買マスター</div>
+    <button class="fixed-bell" aria-label="通知">♧<i></i></button>
   </header>
 
-  <section class="premium-status">
-    <div>
-      <span>学習レベル</span>
-      <strong id="homeLevelCompact">Lv.1</strong>
+  <section class="fixed-learning-card">
+    <div class="fixed-learning-copy">
+      <span class="fixed-eyebrow">今日の学習状況</span>
+      <div class="fixed-level-row">
+        <strong id="fixedLevel">Lv.1</strong>
+        <b id="fixedRank">新人スタッフ</b>
+      </div>
+      <div class="fixed-progress-row">
+        <div class="fixed-progress"><span id="fixedExpBar" style="width:0%"></span></div>
+        <strong id="fixedRate">0%</strong>
+      </div>
+      <p id="fixedNextExp">次のレベルまで あと100EXP</p>
+      <div class="fixed-today-point">
+        <b>💡 今日のポイント</b>
+        <span id="dailyTip">お客様のご要望をしっかり聞き、最適な提案をしましょう。</span>
+      </div>
     </div>
-    <div>
-      <span>総合正答率</span>
-      <strong id="homeRate">0%</strong>
-    </div>
-    <div>
-      <span>収録問題</span>
-      <strong id="totalQuestionCount">180問</strong>
+    <div class="fixed-aircon-visual">
+      <img src="hero-aircon.jpg" alt="">
     </div>
   </section>
 
-  <section class="premium-menu">
-    <button class="premium-main-card" onclick="startSalesMode()">
-      <div class="main-card-icon">🛒</div>
-      <div class="main-card-copy">
-        <span>MAIN TRAINING</span>
-        <h2>販買モード</h2>
-        <p>お客様カルテを確認し、聞き取り・工事確認・提案まで実践。</p>
-        <small id="salesCaseCountHome">12ケース収録</small>
-      </div>
-      <div class="main-card-customer">
-        <div class="customer-mini-avatar">👨‍👩‍👧</div>
-        <b>本日のお客様</b>
-        <span>買い替え・標準</span>
-      </div>
+  <button class="fixed-sales-banner" onclick="startSalesMode()">
+    <div class="fixed-sales-icon">👥</div>
+    <div class="fixed-sales-copy">
+      <h2>販買モード</h2>
+      <b>実際の接客をシミュレーション</b>
+      <p>お客様対応を通して、販売スキルを磨きましょう。</p>
+    </div>
+    <span class="fixed-chevron">›</span>
+  </button>
+
+  <section class="fixed-menu-grid">
+    <button onclick="showCustomerLibrary()">
+      <span class="fixed-card-icon blue">👤</span>
+      <b>お客様カルテ</b>
+      <em>受付チェックを練習</em>
+      <p>お客様の情報を確認し、<br>聞き取りの練習ができます。</p>
       <i>›</i>
     </button>
 
-    <div class="premium-card-grid">
-      <button class="premium-card" onclick="showLevelMenu()">
-        <span class="premium-card-icon">📘</span>
-        <b>練習問題</b>
-        <small>180問から出題</small>
-      </button>
+    <button onclick="showLevelMenu()">
+      <span class="fixed-card-icon green">📖</span>
+      <b>練習問題</b>
+      <em>知識を定着させる</em>
+      <p>180問以上の問題を収録。<br>苦手分野を集中学習できます。</p>
+      <i>›</i>
+    </button>
 
-      <button class="premium-card" onclick="startWrongReview()">
-        <span class="premium-card-icon">🔁</span>
-        <b>苦手問題</b>
-        <small>間違えた問題を復習</small>
-      </button>
+    <button onclick="startQuiz('工事料金')">
+      <span class="fixed-card-icon orange">🧮</span>
+      <b>工事料金</b>
+      <em>計算問題でマスター</em>
+      <p>標準工事から追加工事まで、<br>料金の計算を練習できます。</p>
+      <i>›</i>
+    </button>
 
-      <button class="premium-card" onclick="showCustomerLibrary()">
-        <span class="premium-card-icon">👥</span>
-        <b>お客様カルテ</b>
-        <small>ケースを一覧で確認</small>
-      </button>
+    <button onclick="showStats()">
+      <span class="fixed-card-icon purple">▥</span>
+      <b>成績・分析</b>
+      <em>弱点を見える化</em>
+      <p>正答率や分野別の成績を確認し、<br>効率的にレベルアップできます。</p>
+      <i>›</i>
+    </button>
 
-      <button class="premium-card" onclick="showStats()">
-        <span class="premium-card-icon">📊</span>
-        <b>成績</b>
-        <small>正答率と苦手分野</small>
-      </button>
+    <button onclick="showAchievements()">
+      <span class="fixed-card-icon coral">🏆</span>
+      <b>学習記録・実績</b>
+      <em>がんばりを記録</em>
+      <p>学習の履歴や実績を確認して、<br>モチベーションを維持しましょう。</p>
+      <i>›</i>
+    </button>
 
-      <button class="premium-card" onclick="showAchievements()">
-        <span class="premium-card-icon">📋</span>
-        <b>学習記録</b>
-        <small>達成状況を確認</small>
-      </button>
-
-      <button class="premium-card" onclick="openSettings()">
-        <span class="premium-card-icon">⚙️</span>
-        <b>設定</b>
-        <small>更新・記録管理</small>
-      </button>
-    </div>
+    <button onclick="showSalesTalks()">
+      <span class="fixed-card-icon cyan">💬</span>
+      <b>セールストーク集</b>
+      <em>トーク例を確認</em>
+      <p>おすすめトークや切り返しトークを<br>見て、声に出して練習できます。</p>
+      <i>›</i>
+    </button>
   </section>
 
-  <div id="levelMenu" class="premium-level-menu hidden">
-    <div class="level-menu-title">練習問題の難易度</div>
+  <section class="fixed-mission">
+    <span>◎</span>
+    <div>
+      <b>今日のミッション</b>
+      <p>販買モードを 3件 実施する</p>
+    </div>
+    <strong id="fixedMission">0 / 3</strong>
+    <i>›</i>
+  </section>
+
+  <div id="levelMenu" class="fixed-level-menu hidden">
     <button onclick="startQuiz('すべて')">ランダム</button>
     <button onclick="startQuiz('初級')">初級</button>
     <button onclick="startQuiz('中級')">中級</button>
     <button onclick="startQuiz('上級')">上級</button>
   </div>
 
-  <section class="today-case-card">
-    <div>
-      <span class="today-label">TODAY'S CASE</span>
-      <h2>15年使ったリビングエアコン</h2>
-      <p>買い替え受付で、既存配管・電源・室外機位置を確認します。</p>
-      <button onclick="startSalesMode()">受付を始める</button>
-    </div>
-    <div class="today-family">👨‍👩‍👧‍👦</div>
-  </section>
-
-  <section class="premium-tip">
-    <div class="tip-icon">💡</div>
-    <div>
-      <span>今日の販売ヒント</span>
-      <p id="dailyTip">おすすめ機種を説明する前に、お客様の困りごとを確認しましょう。</p>
-    </div>
-  </section>
-
-  <footer class="premium-footer">
-    一人ひとりのお客様に、最適な一台を。
-  </footer>
+  <nav class="fixed-bottom-nav">
+    <button class="active" onclick="showPage('home')"><span>⌂</span><b>ホーム</b></button>
+    <button onclick="showStats()"><span>▣</span><b>学習履歴</b></button>
+    <button onclick="startWrongReview()"><span>▱</span><b>ブックマーク</b></button>
+    <button onclick="showStats()"><span>▥</span><b>ランキング</b></button>
+    <button onclick="openSettings()"><span>?</span><b>設定</b></button>
+  </nav>
 </section>
 
 <section id="quiz" class="card hidden">
@@ -1052,43 +1122,83 @@ body{
 
 
 
-<section id="sales" class="card hidden premium-sales-page">
-  <div class="top premium-page-top">
-    <button class="back" onclick="showPage('home')">←</button>
-    <div>
-      <h2>販買モード</h2>
-      <p class="small">受付から提案まで、実際の流れで確認します。</p>
+
+<section id="sales" class="card hidden fixed-simulation-page">
+  <header class="fixed-sub-header">
+    <button onclick="showPage('home')">‹</button>
+    <h2>接客シミュレーション</h2>
+    <button class="fixed-stop-btn" onclick="showPage('home')">中断する</button>
+  </header>
+
+  <div class="fixed-stepper">
+    <div class="active"><span>1</span><b>聞き取り</b></div>
+    <div><span>2</span><b>提案</b></div>
+    <div><span>3</span><b>工事確認</b></div>
+    <div><span>4</span><b>見積り</b></div>
+    <div><span>5</span><b>クロージング</b></div>
+  </div>
+
+  <div class="fixed-conversation">
+    <div class="fixed-customer-message">
+      <img src="customer-avatar.jpg" alt="">
+      <div>
+        <b>お客様</b>
+        <p id="fixedCustomerMessage">電気代が高くて…<br>どのエアコンがいいか迷っているんです。</p>
+        <small>10:15</small>
+      </div>
+    </div>
+
+    <div class="fixed-you-box">
+      <b>あなた</b>
+      <h3 id="fixedSalesQuestion">まず確認したいことは？</h3>
+      <div id="salesOptions" class="fixed-sales-options"></div>
+      <div id="salesResult" class="hidden"></div>
     </div>
   </div>
 
-  <div class="sales-progress-line">
-    <span id="salesProgressFill"></span>
-  </div>
-
-  <div class="premium-sales-layout">
-    <aside id="salesCase" class="premium-customer-card"></aside>
-
-    <main class="premium-conversation-panel">
-      <div id="salesStepLabel" class="sales-step premium-step-label"></div>
-      <div id="salesOptions" class="sales-options premium-sales-options"></div>
-      <div id="salesResult" class="hidden"></div>
-    </main>
-
-    <aside id="salesChecklist" class="premium-checklist"></aside>
-  </div>
+  <div class="fixed-answer-guide" id="fixedAnswerGuide">回答を選択してください</div>
+  <div id="salesCase" class="hidden"></div>
+  <div id="salesStepLabel" class="hidden"></div>
+  <div id="salesChecklist" class="hidden"></div>
+  <div id="salesProgressFill" class="hidden"></div>
 </section>
 
+<section id="customerLibrary" class="card hidden fixed-customer-page">
+  <header class="fixed-sub-header">
+    <button onclick="showPage('home')">‹</button>
+    <h2>お客様カルテ</h2>
+    <button class="fixed-new-btn">＋ 新規作成</button>
+  </header>
 
-<section id="customerLibrary" class="card hidden premium-library-page">
-  <div class="top premium-page-top">
-    <button class="back" onclick="showPage('home')">←</button>
-    <div>
-      <h2>お客様カルテ</h2>
-      <p class="small">接客ケースの概要を確認できます。</p>
+  <article class="fixed-profile-card">
+    <div class="fixed-profile-left">
+      <div class="fixed-profile-badges">
+        <span>No.001</span><b>買い替え</b>
+      </div>
+      <img src="customer-family.jpg" alt="お客様イラスト">
     </div>
-  </div>
+    <div class="fixed-profile-right">
+      <h3>♙ 40代 ご夫婦</h3>
+      <ul>
+        <li>⌂ 木造2階建て</li>
+        <li>▦ LDK18畳</li>
+        <li>⊞ 西日あり</li>
+        <li>♣ 犬2匹（室内）</li>
+        <li>◷ 予算25万円前後</li>
+        <li>⌂ ご要望：電気代を下げたい</li>
+      </ul>
+    </div>
+    <div class="fixed-profile-tags">
+      <span>冷房重視</span>
+      <span>電気代を下げたい</span>
+      <span>静かに使いたい</span>
+    </div>
+  </article>
+
+  <button class="fixed-start-customer" onclick="startSalesMode()">このお客様で接客を開始する</button>
+
+  <div class="fixed-library-title">その他のお客様カルテ</div>
   <div id="customerLibraryGrid" class="customer-library-grid"></div>
-  <button onclick="showPage('home')">ホームへ戻る</button>
 </section>
 
 <section id="stats" class="card hidden">
@@ -1108,6 +1218,21 @@ body{
 <section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>実績</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
 
 
+
+<section id="salesTalks" class="card hidden fixed-talk-page">
+  <header class="fixed-sub-header">
+    <button onclick="showPage('home')">‹</button>
+    <h2>セールストーク集</h2>
+    <button onclick="showPage('home')">閉じる</button>
+  </header>
+  <div class="fixed-talk-grid">
+    <article><b>電気代を重視</b><p>「長時間使われるご家庭ほど、省エネ性能の差が毎日の電気代に表れやすいです。」</p></article>
+    <article><b>工事費が心配</b><p>「工事内容は設置状況で変わるため、最初に確認項目を整理して概算をご案内します。」</p></article>
+    <article><b>メーカーで迷う</b><p>「メーカー名より、お部屋の条件と重視したい機能から比べると選びやすいです。」</p></article>
+    <article><b>ペットがいる</b><p>「日中も長く使われるなら、安定運転と省エネ性を重視して選ぶと安心です。」</p></article>
+  </div>
+</section>
+
 <section id="settingsPage" class="card hidden">
   <div class="top">
     <button class="back" onclick="showPage('home')">←</button>
@@ -1124,7 +1249,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22 Premium</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.1 Fixed UI</p>
 </section>
 
 
@@ -1254,7 +1379,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=220', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=221', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1573,7 +1698,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.0';
+const APP_VERSION='22.1';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1584,7 +1709,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22 Premium を適用できます。');
+        showUpdateBanner('最新版 Ver.22.1 Fixed UI を適用できます。');
         return;
       }
     }
@@ -1734,5 +1859,55 @@ window.addEventListener('load',()=>{
   }
   updatePremiumHome();
 });
+
+
+function showSalesTalks(){showPage('salesTalks');}
+
+function updateFixedHome(){
+  const s=loadStatsData();
+  const rate=s.answered?Math.round(s.correct/s.answered*100):0;
+  const exp=s.correct*20;
+  const level=Math.max(1,Math.floor(exp/100)+1);
+  const within=exp%100;
+  const titles=[[1,'新人スタッフ'],[5,'接客デビュー'],[10,'エアコンアドバイザー'],[20,'販売マスター'],[30,'工事マスター'],[50,'トップセールス']];
+  let rank='新人スタッフ';
+  titles.forEach(([lv,t])=>{if(level>=lv)rank=t});
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+  set('fixedLevel','Lv.'+level);
+  set('fixedRank',rank);
+  set('fixedRate',rate+'%');
+  set('fixedNextExp','次のレベルまで あと'+(within===0?100:100-within)+'EXP');
+  const bar=document.getElementById('fixedExpBar');if(bar)bar.style.width=within+'%';
+  set('fixedMission',(Number(localStorage.getItem('v22_sales_total')||0)%4)+' / 3');
+}
+window.addEventListener('load',updateFixedHome);
+
+const originalRenderSalesStepFixed=renderSalesStep;
+renderSalesStep=function(){
+  originalRenderSalesStepFixed();
+  const step=salesCase.steps[salesStep];
+  const q=document.getElementById('fixedSalesQuestion');
+  const msg=document.getElementById('fixedCustomerMessage');
+  const guide=document.getElementById('fixedAnswerGuide');
+  if(q)q.textContent=step.q;
+  if(msg){
+    const messages=[
+      salesCase.first.replace(/[「」]/g,''),
+      '設置場所や使い方について、詳しく知りたいです。',
+      '工事についても少し心配しています。',
+      '予算の中で、納得できる機種を選びたいです。'
+    ];
+    msg.innerHTML=messages[Math.min(salesStep,messages.length-1)];
+  }
+  if(guide)guide.textContent='回答を選択してください';
+};
+
+const originalAnswerSalesFixed=answerSales;
+answerSales=function(i,btn){
+  const guide=document.getElementById('fixedAnswerGuide');
+  const step=salesCase.steps[salesStep];
+  if(guide)guide.textContent=i===step.a?'正解です。次へ進みます。':'もう一度、受付の優先順位を考えてみましょう。';
+  originalAnswerSalesFixed(i,btn);
+};
 
 </script></body></html>
