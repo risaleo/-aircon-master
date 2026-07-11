@@ -298,3 +298,74 @@ function showHistory(){
 function showSimple(title,text){showPage("simplePage");document.getElementById("simpleTitle").textContent=title;document.getElementById("simpleContent").textContent=text}
 
 window.addEventListener("DOMContentLoaded",()=>{migrateProfileAndStats();migrateHistory();updateHome();if(!getName())document.getElementById("nameModal").classList.remove("hidden")});
+
+
+let pendingQuizType="practice";
+
+function normalizeLevel(value){
+  const text=String(value||"").trim();
+  if(text.includes("初級"))return "初級";
+  if(text.includes("中級"))return "中級";
+  if(text.includes("上級"))return "上級";
+  return "";
+}
+
+function getQuestionLevel(question,index){
+  const direct=normalizeLevel(question.level||question.difficulty||question.rank||question.category);
+  if(direct)return direct;
+
+  const text=((question.q||"")+" "+(question.ex||"")+" "+(question.category||""));
+  if(/応用|複合|隠ぺい|隠蔽|電圧切替|分電盤|高所|屋根置き|壁面置き|塩害/.test(text))return "上級";
+  if(/配管延長|専用回路|200V|追加工事|室外機|穴あけ|化粧カバー|リサイクル/.test(text))return "中級";
+
+  return ["初級","中級","上級"][index%3];
+}
+
+function withLevels(source){
+  return source.map((q,index)=>({...q,_displayLevel:getQuestionLevel(q,index)}));
+}
+
+function openLevelMenu(type){
+  pendingQuizType=type;
+  const title=document.getElementById("levelModalTitle");
+  const description=document.getElementById("levelModalDescription");
+
+  if(type==="price"){
+    title.textContent="工事料金レベルを選択";
+    description.textContent="工事料金問題の難易度を選んでください。";
+  }else{
+    title.textContent="練習問題レベルを選択";
+    description.textContent="練習問題の難易度を選んでください。";
+  }
+
+  document.getElementById("levelModal").classList.remove("hidden");
+}
+
+function closeLevelMenu(){
+  document.getElementById("levelModal").classList.add("hidden");
+}
+
+function startSelectedLevel(level){
+  closeLevelMenu();
+  const source=pendingQuizType==="price" ? PRICE_QUESTIONS : QUESTIONS;
+  const leveled=withLevels(source);
+  let filtered=level==="ランダム"
+    ? leveled
+    : leveled.filter(q=>q._displayLevel===level);
+
+  if(!filtered.length){
+    alert(level+"の問題がありません。");
+    return;
+  }
+
+  quizPool=shuffle(filtered);
+  quizIndex=0;
+  quizCorrect=0;
+  currentQuiz=null;
+
+  const titleBase=pendingQuizType==="price" ? "工事料金" : "練習問題";
+  document.getElementById("quizTitle").textContent=titleBase+"・"+level;
+
+  showPage("quiz");
+  renderQuizQuestion();
+}
