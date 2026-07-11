@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=212">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=212">
-<title>エアコン販買マスター Ver.21.2</title>
+<link rel="manifest" href="manifest.json?v=213">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=213">
+<title>エアコン販買マスター Ver.21.3</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.21.2 メニュー修正 */
+/* Ver.21.3 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.21.2 採用デザイン */
+/* Ver.21.3 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -689,8 +689,26 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 .new-label{background:#1c9ae8}.replace-label{background:#8f62df}
 @media(max-width:640px){.context-legend{grid-template-columns:1fr}.context-legend span:first-child,.context-legend span:nth-child(3){justify-self:start}}
 
+
+.sync-card{
+  padding:20px;border-radius:22px;background:linear-gradient(135deg,#f7fbff,#eef7ff);
+  border:1px solid #d8e9f6;margin:18px 0
+}
+.sync-card h3{margin:0 0 8px;color:#174f79}
+.sync-card p{color:#5b778d;line-height:1.65}
+.sync-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.import-area{margin-top:16px;padding-top:16px;border-top:1px solid #d7e5f0}
+.import-area label{display:block;font-weight:900;color:#315e80;margin-bottom:8px}
+.import-area textarea{
+  width:100%;box-sizing:border-box;border:1px solid #bdd4e5;border-radius:16px;
+  padding:14px;font-size:14px;background:#fff;resize:vertical
+}
+.import-area button{margin-top:10px}
+.sync-status{min-height:22px;font-weight:800;color:#137bd1}
+@media(max-width:640px){.sync-actions{grid-template-columns:1fr}}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=212">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=213">
 </head>
 <body><main class="app">
 
@@ -858,7 +876,39 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 </section>
 
 <section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>実績</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
-<section id="settingsPage" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>設定</h2></div><div class="settings-list"><button onclick="resetHistory()">学習記録をリセット</button><button onclick="applyAppUpdate()">最新版を確認して更新</button></div><p class="small">エアコン販買マスター RISA EDITION Ver.21.2</p></section>
+
+<section id="settingsPage" class="card hidden">
+  <div class="top">
+    <button class="back" onclick="showPage('home')">←</button>
+    <h2>設定</h2>
+  </div>
+
+  <div class="sync-card">
+    <h3>📱 iPhone・iPad 学習データ同期</h3>
+    <p>片方の端末でデータをコピーし、もう片方で読み込むと、レベル・正答数・間違い履歴・実績が揃います。</p>
+
+    <div class="sync-actions">
+      <button class="primary" onclick="copyLearningData()">学習データをコピー</button>
+      <button onclick="showImportArea()">学習データを読み込む</button>
+    </div>
+
+    <div id="importArea" class="import-area hidden">
+      <label for="syncDataInput">コピーしたデータを貼り付け</label>
+      <textarea id="syncDataInput" rows="7" placeholder="ここに学習データを貼り付けてください"></textarea>
+      <button class="primary" onclick="importLearningData()">読み込んで反映</button>
+    </div>
+
+    <p id="syncStatus" class="sync-status"></p>
+  </div>
+
+  <div class="settings-list">
+    <button onclick="resetHistory()">学習記録をリセット</button>
+    <button onclick="applyAppUpdate()">最新版を確認して更新</button>
+  </div>
+
+  <p class="small">エアコン販買マスター RISA EDITION Ver.21.3</p>
+</section>
+
 </main>
 
 <div id="updateBanner" class="update-banner hidden" role="dialog" aria-live="polite">
@@ -985,7 +1035,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=212', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=213', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1236,7 +1286,7 @@ function finishSales(){
 }
 
 
-const APP_VERSION='21.2';
+const APP_VERSION='21.3';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1247,7 +1297,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.21.2 を適用できます。');
+        showUpdateBanner('最新版 Ver.21.3 を適用できます。');
         return;
       }
     }
@@ -1347,5 +1397,88 @@ function updateAdoptedHome(){
   if(bar)bar.style.width=within+'%';
 }
 window.addEventListener('load',updateAdoptedHome);
+
+
+const SYNC_KEYS = [
+  'aircon_master_history',
+  'aircon_master_stats',
+  'aircon_complete_wrong',
+  'aircon_complete_category',
+  'v21_daily_done',
+  'v21_sales_done',
+  'v21_practice_done',
+  'v21_sales_total',
+  'v21_goal_date',
+  'v21_streak'
+];
+
+function buildLearningData(){
+  const data = {
+    app: 'aircon-hanbai-master',
+    version: '21.3',
+    exportedAt: new Date().toISOString(),
+    storage: {}
+  };
+  SYNC_KEYS.forEach(key=>{
+    const value = localStorage.getItem(key);
+    if(value !== null) data.storage[key] = value;
+  });
+  return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+}
+
+async function copyLearningData(){
+  const status = document.getElementById('syncStatus');
+  try{
+    const code = buildLearningData();
+    await navigator.clipboard.writeText(code);
+    if(status) status.textContent = '✅ 学習データをコピーしました。もう一方の端末へ貼り付けてください。';
+  }catch(e){
+    const area = document.getElementById('importArea');
+    const input = document.getElementById('syncDataInput');
+    if(area) area.classList.remove('hidden');
+    if(input) input.value = buildLearningData();
+    if(status) status.textContent = 'コピーできなかったため、表示されたデータを長押ししてコピーしてください。';
+  }
+}
+
+function showImportArea(){
+  const area = document.getElementById('importArea');
+  if(area) area.classList.toggle('hidden');
+  const input = document.getElementById('syncDataInput');
+  if(input && !area.classList.contains('hidden')) input.focus();
+}
+
+function importLearningData(){
+  const input = document.getElementById('syncDataInput');
+  const status = document.getElementById('syncStatus');
+  if(!input || !input.value.trim()){
+    if(status) status.textContent = '貼り付ける学習データがありません。';
+    return;
+  }
+
+  try{
+    const decoded = decodeURIComponent(escape(atob(input.value.trim())));
+    const data = JSON.parse(decoded);
+
+    if(data.app !== 'aircon-hanbai-master' || !data.storage){
+      throw new Error('invalid');
+    }
+
+    Object.entries(data.storage).forEach(([key,value])=>{
+      localStorage.setItem(key, value);
+    });
+
+    if(status) status.textContent = '✅ 学習データを読み込みました。レベルと成績を更新します。';
+    updateV21Home();
+    if(typeof updateAdoptedHome === 'function') updateAdoptedHome();
+
+    setTimeout(()=>{
+      showPage('home');
+      location.reload();
+    }, 800);
+  }catch(e){
+    if(status) status.textContent = '❌ データを読み込めませんでした。コピー内容を確認してください。';
+  }
+}
 
 </script></body></html>
