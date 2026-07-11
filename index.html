@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=223">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=223">
-<title>エアコン販買マスター Ver.22.3 Fixed UI</title>
+<link rel="manifest" href="manifest.json?v=224">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=224">
+<title>エアコン販買マスター Ver.22.4 Fixed UI</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22.3 Fixed UI メニュー修正 */
+/* Ver.22.4 Fixed UI メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22.3 Fixed UI 採用デザイン */
+/* Ver.22.4 Fixed UI 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22.3 Fixed UI 固定デザイン
+   Ver.22.4 Fixed UI 固定デザイン
 ========================================= */
 body{
   background:
@@ -884,7 +884,7 @@ body{
 }
 
 
-/* Ver.22.3 Fixed UI — このデザインを固定 */
+/* Ver.22.4 Fixed UI — このデザインを固定 */
 body{
   background:#f5f8fb!important;
   color:#102f57!important;
@@ -1069,8 +1069,57 @@ body{
   }
 }
 
+
+/* Ver.22.4 新規人物イラスト — 見切れ防止 */
+.fixed-profile-left img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:5 / 4!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  padding:14px!important;
+  background:#fff!important;
+  box-sizing:border-box!important;
+  border-radius:14px!important;
+}
+
+.fixed-customer-message{
+  grid-template-columns:118px minmax(0,1fr)!important;
+  align-items:center!important;
+}
+.fixed-customer-message img{
+  width:118px!important;
+  height:132px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  padding:6px!important;
+  background:#fff!important;
+  box-sizing:border-box!important;
+  border-radius:18px!important;
+  border:1px solid #e5edf3!important;
+}
+
+@media(max-width:760px){
+  .fixed-customer-message{
+    grid-template-columns:102px minmax(0,1fr)!important;
+  }
+  .fixed-customer-message img{
+    width:102px!important;
+    height:116px!important;
+  }
+}
+@media(max-width:390px){
+  .fixed-customer-message{
+    grid-template-columns:92px minmax(0,1fr)!important;
+  }
+  .fixed-customer-message img{
+    width:92px!important;
+    height:104px!important;
+  }
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=223">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=224">
 </head>
 <body><main class="app">
 
@@ -1349,7 +1398,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22.3 Fixed UI</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.4 Fixed UI</p>
 </section>
 
 
@@ -1479,7 +1528,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=223', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=224', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1798,7 +1847,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.3';
+const APP_VERSION='22.4';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1809,7 +1858,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22.3 Fixed UI を適用できます。');
+        showUpdateBanner('最新版 Ver.22.4 Fixed UI を適用できます。');
         return;
       }
     }
