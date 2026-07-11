@@ -4,7 +4,6 @@ const DATA=window.APP_DATA;
 const QUESTIONS=DATA.questions;
 const PRICE_QUESTIONS=DATA.priceQuestions;
 const CASES=DATA.cases;
-const TALKS=DATA.talks;
 const K={name:"aircon_v31_name",stats:"aircon_v31_stats"};
 
 let quizPool=[],quizIndex=0,currentQuiz=null,quizCorrect=0;
@@ -165,23 +164,12 @@ function finishSales(){
   document.getElementById("answerPane").innerHTML=`<div class="report"><h2>販売レポート</h2><div class="grade">${salesScore===activeCase.steps.length?"A":salesScore>=3?"B+":"B"}</div><p>正解 ${salesScore} / ${activeCase.steps.length}</p><button class="primary" onclick="startRandomSales()">別のお客様</button><button class="primary" onclick="showCases()">カルテから選ぶ</button><button class="primary" onclick="showPage('home')">ホームへ</button></div>`;
   const s=getStats();s.sales++;saveStats(s);addTodaySales();updateHome();
 }
-function showTalks(){
-  showPage("talks");
-  const sel=document.getElementById("talkCategory");
-  if(sel.options.length===1)[...new Set(TALKS.map(t=>t.category))].forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o)});
-  renderTalks();
-}
-function renderTalks(){
-  const q=document.getElementById("talkSearch").value.trim().toLowerCase(),cat=document.getElementById("talkCategory").value;
-  const arr=TALKS.filter(t=>(!cat||t.category===cat)&&(!q||(t.title+" "+t.text+" "+t.category).toLowerCase().includes(q)));
-  document.getElementById("talkCount").textContent=arr.length+"件表示";
-  document.getElementById("talkGrid").innerHTML=arr.map(t=>`<article class="talk"><span>${t.category}</span><h3>${t.title}</h3><p>${t.text}</p></article>`).join("");
-}
+
+
 function showStats(){
   showPage("statsPage");const s=getStats(),rate=s.answered?Math.round(s.correct/s.answered*100):0;
   document.getElementById("statsGrid").innerHTML=`<div class="stat"><span>回答数</span><strong>${s.answered}</strong></div><div class="stat"><span>正答率</span><strong>${rate}%</strong></div><div class="stat"><span>販買モード</span><strong>${s.sales}件</strong></div>`;
 }
 function showHistory(){showPage("historyPage");document.getElementById("historyContent").textContent="学習履歴は成績画面に反映されます。"}
-function showSimple(title,text){showPage("simplePage");document.getElementById("simpleTitle").textContent=title;document.getElementById("simpleContent").textContent=text}
 
 window.addEventListener("DOMContentLoaded",()=>{updateHome();if(!getName())document.getElementById("nameModal").classList.remove("hidden")});

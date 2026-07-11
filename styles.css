@@ -22,7 +22,7 @@ button{cursor:pointer}
 .menu button{min-height:190px;padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff;text-align:center;color:var(--text);box-shadow:0 7px 20px rgba(30,70,100,.05)}
 .menu .ico{width:58px;height:58px;margin:auto auto 12px;border-radius:50%;display:grid;place-items:center;background:#eaf4ff;font-size:28px} .menu b{display:block;font-size:18px} .menu p{font-size:12px;color:var(--muted);line-height:1.6}
 .mission{width:calc(100% - 52px);margin:15px 26px;padding:16px 20px;border:1px solid var(--line);border-radius:16px;background:#f7fbff;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;text-align:left;color:var(--text)} .mission strong{font-size:22px;color:#0d62cc}
-.bottom{margin-top:15px;height:78px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line)} .bottom button{border:0;background:#fff;color:#6b7f91} .bottom span{display:block;font-size:24px} .bottom b{font-size:11px}
+.bottom{margin-top:15px;height:78px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)} .bottom button{border:0;background:#fff;color:#6b7f91} .bottom span{display:block;font-size:24px} .bottom b{font-size:11px}
 .subhead{height:76px;padding:0 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid #edf1f5} .subhead h2{text-align:center;margin:0} .subhead button{border:0;background:transparent;color:#0c65cc;font-weight:900}
 .content{padding:24px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -333,3 +333,7 @@ button{cursor:pointer}
   }
 }
 
+
+/* Ver.32: セールストーク・ブックマーク削除後の配置 */
+@media(min-width:768px){.menu button:last-child:nth-child(3n+2){grid-column:2}}
+@media(max-width:767px){.menu button:last-child:nth-child(odd){grid-column:1/-1}}

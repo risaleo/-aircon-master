@@ -1,7 +1,7 @@
 {
-  "name": "エアコン販買マスター Ver.30.5",
+  "name": "エアコン販買マスター Ver.32.0 安定版",
   "short_name": "販買マスター",
-  "start_url": "./index.html?v=305",
+  "start_url": "./index.html?v=320",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
