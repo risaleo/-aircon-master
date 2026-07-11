@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=227">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=227">
-<title>エアコン販買マスター Ver.22.7 Name Profile</title>
+<link rel="manifest" href="manifest.json?v=228">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=228">
+<title>エアコン販買マスター Ver.22.8 Fixed</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22.7 Name Profile メニュー修正 */
+/* Ver.22.8 Fixed メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22.7 Name Profile 採用デザイン */
+/* Ver.22.8 Fixed 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22.7 Name Profile 固定デザイン
+   Ver.22.8 Fixed 固定デザイン
 ========================================= */
 body{
   background:
@@ -884,7 +884,7 @@ body{
 }
 
 
-/* Ver.22.7 Name Profile — このデザインを固定 */
+/* Ver.22.8 Fixed — このデザインを固定 */
 body{
   background:#f5f8fb!important;
   color:#102f57!important;
@@ -1472,8 +1472,62 @@ body{
   }
 }
 
+
+/* Ver.22.8 販買モード人物見切れ完全回避 */
+.fixed-customer-message{
+  grid-template-columns:150px minmax(0,1fr)!important;
+  align-items:center!important;
+}
+.fixed-customer-message img{
+  width:150px!important;
+  height:125px!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  padding:8px!important;
+  box-sizing:border-box!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  border:1px solid #e3ebf1!important;
+}
+
+@media (min-width:768px) and (max-width:1366px){
+  .fixed-customer-message{
+    grid-template-columns:1fr!important;
+  }
+  .fixed-customer-message img{
+    width:100%!important;
+    max-width:330px!important;
+    height:240px!important;
+    margin:0 auto!important;
+    object-fit:contain!important;
+  }
+}
+
+@media(max-width:767px){
+  .fixed-customer-message{
+    grid-template-columns:112px minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+  .fixed-customer-message img{
+    width:112px!important;
+    height:98px!important;
+    padding:6px!important;
+  }
+}
+
+@media(max-width:390px){
+  .fixed-customer-message{
+    grid-template-columns:96px minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+  .fixed-customer-message img{
+    width:96px!important;
+    height:88px!important;
+  }
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=227">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=228">
 </head>
 <body><main class="app">
 
@@ -1538,7 +1592,7 @@ body{
       <i>›</i>
     </button>
 
-    <button onclick="startQuiz('工事料金')">
+    <button onclick="startPriceQuiz()">
       <span class="fixed-card-icon orange">🧮</span>
       <b>工事料金</b>
       <em>計算問題でマスター</em>
@@ -1643,7 +1697,7 @@ body{
 
   <div class="fixed-conversation">
     <div class="fixed-customer-message">
-      <img src="customer-avatar.jpg" alt="">
+      <img src="customer-family.jpg" alt="">
       <div>
         <b>お客様</b>
         <p id="fixedCustomerMessage">電気代が高くて…<br>どのエアコンがいいか迷っているんです。</p>
@@ -1761,7 +1815,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22.7 Name Profile</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.8 Fixed</p>
 </section>
 
 
@@ -1891,7 +1945,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=227', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=228', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -2231,7 +2285,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.7';
+const APP_VERSION='22.8';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -2242,7 +2296,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22.7 Name Profile を適用できます。');
+        showUpdateBanner('最新版 Ver.22.8 Fixed を適用できます。');
         return;
       }
     }
@@ -2493,6 +2547,31 @@ function maybeShowNameRegistration(){
 }
 
 window.addEventListener('load',maybeShowNameRegistration);
+
+
+function startPriceQuiz(){
+  const priceQuestions=QUESTIONS.filter(q=>{
+    const text=((q.category||'')+' '+(q.q||'')+' '+(q.ex||'')).toLowerCase();
+    return text.includes('工事料金') ||
+           text.includes('料金') ||
+           text.includes('見積') ||
+           text.includes('標準工事') ||
+           text.includes('追加工事');
+  });
+
+  if(!priceQuestions.length){
+    alert('工事料金の問題が見つかりません。');
+    return;
+  }
+
+  quizMode='工事料金';
+  quizPool=shuffle([...priceQuestions]);
+  quizIndex=0;
+  score=0;
+  currentQuestion=null;
+  showPage('quiz');
+  nextQuestion();
+}
 
 </script>
 <div id="nameRegisterModal" class="name-modal hidden" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
