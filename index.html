@@ -91,7 +91,7 @@ button{cursor:pointer}
 
 <section id="cases" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>お客様カルテ</h2><button onclick="startRandomSales()">ランダム</button></header><div class="content"><div id="caseGrid" class="grid"></div></div></section>
 <section id="quiz" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2 id="quizTitle">練習問題</h2><button onclick="showPage('home')">終了</button></header><div class="content quizbox"><div id="quizProgress"></div><div id="quizQuestion" class="question"></div><div id="quizChoices" class="choices"></div><div id="quizExplain" class="explain hidden"></div><button id="quizNext" class="primary hidden" onclick="nextQuiz()" style="width:100%;margin-top:14px">次の問題</button></div></section>
-<section id="sales" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>接客シミュレーション</h2><button onclick="showPage('home')">中断</button></header><div class="content"><div id="stepper" class="stepper"></div><div class="sim"><div id="customerPane" class="customerpane"></div><div class="answerpane"><h3 id="salesQuestion"></h3><div id="salesChoices" class="choices"></div><div id="salesFeedback" class="explain hidden"></div></div></div></div></section>
+<section id="sales" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>接客シミュレーション</h2><button onclick="showPage('home')">中断</button></header><div class="content"><div id="stepper" class="stepper"></div><div class="sim"><div id="customerPane" class="customerpane"></div><div id="answerPane" class="answerpane"></div></div></div></section>
 <section id="talks" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>セールストーク集</h2><button onclick="showPage('home')">閉じる</button></header><div class="content"><div class="filters"><input id="talkSearch" placeholder="キーワード検索" oninput="renderTalks()"><select id="talkCategory" onchange="renderTalks()"><option value="">すべて</option></select></div><div id="talkCount"></div><div id="talkGrid" class="talkgrid"></div></div></section>
 <section id="statsPage" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>成績・分析</h2><button onclick="showPage('home')">閉じる</button></header><div class="content"><div id="statsGrid" class="stats"></div></div></section>
 <section id="historyPage" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>学習記録・実績</h2><button onclick="showPage('home')">閉じる</button></header><div class="content" id="historyContent"></div></section>
@@ -135,19 +135,141 @@ function openMission(){document.getElementById("missionModal").classList.remove(
 function closeMission(){document.getElementById("missionModal").classList.add("hidden");}
 
 function showCases(){showPage("cases");const g=document.getElementById("caseGrid");g.innerHTML="";CASES.forEach((c,i)=>{const b=document.createElement("button");b.className="case";b.innerHTML=`<div class="avatar">${c.avatar}</div><span>${c.type}・${c.difficulty}</span><h3>${c.title}</h3><p>${c.customer}<br>${c.home}／${c.room}</p>`;b.onclick=()=>startSales(i);g.appendChild(b)})}
-function startRandomSales(){startSales(Math.floor(Math.random()*CASES.length))}
-function startSales(i){activeCase=CASES[i];salesStep=0;salesScore=0;showPage("sales");renderSales()}
-function renderSales(){
- const step=activeCase.steps[salesStep],resp=(activeCase.responses||[])[salesStep]||activeCase.first;
- document.getElementById("stepper").innerHTML=activeCase.steps.map((_,i)=>`<div class="${i<=salesStep?"on":""}"></div>`).join("");
- document.getElementById("customerPane").innerHTML=`<div class="avatar">${activeCase.avatar}</div><h3>${activeCase.title}</h3><span style="padding:5px 9px;border-radius:999px;background:#eaf4ff;color:#176fd0;font-weight:900">${activeCase.type}</span><div class="facts"><div>🏠 ${activeCase.home}</div><div>📍 ${activeCase.room}</div><div>ℹ️ ${activeCase.extra}</div><div>💰 ${activeCase.budget}</div></div><div class="speech">${resp}</div>`;
- document.getElementById("salesQuestion").textContent=step.q;const box=document.getElementById("salesChoices");box.innerHTML="";document.getElementById("salesFeedback").classList.add("hidden");
- step.choices.forEach((t,idx)=>{const b=document.createElement("button");b.className="choice";b.textContent=(idx+1)+"　"+t;b.onclick=()=>answerSales(idx,b);box.appendChild(b)})
-}
-function answerSales(idx,btn){const step=activeCase.steps[salesStep],ok=idx===step.a;document.querySelectorAll("#salesChoices button").forEach(b=>b.disabled=true);btn.classList.add(ok?"correct":"wrong");if(ok)salesScore++;const f=document.getElementById("salesFeedback");f.textContent=ok?"正解です。次の確認へ進みます。":"不正解です。受付の優先順位を整理しましょう。";f.classList.remove("hidden");setTimeout(()=>{salesStep++;salesStep<activeCase.steps.length?renderSales():finishSales()},700)}
-function finishSales(){const grade=salesScore===activeCase.steps.length?"A":salesScore>=3?"B+":"B";document.querySelector(".answerpane").innerHTML=`<div class="report"><h2>販売レポート</h2><div class="grade">${grade}</div><p>正解 ${salesScore} / ${activeCase.steps.length}</p><p>お客様の困りごと・工事条件・予算を順番に確認すると、提案がまとまりやすくなります。</p><button class="primary" onclick="startRandomSales()">別のお客様</button> <button class="primary" onclick="showPage('home')">ホームへ</button></div>`;const s=getStats();s.sales++;saveStats(s);addTodaySales();recordHistory("販買モード："+activeCase.title);updateHome();}
 
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function resetSalesAnswerPane(){
+  const pane=document.getElementById("answerPane");
+  if(!pane)return;
+  pane.innerHTML=`
+    <h3 id="salesQuestion"></h3>
+    <div id="salesChoices" class="choices"></div>
+    <div id="salesFeedback" class="explain hidden"></div>`;
+}
+
+function startRandomSales(){
+  startSales(Math.floor(Math.random()*CASES.length));
+}
+
+function startSales(i){
+  activeCase=CASES[i];
+  salesStep=0;
+  salesScore=0;
+  showPage("sales");
+  resetSalesAnswerPane();
+  renderSales();
+}
+
+function renderSales(){
+  if(!activeCase || !activeCase.steps || !activeCase.steps.length){
+    alert("このお客様の問題データがありません。");
+    showPage("cases");
+    return;
+  }
+
+  if(salesStep<0 || salesStep>=activeCase.steps.length){
+    salesStep=0;
+  }
+
+  const step=activeCase.steps[salesStep];
+  const resp=(activeCase.responses||[])[salesStep]||activeCase.first||"ご相談があります。";
+
+  const stepper=document.getElementById("stepper");
+  if(stepper){
+    stepper.innerHTML=activeCase.steps.map((_,i)=>`<div class="${i<=salesStep?"on":""}"></div>`).join("");
+  }
+
+  const customerPane=document.getElementById("customerPane");
+  if(customerPane){
+    customerPane.innerHTML=`
+      <div class="avatar">${activeCase.avatar}</div>
+      <h3>${activeCase.title}</h3>
+      <span style="padding:5px 9px;border-radius:999px;background:#eaf4ff;color:#176fd0;font-weight:900">${activeCase.type}</span>
+      <div class="facts">
+        <div>🏠 ${activeCase.home}</div>
+        <div>📍 ${activeCase.room}</div>
+        <div>ℹ️ ${activeCase.extra}</div>
+        <div>💰 ${activeCase.budget}</div>
+      </div>
+      <div class="speech">${resp}</div>`;
+  }
+
+  let question=document.getElementById("salesQuestion");
+  let choices=document.getElementById("salesChoices");
+  let feedback=document.getElementById("salesFeedback");
+
+  if(!question || !choices || !feedback){
+    resetSalesAnswerPane();
+    question=document.getElementById("salesQuestion");
+    choices=document.getElementById("salesChoices");
+    feedback=document.getElementById("salesFeedback");
+  }
+
+  question.textContent=step.q;
+  choices.innerHTML="";
+  feedback.textContent="";
+  feedback.classList.add("hidden");
+
+  step.choices.forEach((text,index)=>{
+    const button=document.createElement("button");
+    button.className="choice";
+    button.textContent=(index+1)+"　"+text;
+    button.onclick=()=>answerSales(index,button);
+    choices.appendChild(button);
+  });
+}
+
+function answerSales(index,button){
+  const step=activeCase.steps[salesStep];
+  const ok=index===step.a;
+
+  document.querySelectorAll("#salesChoices button").forEach(b=>b.disabled=true);
+  button.classList.add(ok?"correct":"wrong");
+
+  if(!ok){
+    const correctButton=[...document.querySelectorAll("#salesChoices button")][step.a];
+    if(correctButton)correctButton.classList.add("correct");
+  }else{
+    salesScore++;
+  }
+
+  const feedback=document.getElementById("salesFeedback");
+  feedback.textContent=ok
+    ?"正解です。次の確認へ進みます。"
+    :"不正解です。正しい確認内容を見直しましょう。";
+  feedback.classList.remove("hidden");
+
+  setTimeout(()=>{
+    salesStep++;
+    if(salesStep<activeCase.steps.length){
+      renderSales();
+    }else{
+      finishSales();
+    }
+  },800);
+}
+
+function finishSales(){
+  const grade=salesScore===activeCase.steps.length?"A":salesScore>=3?"B+":"B";
+  const pane=document.getElementById("answerPane");
+
+  pane.innerHTML=`
+    <div class="report">
+      <h2>販売レポート</h2>
+      <div class="grade">${grade}</div>
+      <p>正解 ${salesScore} / ${activeCase.steps.length}</p>
+      <p>お客様の困りごと・工事条件・予算を順番に確認すると、提案がまとまりやすくなります。</p>
+      <button class="primary" onclick="startRandomSales()">別のお客様</button>
+      <button class="primary" onclick="showCases()">カルテから選ぶ</button>
+      <button class="primary" onclick="showPage('home')">ホームへ</button>
+    </div>`;
+
+  const stats=getStats();
+  stats.sales++;
+  saveStats(stats);
+  addTodaySales();
+  recordHistory("販買モード："+activeCase.title);
+  updateHome();
+}
+
 function startQuiz(type){quizPool=shuffle(type==="price"?PRICE_QUESTIONS:QUESTIONS);quizIndex=0;quizCorrect=0;document.getElementById("quizTitle").textContent=type==="price"?"工事料金":"練習問題";showPage("quiz");nextQuiz()}
 function nextQuiz(){if(quizIndex>=Math.min(10,quizPool.length))return finishQuiz();currentQuiz=quizPool[quizIndex];document.getElementById("quizProgress").textContent=(quizIndex+1)+" / "+Math.min(10,quizPool.length);document.getElementById("quizQuestion").textContent=currentQuiz.q;const c=document.getElementById("quizChoices");c.innerHTML="";currentQuiz.choices.forEach((t,i)=>{const b=document.createElement("button");b.className="choice";b.textContent=(i+1)+"　"+t;b.onclick=()=>answerQuiz(i,b);c.appendChild(b)});document.getElementById("quizExplain").classList.add("hidden");document.getElementById("quizNext").classList.add("hidden")}
 function answerQuiz(i,btn){document.querySelectorAll("#quizChoices button").forEach(b=>b.disabled=true);const ok=i===currentQuiz.answer;btn.classList.add(ok?"correct":"wrong");if(ok)quizCorrect++;else{const good=[...document.querySelectorAll("#quizChoices button")][currentQuiz.answer];if(good)good.classList.add("correct")}const s=getStats();s.answered++;if(ok)s.correct++;saveStats(s);const e=document.getElementById("quizExplain");e.textContent=currentQuiz.ex;e.classList.remove("hidden");quizIndex++;document.getElementById("quizNext").classList.remove("hidden");recordHistory((document.getElementById("quizTitle").textContent)+"："+(ok?"正解":"不正解"))}
