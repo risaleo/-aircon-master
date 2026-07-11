@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>エアコン販買マスター Ver.31.6</title>
+<title>エアコン販買マスター Ver.31.7</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="styles.css?v=316">
+<link rel="stylesheet" href="styles.css?v=317">
 </head>
 <body>
 <div class="app">
@@ -62,28 +62,28 @@
 <div id="nameModal" class="modal hidden"><div class="modalcard"><h2>お名前を登録</h2><input id="firstName" maxlength="20" placeholder="例：リサ"><button class="primary" onclick="registerName()">登録して始める</button></div></div>
 <div id="missionModal" class="modal hidden"><div class="modalcard"><h2>今日のミッション</h2><p>販買モードを3件実施する</p><div class="progress"><span id="missionBar"></span></div><h3 id="missionText">0 / 3</h3><button class="primary" onclick="closeMission();startRandomSales()">販買モードを始める</button><button onclick="closeMission()">閉じる</button></div></div>
 
-<script src="app-data.js?v=316"></script>
-<script src="app.js?v=316"></script>
+<script src="app-data.js?v=317"></script>
+<script src="app.js?v=317"></script>
 
 <div id="levelModal" class="modal hidden">
   <div class="modalcard level-modal-card">
     <h2 id="levelModalTitle">問題レベルを選択</h2>
     <p id="levelModalDescription">出題レベルを選んでください。</p>
     <div class="level-select-grid">
-      <button class="level-choice beginner" onclick="startSelectedLevel('初級')">
+      <button type="button" class="level-choice beginner" onclick="startRankQuiz('初級')">
         <span>🟢</span><b>初級</b><small>基本を確認</small>
       </button>
-      <button class="level-choice intermediate" onclick="startSelectedLevel('中級')">
+      <button type="button" class="level-choice intermediate" onclick="startRankQuiz('中級')">
         <span>🔵</span><b>中級</b><small>判断力を強化</small>
       </button>
-      <button class="level-choice advanced" onclick="startSelectedLevel('上級')">
+      <button type="button" class="level-choice advanced" onclick="startRankQuiz('上級')">
         <span>🔴</span><b>上級</b><small>応用問題</small>
       </button>
-      <button class="level-choice random" onclick="startSelectedLevel('ランダム')">
+      <button type="button" class="level-choice random" onclick="startRankQuiz('ランダム')">
         <span>🟣</span><b>ランダム</b><small>全レベルから出題</small>
       </button>
     </div>
-    <button onclick="closeLevelMenu()" class="modal-close-btn">閉じる</button>
+    <button type="button" onclick="closeLevelMenu()" class="modal-close-btn">閉じる</button>
   </div>
 </div>
 

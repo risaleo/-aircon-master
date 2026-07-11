@@ -166,6 +166,11 @@ function startQuiz(type){
 function renderQuiz(){
   if(quizIndex>=Math.min(10,quizPool.length)){finishQuiz();return}
   currentQuiz=quizPool[quizIndex];
+  if(selectedQuizRank!=="ランダム" && currentQuiz.level!==selectedQuizRank){
+    alert("選択したランク以外の問題が混ざりました。");
+    showPage("home");
+    return;
+  }
   const rankBadge=document.getElementById("quizRankBadge");
   if(rankBadge){
     rankBadge.textContent=selectedQuizRank==="ランダム" ? "ランダム／"+currentQuiz.level : currentQuiz.level;
@@ -306,11 +311,16 @@ window.addEventListener("DOMContentLoaded",()=>{migrateProfileAndStats();migrate
 
 
 
+
 let pendingQuizType="practice";
 let selectedQuizRank="";
 
+function getRankSource(type){
+  return type==="price" ? PRICE_QUESTIONS : QUESTIONS;
+}
+
 function getRankCounts(type){
-  const source=type==="price" ? PRICE_QUESTIONS : QUESTIONS;
+  const source=getRankSource(type);
   return {
     初級:source.filter(q=>q.level==="初級").length,
     中級:source.filter(q=>q.level==="中級").length,
@@ -321,14 +331,16 @@ function getRankCounts(type){
 function openLevelMenu(type){
   pendingQuizType=type;
   const counts=getRankCounts(type);
+
   document.getElementById("levelModalTitle").textContent=
     type==="price" ? "工事料金レベルを選択" : "練習問題レベルを選択";
+
   document.getElementById("levelModalDescription").textContent=
     `初級 ${counts.初級}問・中級 ${counts.中級}問・上級 ${counts.上級}問`;
 
-  document.querySelectorAll(".level-choice").forEach(btn=>{
-    const label=btn.querySelector("b")?.textContent;
-    const small=btn.querySelector("small");
+  document.querySelectorAll(".level-choice").forEach(button=>{
+    const label=button.querySelector("b")?.textContent;
+    const small=button.querySelector("small");
     if(!small)return;
     if(label==="初級")small.textContent=counts.初級+"問";
     if(label==="中級")small.textContent=counts.中級+"問";
@@ -343,13 +355,11 @@ function closeLevelMenu(){
   document.getElementById("levelModal").classList.add("hidden");
 }
 
-function startSelectedLevel(level){
-  closeLevelMenu();
-
-  const source=pendingQuizType==="price" ? PRICE_QUESTIONS : QUESTIONS;
+function startRankQuiz(level){
+  const source=getRankSource(pendingQuizType);
   const selected=level==="ランダム"
     ? [...source]
-    : source.filter(q=>q.level===level);
+    : source.filter(question=>question.level===level);
 
   if(selected.length===0){
     alert(level+"の問題がありません。");
@@ -358,19 +368,24 @@ function startSelectedLevel(level){
 
   selectedQuizRank=level;
   quizPool=shuffle(selected);
-  if(level!=="ランダム" && quizPool.some(q=>q.level!==level)){
-    alert("ランク抽出に失敗しました。");
-    return;
-  }
   quizIndex=0;
   quizCorrect=0;
   currentQuiz=null;
 
   const base=pendingQuizType==="price" ? "工事料金" : "練習問題";
   document.getElementById("quizTitle").textContent=base+"・"+level;
+
   const badge=document.getElementById("quizRankBadge");
-  if(badge){badge.textContent=level;badge.className="rank-badge rank-"+level;}
+  if(badge){
+    badge.textContent=level;
+    badge.className="rank-badge rank-"+level;
+  }
+
+  closeLevelMenu();
   showPage("quiz");
+
+  // 第1問を直接描画
   renderQuiz();
 }
+
 
