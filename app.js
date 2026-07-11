@@ -1,10 +1,29 @@
 
 "use strict";
+
+function migrateProfileAndStats(){
+  if(!localStorage.getItem(K.name)){
+    const oldName=
+      localStorage.getItem("aircon_v31_name")||
+      localStorage.getItem("aircon_v32_name")||
+      localStorage.getItem("aircon_v30_name");
+    if(oldName)localStorage.setItem(K.name,oldName);
+  }
+
+  if(!localStorage.getItem(K.stats)){
+    const oldStats=
+      localStorage.getItem("aircon_v31_stats")||
+      localStorage.getItem("aircon_v32_stats")||
+      localStorage.getItem("aircon_v30_stats");
+    if(oldStats)localStorage.setItem(K.stats,oldStats);
+  }
+}
+
 const DATA=window.APP_DATA;
 const QUESTIONS=DATA.questions;
 const PRICE_QUESTIONS=DATA.priceQuestions;
 const CASES=DATA.cases;
-const K={name:"aircon_v31_name",stats:"aircon_v31_stats"};
+const K={name:"aircon_user_name",stats:"aircon_learning_stats",history:"aircon_learning_history"};
 
 let quizPool=[],quizIndex=0,currentQuiz=null,quizCorrect=0;
 let activeCase=null,salesStep=0,salesScore=0;
@@ -27,6 +46,72 @@ function shuffled(items){
 }
 function getStats(){try{return JSON.parse(localStorage.getItem(K.stats)||'{"answered":0,"correct":0,"sales":0}')}catch{return{answered:0,correct:0,sales:0}}}
 function saveStats(s){localStorage.setItem(K.stats,JSON.stringify(s))}
+function migrateHistory(){
+  const target=localStorage.getItem(K.history);
+  if(target)return;
+
+  const legacyKeys=[
+    "aircon_v31_history",
+    "aircon_v32_history",
+    "aircon_v30_history",
+    "aircon_v23_history",
+    "aircon_history"
+  ];
+
+  const merged=[];
+  legacyKeys.forEach(key=>{
+    try{
+      const items=JSON.parse(localStorage.getItem(key)||"[]");
+      if(Array.isArray(items))merged.push(...items);
+    }catch{}
+  });
+
+  if(merged.length){
+    const unique=[];
+    const seen=new Set();
+    merged.forEach(item=>{
+      const normalized={
+        type:item.type||"学習",
+        title:item.title||item.text||"学習記録",
+        result:item.result||"",
+        date:item.date||new Date().toLocaleString("ja-JP")
+      };
+      const key=[normalized.type,normalized.title,normalized.result,normalized.date].join("|");
+      if(!seen.has(key)){
+        seen.add(key);
+        unique.push(normalized);
+      }
+    });
+    localStorage.setItem(K.history,JSON.stringify(unique.slice(0,300)));
+  }
+}
+
+function getHistory(){
+  migrateHistory();
+  try{
+    const h=JSON.parse(localStorage.getItem(K.history)||"[]");
+    return Array.isArray(h)?h:[];
+  }catch{
+    return [];
+  }
+}
+
+function addHistory(type,title,result){
+  const h=getHistory();
+  h.unshift({
+    type,
+    title,
+    result,
+    date:new Date().toLocaleString("ja-JP")
+  });
+  localStorage.setItem(K.history,JSON.stringify(h.slice(0,300)));
+
+  const historyPage=document.getElementById("historyPage");
+  if(historyPage && !historyPage.classList.contains("hidden")){
+    showHistory();
+  }
+}
+
 function getName(){return(localStorage.getItem(K.name)||"").trim()}
 function todayKey(){return"aircon_v31_today_"+new Date().toISOString().slice(0,10)}
 function todaySales(){return Number(localStorage.getItem(todayKey())||0)}
@@ -106,7 +191,7 @@ function answerQuiz(originalIndex,button){
     const correct=[...document.querySelectorAll("#quizChoices button")].find(b=>Number(b.dataset.originalIndex)===answerIndex);
     if(correct)correct.classList.add("correct");
   }
-  const s=getStats();s.answered++;if(ok)s.correct++;saveStats(s);
+  const s=getStats();s.answered++;if(ok)s.correct++;saveStats(s);addHistory(document.getElementById("quizTitle").textContent,currentQuiz.q,ok?"正解":"不正解");
   const ex=document.getElementById("quizExplain");
   ex.textContent=currentQuiz.ex||"正解を確認しましょう。";
   ex.classList.remove("hidden");
@@ -162,14 +247,54 @@ function answerSales(originalIndex,button){
 }
 function finishSales(){
   document.getElementById("answerPane").innerHTML=`<div class="report"><h2>販売レポート</h2><div class="grade">${salesScore===activeCase.steps.length?"A":salesScore>=3?"B+":"B"}</div><p>正解 ${salesScore} / ${activeCase.steps.length}</p><button class="primary" onclick="startRandomSales()">別のお客様</button><button class="primary" onclick="showCases()">カルテから選ぶ</button><button class="primary" onclick="showPage('home')">ホームへ</button></div>`;
-  const s=getStats();s.sales++;saveStats(s);addTodaySales();updateHome();
+  const s=getStats();s.sales++;saveStats(s);addTodaySales();addHistory("販買モード",activeCase.title,`正解 ${salesScore}/${activeCase.steps.length}`);updateHome();
 }
-
-
 function showStats(){
   showPage("statsPage");const s=getStats(),rate=s.answered?Math.round(s.correct/s.answered*100):0;
   document.getElementById("statsGrid").innerHTML=`<div class="stat"><span>回答数</span><strong>${s.answered}</strong></div><div class="stat"><span>正答率</span><strong>${rate}%</strong></div><div class="stat"><span>販買モード</span><strong>${s.sales}件</strong></div>`;
 }
-function showHistory(){showPage("historyPage");document.getElementById("historyContent").textContent="学習履歴は成績画面に反映されます。"}
+function showHistory(){
+  showPage("historyPage");
+  const box=document.getElementById("historyContent");
+  const history=getHistory();
 
-window.addEventListener("DOMContentLoaded",()=>{updateHome();if(!getName())document.getElementById("nameModal").classList.remove("hidden")});
+  box.innerHTML="";
+
+  if(!history.length){
+    box.innerHTML='<div class="empty-history"><div>▣</div><h3>学習記録はまだありません</h3><p>練習問題・工事料金・販買モードを行うと、ここに記録されます。</p></div>';
+    return;
+  }
+
+  const summary=document.createElement("div");
+  summary.className="history-summary";
+
+  const correct=history.filter(x=>x.result==="正解").length;
+  const sales=history.filter(x=>x.type==="販買モード").length;
+
+  summary.innerHTML=`
+    <div><span>総記録</span><strong>${history.length}</strong></div>
+    <div><span>問題正解</span><strong>${correct}</strong></div>
+    <div><span>販買モード</span><strong>${sales}</strong></div>`;
+
+  const list=document.createElement("div");
+  list.className="history-list";
+
+  history.forEach(item=>{
+    const row=document.createElement("article");
+    row.className="history-row";
+    row.innerHTML=`
+      <div>
+        <span>${item.type}</span>
+        <h3>${item.title}</h3>
+        <p>${item.date}</p>
+      </div>
+      <b class="${item.result==="正解"?"ok":""}">${item.result}</b>`;
+    list.appendChild(row);
+  });
+
+  box.appendChild(summary);
+  box.appendChild(list);
+}
+function showSimple(title,text){showPage("simplePage");document.getElementById("simpleTitle").textContent=title;document.getElementById("simpleContent").textContent=text}
+
+window.addEventListener("DOMContentLoaded",()=>{migrateProfileAndStats();migrateHistory();updateHome();if(!getName())document.getElementById("nameModal").classList.remove("hidden")});
