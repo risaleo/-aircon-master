@@ -1,7 +1,7 @@
 {
-  "name": "エアコン販買マスター Ver.22.5 Fixed UI",
+  "name": "エアコン販買マスター Ver.22.7",
   "short_name": "販買マスター",
-  "start_url": "./index.html?v=225",
+  "start_url": "./index.html?v=227",
   "display": "standalone",
   "background_color": "#eef7ff",
   "theme_color": "#0b79e5",

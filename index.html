@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=225">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=225">
-<title>エアコン販買マスター Ver.22.5 Fixed UI</title>
+<link rel="manifest" href="manifest.json?v=227">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=227">
+<title>エアコン販買マスター Ver.22.7 Name Profile</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22.5 Fixed UI メニュー修正 */
+/* Ver.22.7 Name Profile メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22.5 Fixed UI 採用デザイン */
+/* Ver.22.7 Name Profile 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22.5 Fixed UI 固定デザイン
+   Ver.22.7 Name Profile 固定デザイン
 ========================================= */
 body{
   background:
@@ -884,7 +884,7 @@ body{
 }
 
 
-/* Ver.22.5 Fixed UI — このデザインを固定 */
+/* Ver.22.7 Name Profile — このデザインを固定 */
 body{
   background:#f5f8fb!important;
   color:#102f57!important;
@@ -1118,8 +1118,362 @@ body{
   }
 }
 
+
+/* Ver.22.6 iPad専用レスポンシブ */
+@media (min-width: 768px) and (max-width: 1366px){
+  body{
+    background:#edf4f9!important;
+  }
+
+  .app{
+    max-width:none!important;
+    width:100%!important;
+    padding:20px!important;
+    box-sizing:border-box!important;
+  }
+
+  /* ホームはiPad幅をしっかり使う */
+  .fixed-home{
+    max-width:1120px!important;
+    width:100%!important;
+    margin:0 auto!important;
+    border-radius:28px!important;
+  }
+
+  .fixed-topbar{
+    height:88px!important;
+    padding:0 34px!important;
+  }
+
+  .fixed-brand{
+    font-size:30px!important;
+  }
+
+  .fixed-learning-card{
+    margin:22px 30px!important;
+    min-height:310px!important;
+    grid-template-columns:1.05fr .95fr!important;
+    padding:34px!important;
+  }
+
+  .fixed-aircon-visual{
+    min-height:250px!important;
+  }
+
+  .fixed-aircon-visual img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+  }
+
+  .fixed-sales-banner{
+    width:calc(100% - 60px)!important;
+    margin:0 30px 18px!important;
+    min-height:155px!important;
+    padding:28px 32px!important;
+  }
+
+  .fixed-sales-copy h2{
+    font-size:34px!important;
+  }
+
+  .fixed-menu-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:16px!important;
+    padding:0 30px!important;
+  }
+
+  .fixed-menu-grid button{
+    min-height:220px!important;
+    padding:22px 18px!important;
+  }
+
+  .fixed-menu-grid b{
+    font-size:20px!important;
+  }
+
+  .fixed-menu-grid p{
+    font-size:12px!important;
+  }
+
+  .fixed-mission{
+    margin:18px 30px 0!important;
+  }
+
+  .fixed-bottom-nav{
+    height:88px!important;
+  }
+
+  /* カルテは左右2カラム */
+  .fixed-customer-page,
+  .fixed-simulation-page,
+  .fixed-talk-page{
+    max-width:1120px!important;
+    width:100%!important;
+    margin:0 auto!important;
+    border-radius:28px!important;
+  }
+
+  .fixed-profile-card{
+    margin:24px 30px!important;
+    padding:24px!important;
+    grid-template-columns:0.9fr 1.1fr!important;
+    gap:26px!important;
+  }
+
+  .fixed-profile-left img{
+    aspect-ratio:4 / 3!important;
+    max-height:430px!important;
+  }
+
+  .fixed-profile-right h3{
+    font-size:24px!important;
+  }
+
+  .fixed-profile-right li{
+    font-size:16px!important;
+    padding:13px 15px!important;
+  }
+
+  .fixed-start-customer{
+    width:calc(100% - 60px)!important;
+    margin:0 30px 22px!important;
+    min-height:58px!important;
+    font-size:18px!important;
+  }
+
+  .customer-library-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+
+  /* 接客シミュレーションはiPadで横2カラム */
+  .fixed-stepper{
+    padding:18px 40px!important;
+  }
+
+  .fixed-conversation{
+    display:grid!important;
+    grid-template-columns:0.85fr 1.15fr!important;
+    gap:22px!important;
+    align-items:start!important;
+    padding:28px 32px!important;
+  }
+
+  .fixed-customer-message{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+    align-items:start!important;
+    position:sticky!important;
+    top:20px!important;
+  }
+
+  .fixed-customer-message img{
+    width:180px!important;
+    height:210px!important;
+    margin:0 auto!important;
+    border-radius:24px!important;
+  }
+
+  .fixed-customer-message>div{
+    min-height:210px!important;
+    padding:24px!important;
+  }
+
+  .fixed-customer-message p{
+    font-size:20px!important;
+    line-height:1.75!important;
+  }
+
+  .fixed-you-box{
+    margin-top:0!important;
+    min-height:520px!important;
+    padding:28px!important;
+  }
+
+  .fixed-you-box h3{
+    font-size:24px!important;
+  }
+
+  .fixed-sales-options{
+    grid-template-columns:1fr 1fr!important;
+    gap:14px!important;
+  }
+
+  .fixed-sales-options .choice{
+    min-height:84px!important;
+    font-size:17px!important;
+    padding:16px!important;
+  }
+
+  .fixed-answer-guide{
+    margin:0 32px 28px!important;
+    min-height:50px!important;
+    font-size:16px!important;
+  }
+
+  .fixed-talk-grid{
+    grid-template-columns:1fr 1fr!important;
+    padding:28px!important;
+  }
+}
+
+/* iPad横向き */
+@media (min-width: 1024px) and (orientation: landscape){
+  .fixed-home,
+  .fixed-customer-page,
+  .fixed-simulation-page,
+  .fixed-talk-page{
+    max-width:1220px!important;
+  }
+
+  .fixed-learning-card{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .fixed-menu-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+
+  .fixed-conversation{
+    grid-template-columns:0.72fr 1.28fr!important;
+  }
+
+  .fixed-sales-options{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+
+/* iPhoneは従来のスマホレイアウトを維持 */
+@media (max-width: 767px){
+  .fixed-home,
+  .fixed-customer-page,
+  .fixed-simulation-page,
+  .fixed-talk-page{
+    width:100%!important;
+  }
+}
+
+
+/* Ver.22.7 利用者名登録 */
+.fixed-brand{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  flex-wrap:wrap!important;
+}
+.fixed-brand small{
+  display:inline-block;
+  margin-left:8px;
+  padding:4px 9px;
+  border-radius:999px;
+  background:#eaf4ff;
+  color:#176fd0;
+  font-size:12px;
+  font-weight:900;
+}
+
+.name-setting-card{
+  margin:18px 24px;
+  padding:18px;
+  border-radius:18px;
+  background:#f7fbff;
+  border:1px solid #dbe9f3;
+}
+.name-setting-card label{
+  display:block;
+  margin-bottom:10px;
+  color:#163f66;
+  font-weight:900;
+}
+.name-setting-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+}
+.name-setting-row input,
+.name-modal-card input{
+  width:100%;
+  min-height:48px;
+  padding:0 14px;
+  border:1px solid #cfdde8;
+  border-radius:12px;
+  font-size:16px;
+  box-sizing:border-box;
+  background:#fff;
+}
+.name-setting-row button{
+  min-width:90px;
+  background:#116fe8!important;
+  color:#fff!important;
+}
+.name-setting-card small{
+  display:block;
+  margin-top:9px;
+  color:#708497;
+}
+
+.name-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(16,42,70,.38);
+  backdrop-filter:blur(8px);
+}
+.name-modal.hidden{
+  display:none!important;
+}
+.name-modal-card{
+  width:min(420px,100%);
+  padding:28px;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 22px 60px rgba(20,56,90,.25);
+  text-align:center;
+}
+.name-modal-icon{
+  width:72px;
+  height:72px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#eaf4ff;
+  font-size:34px;
+}
+.name-modal-card h2{
+  margin:0 0 8px;
+  color:#123d67;
+}
+.name-modal-card p{
+  margin:0 0 18px;
+  color:#61798d;
+  line-height:1.6;
+}
+.name-modal-card button{
+  width:100%;
+  margin-top:12px;
+  background:#116fe8!important;
+  color:#fff!important;
+}
+.name-modal-card .name-skip{
+  background:#eef3f7!important;
+  color:#61758a!important;
+}
+@media(max-width:760px){
+  .fixed-brand small{
+    width:auto;
+    margin-left:0;
+  }
+  .name-setting-row{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=225">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=227">
 </head>
 <body><main class="app">
 
@@ -1131,7 +1485,7 @@ body{
 <section id="home" class="fixed-home">
   <header class="fixed-topbar">
     <button class="fixed-menu-btn" aria-label="メニュー">☰</button>
-    <div class="fixed-brand"><span>❄</span> エアコン販買マスター</div>
+    <div class="fixed-brand"><span>❄</span> エアコン販買マスター<small id="homeUserName"></small></div>
     <button class="fixed-bell" aria-label="通知">♧<i></i></button>
   </header>
 
@@ -1387,6 +1741,15 @@ body{
     <button class="back" onclick="showPage('home')">←</button>
     <h2>設定</h2>
   </div>
+<div class="name-setting-card">
+  <label for="userNameInput">使う人の名前</label>
+  <div class="name-setting-row">
+    <input id="userNameInput" type="text" maxlength="20" placeholder="例：リサ">
+    <button type="button" onclick="saveUserName()">保存</button>
+  </div>
+  <small>この端末だけに保存されます。</small>
+</div>
+
 
   <div class="settings-list">
     <button onclick="applyAppUpdate()">最新版を確認して更新</button>
@@ -1398,7 +1761,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22.5 Fixed UI</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.7 Name Profile</p>
 </section>
 
 
@@ -1528,7 +1891,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=225', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=227', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1868,7 +2231,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.5';
+const APP_VERSION='22.7';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1879,7 +2242,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22.5 Fixed UI を適用できます。');
+        showUpdateBanner('最新版 Ver.22.7 Name Profile を適用できます。');
         return;
       }
     }
@@ -2070,4 +2433,77 @@ startSalesMode=function(){
   if(page)page.dataset.caseId=salesCase.id;
 };
 
-</script></body></html>
+
+const USER_NAME_KEY='aircon_user_name_v1';
+
+function getUserName(){
+  return (localStorage.getItem(USER_NAME_KEY)||'').trim();
+}
+
+function renderUserName(){
+  const name=getUserName();
+  const home=document.getElementById('homeUserName');
+  if(home){
+    home.textContent=name ? name+'さん' : '';
+    home.style.display=name ? 'inline-block' : 'none';
+  }
+
+  const settingsInput=document.getElementById('userNameInput');
+  if(settingsInput && document.activeElement!==settingsInput){
+    settingsInput.value=name;
+  }
+}
+
+function saveUserName(){
+  const input=document.getElementById('userNameInput');
+  const name=(input?.value||'').trim();
+  if(!name){
+    alert('名前を入力してください。');
+    return;
+  }
+  localStorage.setItem(USER_NAME_KEY,name);
+  renderUserName();
+  alert(name+'さんで登録しました。');
+}
+
+function saveFirstUserName(){
+  const input=document.getElementById('firstUserNameInput');
+  const name=(input?.value||'').trim();
+  if(!name){
+    alert('名前を入力してください。');
+    return;
+  }
+  localStorage.setItem(USER_NAME_KEY,name);
+  document.getElementById('nameRegisterModal')?.classList.add('hidden');
+  renderUserName();
+}
+
+function skipNameRegistration(){
+  localStorage.setItem('aircon_name_modal_skipped','1');
+  document.getElementById('nameRegisterModal')?.classList.add('hidden');
+}
+
+function maybeShowNameRegistration(){
+  renderUserName();
+  const name=getUserName();
+  const skipped=localStorage.getItem('aircon_name_modal_skipped')==='1';
+  if(!name && !skipped){
+    document.getElementById('nameRegisterModal')?.classList.remove('hidden');
+  }
+}
+
+window.addEventListener('load',maybeShowNameRegistration);
+
+</script>
+<div id="nameRegisterModal" class="name-modal hidden" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
+  <div class="name-modal-card">
+    <div class="name-modal-icon">👤</div>
+    <h2 id="nameModalTitle">お名前を登録</h2>
+    <p>このアプリを使う方のお名前を入力してください。</p>
+    <input id="firstUserNameInput" type="text" maxlength="20" placeholder="例：リサ">
+    <button type="button" onclick="saveFirstUserName()">登録して始める</button>
+    <button type="button" class="name-skip" onclick="skipNameRegistration()">あとで登録する</button>
+  </div>
+</div>
+
+</body></html>
