@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=216">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=216">
-<title>エアコン販買マスター Ver.21.6</title>
+<link rel="manifest" href="manifest.json?v=217">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=217">
+<title>エアコン販買マスター Ver.21.7</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.21.6 メニュー修正 */
+/* Ver.21.7 メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.21.6 採用デザイン */
+/* Ver.21.7 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -683,114 +683,233 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 .question{white-space:pre-line}
 .question::first-line{font-weight:950}
 
+
+/* Ver.21.7 業務研修アプリ風 */
+body{
+  background:linear-gradient(180deg,#f3f8fc 0%,#edf4f8 100%);
+  color:#20384b;
+}
+.business-home{display:block;max-width:1180px;margin:0 auto}
+.business-header{
+  position:relative;padding:32px 34px;border-radius:26px;
+  background:#fff;border:1px solid #dbe7ef;
+  box-shadow:0 12px 32px rgba(42,81,109,.08)
+}
+.business-kicker{font-size:11px;font-weight:900;letter-spacing:.16em;color:#4b86b4}
+.business-header h1{margin:7px 0 0;font-size:clamp(32px,5vw,50px);color:#173c59}
+.business-header .risa-script{margin-top:6px;color:#4d83aa;font-size:30px;transform:none}
+.business-header p{margin:13px 0 0;color:#60798c;font-weight:700}
+.header-settings{
+  position:absolute;right:22px;top:22px;width:46px;height:46px;padding:0;border-radius:14px;
+  background:#f5f8fa;box-shadow:none;border:1px solid #d8e4ec
+}
+
+.learning-summary{
+  margin-top:16px;padding:22px;border-radius:24px;background:#fff;border:1px solid #dbe7ef;
+  box-shadow:0 10px 26px rgba(42,81,109,.07);
+  display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center
+}
+.summary-main span{display:block;font-size:13px;font-weight:850;color:#5d788d}
+.summary-main strong{display:block;margin:4px 0 8px;font-size:34px;color:#1e6fa8}
+.summary-main small{color:#7a909f}
+.business-progress{height:10px;background:#e5edf3;border-radius:999px;overflow:hidden;margin-bottom:8px}
+.business-progress span{display:block;height:100%;background:linear-gradient(90deg,#3e9bd4,#1976b4)}
+.summary-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.summary-metrics div{padding:14px;border-left:1px solid #dbe7ef;text-align:center}
+.summary-metrics span{display:block;font-size:12px;color:#6e8697}.summary-metrics strong{display:block;margin-top:5px;font-size:24px;color:#234d6a}
+
+.business-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.business-card{
+  min-height:125px;padding:21px;border-radius:22px;background:#fff;border:1px solid #dce7ef;
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;text-align:left;
+  box-shadow:0 9px 22px rgba(42,81,109,.06);color:#223d52
+}
+.business-card.primary-card{
+  grid-column:1/-1;min-height:155px;background:linear-gradient(135deg,#eef8fd,#e2f1f8);
+  border-color:#cfe1ec
+}
+.business-icon{
+  width:62px;height:62px;border-radius:18px;display:grid;place-items:center;
+  background:#edf4f8;font-size:30px
+}
+.primary-card .business-icon{width:76px;height:76px;font-size:38px;background:#fff}
+.card-label{font-size:10px;font-weight:900;letter-spacing:.14em;color:#4e89b4}
+.business-card h2,.business-card h3{margin:3px 0 5px;color:#173c59}
+.business-card h2{font-size:28px}.business-card h3{font-size:20px}
+.business-card p{margin:0;color:#647c8e;line-height:1.55}
+.card-arrow{font-size:38px;color:#7ea2ba}
+
+.level-menu-business{
+  margin-top:14px;padding:15px;border-radius:20px;background:#fff;border:1px solid #dbe7ef;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px
+}
+.level-menu-business .level-menu-title{grid-column:1/-1;font-weight:900;color:#315f7d}
+.level-menu-business button{min-height:52px}
+
+.today-training{
+  margin-top:16px;padding:23px;border-radius:24px;background:#fff;border:1px solid #dbe7ef;
+  box-shadow:0 10px 24px rgba(42,81,109,.06)
+}
+.today-head{display:flex;justify-content:space-between;gap:16px;align-items:center}
+.today-head span{font-size:12px;font-weight:850;color:#668093}.today-head h2{margin:5px 0 0;color:#173c59}
+.today-head button{min-width:130px;background:#1978b5;color:#fff}
+.checklist-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:17px}
+.checklist-preview span{padding:11px 12px;border-radius:12px;background:#f4f8fa;color:#4e687a;font-weight:700;font-size:13px}
+
+.business-note{
+  margin-top:16px;padding:18px 21px;border-radius:20px;background:#f7fafc;border:1px solid #dbe7ef
+}
+.business-note strong{color:#235c82}.business-note p{margin:7px 0 0;color:#60798b;line-height:1.65}
+
+.achievement-item.unlocked{
+  background:#eef6fb!important;border:1px solid #cfe1ec!important
+}
+
+@media(min-width:900px){
+  #sales .sales-layout-ipad{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}
+  #sales .sales-case{position:sticky;top:18px}
+  #quiz .choices{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .business-header{padding:26px 20px}.business-header h1{font-size:34px}
+  .learning-summary{grid-template-columns:1fr;padding:18px}
+  .summary-metrics{grid-template-columns:repeat(3,1fr)}
+  .summary-metrics div{padding:10px 6px}
+  .business-grid{grid-template-columns:1fr}
+  .business-card.primary-card{grid-column:auto}
+  .level-menu-business{grid-template-columns:1fr 1fr}
+  .today-head{align-items:flex-start;flex-direction:column}
+  .today-head button{width:100%}
+  .checklist-preview{grid-template-columns:1fr 1fr}
+}
+@media(max-width:430px){
+  .summary-metrics{grid-template-columns:1fr 1fr}
+  .summary-metrics div:last-child{grid-column:1/-1}
+  .checklist-preview{grid-template-columns:1fr}
+}
+
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=216">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=217">
 </head>
 <body><main class="app">
 
 
 
 
-<section id="home" class="home-shell adopted-home">
-  <header class="adopted-header">
-    <div class="header-logo">
-      <div class="mini-app-icon">❄</div>
-      <div>
-        <h1>エアコン<br>販買マスター</h1>
-        <div class="risa-script">RISA EDITION</div>
-      </div>
+
+<section id="home" class="home-shell business-home">
+  <header class="business-header">
+    <div>
+      <div class="business-kicker">AIR CONDITIONER SALES TRAINING</div>
+      <h1>エアコン販買マスター</h1>
+      <div class="risa-script">RISA EDITION</div>
+      <p>販売・工事受付・提案力を、実践形式で確認する研修アプリ</p>
     </div>
-    <div class="header-room">
-      <div class="wall-ac">▭</div>
-      <button class="round-top-btn" onclick="showAchievements()" aria-label="実績">🔔</button>
-      <button class="round-top-btn" onclick="openSettings()" aria-label="設定">⚙️</button>
-    </div>
+    <button class="header-settings" onclick="openSettings()" aria-label="設定">⚙️</button>
   </header>
 
-  <div class="status-panel">
-    <div class="level-circle">
-      <span>Lv.</span>
-      <strong id="homeLevel">1</strong>
-      <small id="homeRank">新人スタッフ</small>
+  <section class="learning-summary">
+    <div class="summary-main">
+      <span>本日の学習状況</span>
+      <strong id="todayProgressText">0%</strong>
+      <div class="business-progress"><span id="todayProgressBar" style="width:0%"></span></div>
+      <small>今日のチャレンジ・販買モード・練習問題の達成状況</small>
     </div>
-    <div class="exp-area">
-      <div class="exp-row">
-        <b>EXP</b>
-        <span id="homeExpText">0 / 100</span>
+    <div class="summary-metrics">
+      <div><span>総問題数</span><strong id="totalQuestionCount">180</strong></div>
+      <div><span>総合正答率</span><strong id="homeRate">0%</strong></div>
+      <div><span>学習レベル</span><strong id="homeLevelCompact">Lv.1</strong></div>
+    </div>
+  </section>
+
+  <section class="business-grid">
+    <button class="business-card primary-card" onclick="startSalesMode()">
+      <div class="business-icon">🛒</div>
+      <div>
+        <span class="card-label">MAIN TRAINING</span>
+        <h2>販買モード</h2>
+        <p>お客様カルテを確認し、聞き取り・メーカー提案・工事確認まで実践します。</p>
       </div>
-      <div class="level-track"><span id="homeExpBar" style="width:0%"></span></div>
-      <p id="nextRankText">次のレベルまであと100EXP</p>
-    </div>
-    <div class="status-mini">
-      <div><span>📅</span><b>連続記録</b><strong id="streakHome">1日</strong></div>
-      <div><span>🏆</span><b>総合正答率</b><strong id="homeRate">0%</strong></div>
-    </div>
+      <span class="card-arrow">›</span>
+    </button>
+
+    <button class="business-card" onclick="showLevelMenu()">
+      <div class="business-icon">📘</div>
+      <div>
+        <h3>練習問題</h3>
+        <p>初級・中級・上級から選択</p>
+      </div>
+      <span class="card-arrow">›</span>
+    </button>
+
+    <button class="business-card" onclick="startWrongReview()">
+      <div class="business-icon">🔁</div>
+      <div>
+        <h3>苦手問題</h3>
+        <p>間違えた問題を優先して復習</p>
+      </div>
+      <span class="card-arrow">›</span>
+    </button>
+
+    <button class="business-card" onclick="showStats()">
+      <div class="business-icon">📊</div>
+      <div>
+        <h3>成績</h3>
+        <p>カテゴリ別正答率と学習履歴</p>
+      </div>
+      <span class="card-arrow">›</span>
+    </button>
+
+    <button class="business-card" onclick="showAchievements()">
+      <div class="business-icon">📋</div>
+      <div>
+        <h3>学習記録</h3>
+        <p>達成状況と習熟度を確認</p>
+      </div>
+      <span class="card-arrow">›</span>
+    </button>
+
+    <button class="business-card" onclick="openSettings()">
+      <div class="business-icon">⚙️</div>
+      <div>
+        <h3>設定</h3>
+        <p>更新確認・学習記録の管理</p>
+      </div>
+      <span class="card-arrow">›</span>
+    </button>
+  </section>
+
+  <div id="levelMenu" class="level-menu-business hidden">
+    <div class="level-menu-title">練習問題の難易度</div>
+    <button onclick="startQuiz('すべて')">ランダム</button>
+    <button onclick="startQuiz('初級')">初級</button>
+    <button onclick="startQuiz('中級')">中級</button>
+    <button onclick="startQuiz('上級')">上級</button>
   </div>
 
-  <div class="adopted-menu-grid">
-    <button class="adopted-card green" onclick="startSalesMode()">
-      <span class="adopted-icon">🛒</span>
-      <div><b>販買モード</b><small>接客シミュレーションで<br>提案力を鍛える</small></div>
-      <span class="chev">›</span>
-    </button>
-
-    <button class="adopted-card blue" onclick="showLevelMenu()">
-      <span class="adopted-icon">📘</span>
-      <div><b>練習問題</b><small>基礎から応用まで<br>幅広く学ぶ</small></div>
-      <span class="chev">›</span>
-    </button>
-
-    <button class="adopted-card purple" onclick="startSalesMode()">
-      <span class="adopted-icon">👥</span>
-      <div><b>お客様カルテ</b><small>お客様タイプ別の<br>最適提案を学ぶ</small></div>
-      <span class="chev">›</span>
-    </button>
-
-    <button class="adopted-card orange" onclick="showStats()">
-      <span class="adopted-icon">📊</span>
-      <div><b>成績を見る</b><small>正解率や記録を<br>グラフでチェック</small></div>
-      <span class="chev">›</span>
-    </button>
-
-    <button class="adopted-card red" onclick="showAchievements()">
-      <span class="adopted-icon">🏆</span>
-      <div><b>実績</b><small>バッジや称号で<br>成長を確認</small></div>
-      <span class="chev">›</span>
-    </button>
-
-    <button class="adopted-card gray" onclick="openSettings()">
-      <span class="adopted-icon">⚙️</span>
-      <div><b>設定</b><small>アプリ設定や<br>各種情報を確認</small></div>
-      <span class="chev">›</span>
-    </button>
-  </div>
-
-  
-<div id="levelMenu" class="level-menu-v21 hidden">
-    <div class="level-menu-title">難易度を選択</div>
-    <button onclick="startQuiz('すべて')">🎲 ランダム</button>
-    <button onclick="startQuiz('初級')">🟢 初級</button>
-    <button onclick="startQuiz('中級')">🔵 中級</button>
-    <button onclick="startQuiz('上級')">🔴 上級</button>
-  </div>
-
-  <button class="recommend-card" onclick="startDaily()">
-    <div>
-      <span class="recommend-title">💡 今日のおすすめ問題</span>
-      <strong>14畳のLDK・西日が強い・犬2匹</strong>
-      <small>おすすめのエアコンと確認ポイントは？</small>
-      <span class="challenge-pill">今すぐチャレンジ ›</span>
+  <section class="today-training">
+    <div class="today-head">
+      <div>
+        <span>本日の推奨トレーニング</span>
+        <h2>受付漏れを防ぐ確認練習</h2>
+      </div>
+      <button onclick="startDaily()">10問開始</button>
     </div>
-    <div class="recommend-room">🛋️</div>
-  </button>
 
-  <nav class="bottom-nav">
-    <button onclick="showPage('home')"><span>🏠</span><b>ホーム</b></button>
-    <button onclick="showLevelMenu()"><span>📖</span><b>問題</b></button>
-    <button onclick="startSalesMode()"><span>🛒</span><b>販買</b></button>
-    <button onclick="showStats()"><span>📊</span><b>成績</b></button>
-    <button onclick="openSettings()"><span>☰</span><b>メニュー</b></button>
-  </nav>
+    <div class="checklist-preview">
+      <span>□ 新規設置／買い替え</span>
+      <span>□ 畳数・部屋条件</span>
+      <span>□ 専用回路・電圧</span>
+      <span>□ 配管・室外機</span>
+      <span>□ 取り外し・既存配管</span>
+      <span>□ ご予算・重視機能</span>
+    </div>
+  </section>
+
+  <section class="business-note">
+    <strong>今日の販売ワンポイント</strong>
+    <p id="dailyTip">商品説明の前に、お客様の設置条件と優先順位を確認しましょう。</p>
+  </section>
 </section>
 
 <section id="quiz" class="card hidden">
@@ -844,7 +963,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
   <button onclick="showPage('home')">ホームへ戻る</button>
 </section>
 
-<section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>実績</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
+<section id="achievements" class="card hidden"><div class="top"><button class="back" onclick="showPage('home')">←</button><h2>学習記録</h2></div><div id="achievementGrid" class="achievement-grid"></div><button onclick="showPage('home')">ホームへ戻る</button></section>
 
 
 <section id="settingsPage" class="card hidden">
@@ -863,7 +982,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.21.6</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.21.7</p>
 </section>
 
 
@@ -993,7 +1112,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=216', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=217', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1244,7 +1363,7 @@ function finishSales(){
 }
 
 
-const APP_VERSION='21.6';
+const APP_VERSION='21.7';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1255,7 +1374,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.21.6 を適用できます。');
+        showUpdateBanner('最新版 Ver.21.7 を適用できます。');
         return;
       }
     }
@@ -1358,5 +1477,34 @@ window.addEventListener('load',updateAdoptedHome);
 
 
 
+
+
+function updateBusinessHome(){
+  const s=loadStatsData();
+  const rate=s.answered?Math.round(s.correct/s.answered*100):0;
+  const exp=s.correct*20;
+  const level=Math.max(1,Math.floor(exp/100)+1);
+
+  const daily=Number(localStorage.getItem('v21_daily_done')||0);
+  const sales=Number(localStorage.getItem('v21_sales_done')||0);
+  const practice=Number(localStorage.getItem('v21_practice_done')||0);
+  const completed=[daily>=10,sales>=1,practice>=5].filter(Boolean).length;
+  const progress=Math.round(completed/3*100);
+
+  const values={
+    totalQuestionCount:QUESTIONS.length,
+    homeRate:rate+'%',
+    homeLevelCompact:'Lv.'+level,
+    todayProgressText:progress+'%'
+  };
+  Object.entries(values).forEach(([id,value])=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=value;
+  });
+
+  const bar=document.getElementById('todayProgressBar');
+  if(bar)bar.style.width=progress+'%';
+}
+window.addEventListener('load',updateBusinessHome);
 
 </script></body></html>
