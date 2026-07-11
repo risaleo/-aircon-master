@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0068b7">
-<link rel="manifest" href="manifest.json?v=224">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=224">
-<title>エアコン販買マスター Ver.22.4 Fixed UI</title>
+<link rel="manifest" href="manifest.json?v=225">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=225">
+<title>エアコン販買マスター Ver.22.5 Fixed UI</title>
 <style>
 :root{
   --navy:#0d2d54;
@@ -411,7 +411,7 @@ body{
 }
 
 
-/* Ver.22.4 Fixed UI メニュー修正 */
+/* Ver.22.5 Fixed UI メニュー修正 */
 .home-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -545,7 +545,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 @media(max-width:640px){.app{padding:10px!important}.v21-header{padding:27px 20px}.v21-header h1{font-size:31px}.daily-card{grid-template-columns:auto 1fr}.daily-progress{grid-column:2;text-align:left}.sales-hero-card{grid-template-columns:auto 1fr;padding:21px}.go-arrow{display:none}.menu-grid-v21{gap:10px}.menu-card-v21{min-height:93px;padding:14px;align-items:flex-start}.menu-icon{font-size:25px}.level-menu-v21{grid-template-columns:1fr 1fr}}
 
 
-/* Ver.22.4 Fixed UI 採用デザイン */
+/* Ver.22.5 Fixed UI 採用デザイン */
 .adopted-home{display:block}
 .adopted-header{
   min-height:250px;
@@ -685,7 +685,7 @@ body{background:radial-gradient(circle at 8% 0%,rgba(80,194,255,.22),transparent
 
 
 /* =========================================
-   Ver.22.4 Fixed UI 固定デザイン
+   Ver.22.5 Fixed UI 固定デザイン
 ========================================= */
 body{
   background:
@@ -884,7 +884,7 @@ body{
 }
 
 
-/* Ver.22.4 Fixed UI — このデザインを固定 */
+/* Ver.22.5 Fixed UI — このデザインを固定 */
 body{
   background:#f5f8fb!important;
   color:#102f57!important;
@@ -1119,7 +1119,7 @@ body{
 }
 
 </style>
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=224">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png?v=225">
 </head>
 <body><main class="app">
 
@@ -1398,7 +1398,7 @@ body{
     レベル・正答率・履歴は、使用している端末ごとに保存されます。
   </div>
 
-  <p class="small">エアコン販買マスター RISA EDITION Ver.22.4 Fixed UI</p>
+  <p class="small">エアコン販買マスター RISA EDITION Ver.22.5 Fixed UI</p>
 </section>
 
 
@@ -1528,7 +1528,7 @@ function showStats(){
 }
 function resetHistory(){if(confirm('出題履歴と学習記録をリセットしますか？')){localStorage.removeItem(HISTORY_KEY);localStorage.removeItem(STATS_KEY);localStorage.removeItem(WRONG_KEY);localStorage.removeItem(CAT_KEY);updateHome();showPage('home')}}
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js?v=224', {updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=225', {updateViaCache:'none'})
     .then(reg => reg.update())
     .catch(() => {});
 }
@@ -1689,7 +1689,7 @@ showPage=function(id){
   if(id==='home') updateHome();
 }
 
-const SALES_CASES=[{"id":"S001","title":"15年使ったリビングエアコン","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧‍👦","customer":"40代ご夫婦・お子様2人","home":"木造2階","room":"LDK18畳","extra":"犬2匹・西日あり","budget":"25万円前後","first":"「最近冷えにくくて、電気代も気になります。」","checklist":["困りごと","使用部屋","電源","既存配管","室外機","予算","重視機能"],"steps":[{"label":"STEP 1　困りごと","q":"最初に確認する内容は？","choices":["現在の症状・使用年数・使い方","希望メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用環境","q":"次に確認したい内容は？","choices":["畳数・日当たり・使用時間・ペット","カタログの色","人気順位","在庫数だけ"],"a":0,"check":"使用部屋"},{"label":"STEP 3　工事確認","q":"買い替えで必要な確認は？","choices":["電源・既存配管・室外機位置・取り外し","本体色だけ","保証だけ","メーカーだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"提案のまとめ方として適切なのは？","choices":["省エネ・長時間使用・工事条件を理由に比較する","一番高い機種を勧める","人気だけで決める","値引きだけで決める"],"a":0,"check":"重視機能"}]},{"id":"S002","title":"初めての子ども部屋","type":"新規設置","difficulty":"初級","avatar":"👩‍👧","customer":"30代のお母様・小学生のお子様","home":"木造2階","room":"子ども部屋6畳","extra":"配管穴なし","budget":"12万円前後","first":"「子ども部屋に初めて付けたいです。」","checklist":["新規設置","使用部屋","専用回路","穴あけ","室外機","予算","操作性"],"steps":[{"label":"STEP 1　設置条件","q":"新規設置で最初に確認することは？","choices":["部屋・建物・専用回路・配管穴","メーカー名だけ","色だけ","保証だけ"],"a":0,"check":"新規設置"},{"label":"STEP 2　電気","q":"専用回路が不明な時の案内は？","choices":["分電盤・コンセントを現地確認する","必ずあると伝える","延長コードを使う","確認不要と伝える"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"穴あけ時に確認する内容は？","choices":["建物情報・穴位置・室外機置場","壁紙の色だけ","家具だけ","リモコンだけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"子ども部屋で重視したい内容は？","choices":["操作性・静音・適切な能力","最大価格","メーカー人気だけ","デザインだけ"],"a":0,"check":"操作性"}]},{"id":"S003","title":"寝室を静かにしたいご夫婦","type":"買い替え","difficulty":"初級","avatar":"👴👵","customer":"70代ご夫婦","home":"木造平屋","room":"寝室8畳","extra":"直風が苦手","budget":"15万円前後","first":"「寝る時に音と風が気になるんです。」","checklist":["困りごと","使用時間","操作性","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　ご要望","q":"最初の比較軸は？","choices":["静音・気流・操作性","最大能力だけ","色だけ","人気だけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用状況","q":"寝室で確認したい内容は？","choices":["就寝時間・風の当たり方・設定温度","テレビの大きさ","冷蔵庫容量","照明色"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機位置","本体色だけ","カタログだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["実機のリモコンと気流機能を比較する","高いほど静かと断言する","全社同じと伝える","価格だけで決める"],"a":0,"check":"操作性"}]},{"id":"S004","title":"ペットのための24時間冷房","type":"買い替え","difficulty":"標準","avatar":"👩🐶","customer":"一人暮らし・犬1匹","home":"マンション","room":"LDK14畳","extra":"昼間は犬が留守番","budget":"20万円前後","first":"「犬のために夏はほぼ付けっぱなしです。」","checklist":["ペット","使用時間","省エネ","電源","室外機","既存配管","予算"],"steps":[{"label":"STEP 1　生活条件","q":"最初に聞く内容は？","choices":["使用時間・留守時間・設定温度","メーカー名だけ","本体色","値引き"],"a":0,"check":"使用時間"},{"label":"STEP 2　提案軸","q":"重要な比較軸は？","choices":["省エネ・安定運転・温度管理","最大風量だけ","デザインだけ","価格だけ"],"a":0,"check":"省エネ"},{"label":"STEP 3　工事","q":"マンションで確認することは？","choices":["室外機置場・配管経路・管理規約","戸建て用屋根置き","庭の広さ","屋根材"],"a":0,"check":"室外機"},{"label":"STEP 4　説明","q":"適切な伝え方は？","choices":["長時間使用を前提に電気代と快適性を比較する","人気機種だけ勧める","一番安い機種にする","機能説明をしない"],"a":0,"check":"ペット"}]},{"id":"S005","title":"新築20畳LDKの機種選び","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👶","customer":"30代ご夫婦・赤ちゃん","home":"新築木造2階","room":"LDK20畳","extra":"吹き抜け・西日あり","budget":"35万円前後","first":"「新築なので、長く安心して使えるものがいいです。」","checklist":["新築","畳数","吹き抜け","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　部屋条件","q":"能力選定で重要な内容は？","choices":["畳数・吹き抜け・日当たり・断熱","畳数だけ","メーカーだけ","本体色だけ"],"a":0,"check":"畳数"},{"label":"STEP 2　電気","q":"新規設置で確認する内容は？","choices":["専用回路・電圧・コンセント","テレビ端子","Wi-Fi","照明"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"新築で確認する内容は？","choices":["穴あけ・配管経路・室外機・化粧カバー","価格だけ","リモコンだけ","保証だけ"],"a":0,"check":"配管穴"},{"label":"STEP 4　提案","q":"提案理由として適切なのは？","choices":["部屋負荷と長期使用を基準に比較する","人気だけで決める","高額機なら何でも良い","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S006","title":"マンションの隠ぺい配管","type":"買い替え","difficulty":"応用","avatar":"👨‍👩","customer":"50代ご夫婦","home":"マンション","room":"LDK16畳","extra":"既存隠ぺい配管","budget":"28万円前後","first":"「配管は壁の中に入っているみたいです。」","checklist":["買い替え","隠ぺい配管","配管径","電源","ドレン","室外機","現地確認"],"steps":[{"label":"STEP 1　配管","q":"最初に必要な案内は？","choices":["隠ぺい配管の状態と適合を現地確認する","必ず再利用可能と伝える","新品配管は不可と伝える","確認不要と伝える"],"a":0,"check":"隠ぺい配管"},{"label":"STEP 2　確認項目","q":"隠ぺい配管で確認する内容は？","choices":["配管径・長さ・状態・ドレン方式","壁紙色","家具配置だけ","リモコン"],"a":0,"check":"配管径"},{"label":"STEP 3　電気","q":"電源で確認する内容は？","choices":["電圧・専用回路・コンセント","照明回路","テレビ回路","Wi-Fi"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["施工可否と追加工事は現地確認後に確定する","店頭で総額確約する","必ず標準工事と伝える","配管確認を省略する"],"a":0,"check":"現地確認"}]},{"id":"S007","title":"高齢ご夫婦の暖房相談","type":"買い替え","difficulty":"標準","avatar":"👵👴","customer":"70代ご夫婦","home":"木造平屋","room":"和室10畳","extra":"冬の暖房を重視","budget":"22万円前後","first":"「冬が寒くて、暖房をしっかり使いたいです。」","checklist":["暖房","部屋条件","使用時間","電源","既存配管","室外機","操作性"],"steps":[{"label":"STEP 1　暖房条件","q":"最初に確認したい内容は？","choices":["地域・部屋条件・使用時間・希望温度","冷房だけ","色だけ","人気だけ"],"a":0,"check":"暖房"},{"label":"STEP 2　比較軸","q":"暖房提案で確認する性能は？","choices":["低温時暖房能力・霜取り時の快適性","冷房能力だけ","本体幅だけ","リモコン色"],"a":0,"check":"部屋条件"},{"label":"STEP 3　操作性","q":"高齢のお客様に必要な確認は？","choices":["リモコン表示・ボタン・自動運転","アプリ操作だけ","最上位機だけ","カタログだけ"],"a":0,"check":"操作性"},{"label":"STEP 4　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","テレビ位置","冷蔵庫位置","照明"],"a":0,"check":"電源"}]},{"id":"S008","title":"共働き夫婦の帰宅前冷房","type":"買い替え","difficulty":"標準","avatar":"👨‍💼👩‍💼","customer":"30代共働き夫婦","home":"戸建て","room":"LDK18畳","extra":"昼間留守・帰宅後すぐ冷やしたい","budget":"30万円前後","first":"「帰宅した時にすぐ涼しいと助かります。」","checklist":["生活時間","速暖冷房","アプリ","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　生活","q":"最初に確認する内容は？","choices":["帰宅時間・使用時間・操作方法","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"生活時間"},{"label":"STEP 2　機能","q":"比較したい内容は？","choices":["立ち上がり・遠隔操作・省エネ","本体色","カタログ厚さ","人気だけ"],"a":0,"check":"速暖冷房"},{"label":"STEP 3　操作","q":"遠隔操作を提案する時の確認は？","choices":["対応機種・通信環境・使い方","スマホ色","テレビメーカー","冷蔵庫容量"],"a":0,"check":"アプリ"},{"label":"STEP 4　工事","q":"買い替えの工事確認は？","choices":["電源・配管・室外機・取り外し","保証だけ","ポイントだけ","色だけ"],"a":0,"check":"電源"}]},{"id":"S009","title":"海に近い戸建ての塩害相談","type":"新規設置","difficulty":"応用","avatar":"👨🏠","customer":"50代男性","home":"海沿いの戸建て","room":"LDK18畳","extra":"潮風が強い地域","budget":"30万円前後","first":"「海が近いので、室外機が錆びないか心配です。」","checklist":["塩害","設置距離","風向","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　地域条件","q":"最初に確認する内容は？","choices":["海からの距離・潮風・設置場所","メーカー名だけ","色だけ","畳数だけ"],"a":0,"check":"塩害"},{"label":"STEP 2　仕様","q":"提案時に確認する内容は？","choices":["耐塩害・耐重塩害仕様の対象条件","通常機で必ず問題ない","室内機色","リモコン"],"a":0,"check":"設置距離"},{"label":"STEP 3　設置","q":"室外機で確認することは？","choices":["風向・雨掛かり・離隔・点検スペース","室内照明","テレビ位置","冷蔵庫"],"a":0,"check":"室外機"},{"label":"STEP 4　案内","q":"適切な説明は？","choices":["環境条件に合う仕様と設置方法を確認する","錆びないと断言する","価格だけで決める","確認不要と伝える"],"a":0,"check":"風向"}]},{"id":"S010","title":"一人暮らしの6畳寝室","type":"買い替え","difficulty":"初級","avatar":"👩","customer":"20代女性","home":"賃貸マンション","room":"寝室6畳","extra":"夜だけ使用","budget":"10万円前後","first":"「寝る時だけ使うので、シンプルなもので大丈夫です。」","checklist":["管理規約","使用時間","静音","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　住居","q":"賃貸で最初に確認することは？","choices":["管理会社・工事許可・既存設備","メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"管理規約"},{"label":"STEP 2　使用","q":"寝室で確認したい内容は？","choices":["使用時間・静音・風向","最大風量だけ","人気だけ","最上位機だけ"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","家具の色","Wi-Fi","テレビ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切な提案は？","choices":["必要機能と予算を整理して選ぶ","安い機種だけ示す","高い機種だけ示す","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S011","title":"掃除を楽にしたいご家庭","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧","customer":"40代ご家族","home":"木造2階","room":"LDK16畳","extra":"フィルター掃除が苦手","budget":"27万円前後","first":"「なるべく掃除が少なくて済むものがいいです。」","checklist":["掃除の悩み","対象部位","使用時間","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　悩み","q":"最初に分けて確認する内容は？","choices":["フィルター・熱交換器・ファンのどこを重視するか","メーカー名だけ","本体色","価格だけ"],"a":0,"check":"掃除の悩み"},{"label":"STEP 2　機能比較","q":"説明時に大切なことは？","choices":["自動清掃の対象部位と手入れ方法を説明する","全社同じと伝える","完全に掃除不要と伝える","価格だけ伝える"],"a":0,"check":"対象部位"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・配管・室外機・取り外し","色だけ","リモコンだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切なまとめ方は？","choices":["お手入れ負担と予算のバランスで比較する","最上位機だけ勧める","人気だけで決める","メーカー名だけで決める"],"a":0,"check":"予算"}]},{"id":"S012","title":"2台まとめて新規設置","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👧‍👦🏠","customer":"30代ご家族","home":"新築戸建て","room":"LDK18畳・寝室8畳","extra":"2台同時設置","budget":"45万円前後","first":"「リビングと寝室をまとめてお願いしたいです。」","checklist":["設置台数","各部屋","専用回路","穴あけ","室外機","配管経路","予算"],"steps":[{"label":"STEP 1　台数","q":"最初に整理することは？","choices":["各部屋の畳数・使い方・設置台数","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"設置台数"},{"label":"STEP 2　電気","q":"2台新規設置で確認することは？","choices":["各部屋の専用回路・電圧・分電盤","テレビ回路","照明だけ","Wi-Fi"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"工事で確認する内容は？","choices":["穴あけ・配管経路・室外機置場・化粧カバー","本体色","リモコン","保証だけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"まとめ買い提案で適切なのは？","choices":["部屋ごとの優先条件と総予算を整理する","両方同じ最上位機にする","価格だけで決める","メーカーを一社に限定する"],"a":0,"check":"予算"}]}];
+const SALES_CASES=[{"id":"S001","title":"15年使ったリビングエアコン","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧‍👦","customer":"40代ご夫婦・お子様2人","home":"木造2階","room":"LDK18畳","extra":"犬2匹・西日あり","budget":"25万円前後","first":"「最近冷えにくくて、電気代も気になります。」","checklist":["困りごと","使用部屋","電源","既存配管","室外機","予算","重視機能"],"steps":[{"label":"STEP 1　困りごと","q":"最初に確認する内容は？","choices":["現在の症状・使用年数・使い方","希望メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用環境","q":"次に確認したい内容は？","choices":["畳数・日当たり・使用時間・ペット","カタログの色","人気順位","在庫数だけ"],"a":0,"check":"使用部屋"},{"label":"STEP 3　工事確認","q":"買い替えで必要な確認は？","choices":["電源・既存配管・室外機位置・取り外し","本体色だけ","保証だけ","メーカーだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"提案のまとめ方として適切なのは？","choices":["省エネ・長時間使用・工事条件を理由に比較する","一番高い機種を勧める","人気だけで決める","値引きだけで決める"],"a":0,"check":"重視機能"}],"responses":["「最近冷えにくくて、電気代も気になります。」","「リビングは18畳で、西日が強く、犬が2匹います。」","「今のエアコンは15年ほど使っています。室外機は庭です。」","「長時間使っても電気代を抑えやすいものが希望です。」"]},{"id":"S002","title":"初めての子ども部屋","type":"新規設置","difficulty":"初級","avatar":"👩‍👧","customer":"30代のお母様・小学生のお子様","home":"木造2階","room":"子ども部屋6畳","extra":"配管穴なし","budget":"12万円前後","first":"「子ども部屋に初めて付けたいです。」","checklist":["新規設置","使用部屋","専用回路","穴あけ","室外機","予算","操作性"],"steps":[{"label":"STEP 1　設置条件","q":"新規設置で最初に確認することは？","choices":["部屋・建物・専用回路・配管穴","メーカー名だけ","色だけ","保証だけ"],"a":0,"check":"新規設置"},{"label":"STEP 2　電気","q":"専用回路が不明な時の案内は？","choices":["分電盤・コンセントを現地確認する","必ずあると伝える","延長コードを使う","確認不要と伝える"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"穴あけ時に確認する内容は？","choices":["建物情報・穴位置・室外機置場","壁紙の色だけ","家具だけ","リモコンだけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"子ども部屋で重視したい内容は？","choices":["操作性・静音・適切な能力","最大価格","メーカー人気だけ","デザインだけ"],"a":0,"check":"操作性"}],"responses":["「子ども部屋に初めて付けたいです。」","「部屋は6畳で、2階にあります。」","「専用回路と配管穴があるかは分かりません。」","「子どもでも操作しやすく、静かな機種がいいです。」"]},{"id":"S003","title":"寝室を静かにしたいご夫婦","type":"買い替え","difficulty":"初級","avatar":"👴👵","customer":"70代ご夫婦","home":"木造平屋","room":"寝室8畳","extra":"直風が苦手","budget":"15万円前後","first":"「寝る時に音と風が気になるんです。」","checklist":["困りごと","使用時間","操作性","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　ご要望","q":"最初の比較軸は？","choices":["静音・気流・操作性","最大能力だけ","色だけ","人気だけ"],"a":0,"check":"困りごと"},{"label":"STEP 2　使用状況","q":"寝室で確認したい内容は？","choices":["就寝時間・風の当たり方・設定温度","テレビの大きさ","冷蔵庫容量","照明色"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機位置","本体色だけ","カタログだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["実機のリモコンと気流機能を比較する","高いほど静かと断言する","全社同じと伝える","価格だけで決める"],"a":0,"check":"操作性"}],"responses":["「寝る時に音と風が気になります。」","「寝室は8畳で、夜に長く使います。」","「今の配管と室外機はそのまま使えるか気になります。」","「操作が簡単で、静かな機種が希望です。」"]},{"id":"S004","title":"ペットのための24時間冷房","type":"買い替え","difficulty":"標準","avatar":"👩🐶","customer":"一人暮らし・犬1匹","home":"マンション","room":"LDK14畳","extra":"昼間は犬が留守番","budget":"20万円前後","first":"「犬のために夏はほぼ付けっぱなしです。」","checklist":["ペット","使用時間","省エネ","電源","室外機","既存配管","予算"],"steps":[{"label":"STEP 1　生活条件","q":"最初に聞く内容は？","choices":["使用時間・留守時間・設定温度","メーカー名だけ","本体色","値引き"],"a":0,"check":"使用時間"},{"label":"STEP 2　提案軸","q":"重要な比較軸は？","choices":["省エネ・安定運転・温度管理","最大風量だけ","デザインだけ","価格だけ"],"a":0,"check":"省エネ"},{"label":"STEP 3　工事","q":"マンションで確認することは？","choices":["室外機置場・配管経路・管理規約","戸建て用屋根置き","庭の広さ","屋根材"],"a":0,"check":"室外機"},{"label":"STEP 4　説明","q":"適切な伝え方は？","choices":["長時間使用を前提に電気代と快適性を比較する","人気機種だけ勧める","一番安い機種にする","機能説明をしない"],"a":0,"check":"ペット"}],"responses":["「犬のために夏はほぼ付けっぱなしです。」","「昼間は犬だけで留守番しています。」","「マンションのベランダに室外機があります。」","「電気代と温度管理を重視したいです。」"]},{"id":"S005","title":"新築20畳LDKの機種選び","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👶","customer":"30代ご夫婦・赤ちゃん","home":"新築木造2階","room":"LDK20畳","extra":"吹き抜け・西日あり","budget":"35万円前後","first":"「新築なので、長く安心して使えるものがいいです。」","checklist":["新築","畳数","吹き抜け","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　部屋条件","q":"能力選定で重要な内容は？","choices":["畳数・吹き抜け・日当たり・断熱","畳数だけ","メーカーだけ","本体色だけ"],"a":0,"check":"畳数"},{"label":"STEP 2　電気","q":"新規設置で確認する内容は？","choices":["専用回路・電圧・コンセント","テレビ端子","Wi-Fi","照明"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"新築で確認する内容は？","choices":["穴あけ・配管経路・室外機・化粧カバー","価格だけ","リモコンだけ","保証だけ"],"a":0,"check":"配管穴"},{"label":"STEP 4　提案","q":"提案理由として適切なのは？","choices":["部屋負荷と長期使用を基準に比較する","人気だけで決める","高額機なら何でも良い","メーカー名だけで決める"],"a":0,"check":"予算"}],"responses":["「新築なので、長く安心して使えるものがいいです。」","「LDKは20畳で、吹き抜けと西日があります。」","「専用回路や配管穴は新築工事の確認が必要です。」","「能力不足にならず、省エネ性も高いものが希望です。」"]},{"id":"S006","title":"マンションの隠ぺい配管","type":"買い替え","difficulty":"応用","avatar":"👨‍👩","customer":"50代ご夫婦","home":"マンション","room":"LDK16畳","extra":"既存隠ぺい配管","budget":"28万円前後","first":"「配管は壁の中に入っているみたいです。」","checklist":["買い替え","隠ぺい配管","配管径","電源","ドレン","室外機","現地確認"],"steps":[{"label":"STEP 1　配管","q":"最初に必要な案内は？","choices":["隠ぺい配管の状態と適合を現地確認する","必ず再利用可能と伝える","新品配管は不可と伝える","確認不要と伝える"],"a":0,"check":"隠ぺい配管"},{"label":"STEP 2　確認項目","q":"隠ぺい配管で確認する内容は？","choices":["配管径・長さ・状態・ドレン方式","壁紙色","家具配置だけ","リモコン"],"a":0,"check":"配管径"},{"label":"STEP 3　電気","q":"電源で確認する内容は？","choices":["電圧・専用回路・コンセント","照明回路","テレビ回路","Wi-Fi"],"a":0,"check":"電源"},{"label":"STEP 4　説明","q":"適切な案内は？","choices":["施工可否と追加工事は現地確認後に確定する","店頭で総額確約する","必ず標準工事と伝える","配管確認を省略する"],"a":0,"check":"現地確認"}],"responses":["「配管は壁の中に入っているみたいです。」","「マンションのLDK16畳で、買い替えです。」","「配管径やドレン方式は分からないので現地確認をお願いしたいです。」","「工事できるか確認してから機種を決めたいです。」"]},{"id":"S007","title":"高齢ご夫婦の暖房相談","type":"買い替え","difficulty":"標準","avatar":"👵👴","customer":"70代ご夫婦","home":"木造平屋","room":"和室10畳","extra":"冬の暖房を重視","budget":"22万円前後","first":"「冬が寒くて、暖房をしっかり使いたいです。」","checklist":["暖房","部屋条件","使用時間","電源","既存配管","室外機","操作性"],"steps":[{"label":"STEP 1　暖房条件","q":"最初に確認したい内容は？","choices":["地域・部屋条件・使用時間・希望温度","冷房だけ","色だけ","人気だけ"],"a":0,"check":"暖房"},{"label":"STEP 2　比較軸","q":"暖房提案で確認する性能は？","choices":["低温時暖房能力・霜取り時の快適性","冷房能力だけ","本体幅だけ","リモコン色"],"a":0,"check":"部屋条件"},{"label":"STEP 3　操作性","q":"高齢のお客様に必要な確認は？","choices":["リモコン表示・ボタン・自動運転","アプリ操作だけ","最上位機だけ","カタログだけ"],"a":0,"check":"操作性"},{"label":"STEP 4　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","テレビ位置","冷蔵庫位置","照明"],"a":0,"check":"電源"}],"responses":["「冬が寒くて、暖房をしっかり使いたいです。」","「和室10畳で、朝と夜に長く使います。」","「今のエアコンの電源や配管はそのまま使えるか知りたいです。」","「暖房がしっかり効いて、操作が簡単なものが希望です。」"]},{"id":"S008","title":"共働き夫婦の帰宅前冷房","type":"買い替え","difficulty":"標準","avatar":"👨‍💼👩‍💼","customer":"30代共働き夫婦","home":"戸建て","room":"LDK18畳","extra":"昼間留守・帰宅後すぐ冷やしたい","budget":"30万円前後","first":"「帰宅した時にすぐ涼しいと助かります。」","checklist":["生活時間","速暖冷房","アプリ","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　生活","q":"最初に確認する内容は？","choices":["帰宅時間・使用時間・操作方法","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"生活時間"},{"label":"STEP 2　機能","q":"比較したい内容は？","choices":["立ち上がり・遠隔操作・省エネ","本体色","カタログ厚さ","人気だけ"],"a":0,"check":"速暖冷房"},{"label":"STEP 3　操作","q":"遠隔操作を提案する時の確認は？","choices":["対応機種・通信環境・使い方","スマホ色","テレビメーカー","冷蔵庫容量"],"a":0,"check":"アプリ"},{"label":"STEP 4　工事","q":"買い替えの工事確認は？","choices":["電源・配管・室外機・取り外し","保証だけ","ポイントだけ","色だけ"],"a":0,"check":"電源"}],"responses":["「帰宅した時にすぐ涼しいと助かります。」","「共働きで、昼間はほとんど留守です。」","「今のエアコンは買い替えで、室外機は庭にあります。」","「外出先から操作できて、省エネなものが希望です。」"]},{"id":"S009","title":"海に近い戸建ての塩害相談","type":"新規設置","difficulty":"応用","avatar":"👨🏠","customer":"50代男性","home":"海沿いの戸建て","room":"LDK18畳","extra":"潮風が強い地域","budget":"30万円前後","first":"「海が近いので、室外機が錆びないか心配です。」","checklist":["塩害","設置距離","風向","専用回路","配管穴","室外機","予算"],"steps":[{"label":"STEP 1　地域条件","q":"最初に確認する内容は？","choices":["海からの距離・潮風・設置場所","メーカー名だけ","色だけ","畳数だけ"],"a":0,"check":"塩害"},{"label":"STEP 2　仕様","q":"提案時に確認する内容は？","choices":["耐塩害・耐重塩害仕様の対象条件","通常機で必ず問題ない","室内機色","リモコン"],"a":0,"check":"設置距離"},{"label":"STEP 3　設置","q":"室外機で確認することは？","choices":["風向・雨掛かり・離隔・点検スペース","室内照明","テレビ位置","冷蔵庫"],"a":0,"check":"室外機"},{"label":"STEP 4　案内","q":"適切な説明は？","choices":["環境条件に合う仕様と設置方法を確認する","錆びないと断言する","価格だけで決める","確認不要と伝える"],"a":0,"check":"風向"}],"responses":["「海が近いので、室外機が錆びないか心配です。」","「海から近く、潮風が強い場所です。」","「室外機は家の外壁側に置く予定です。」","「塩害に配慮した仕様で長く使いたいです。」"]},{"id":"S010","title":"一人暮らしの6畳寝室","type":"買い替え","difficulty":"初級","avatar":"👩","customer":"20代女性","home":"賃貸マンション","room":"寝室6畳","extra":"夜だけ使用","budget":"10万円前後","first":"「寝る時だけ使うので、シンプルなもので大丈夫です。」","checklist":["管理規約","使用時間","静音","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　住居","q":"賃貸で最初に確認することは？","choices":["管理会社・工事許可・既存設備","メーカーだけ","色だけ","値引きだけ"],"a":0,"check":"管理規約"},{"label":"STEP 2　使用","q":"寝室で確認したい内容は？","choices":["使用時間・静音・風向","最大風量だけ","人気だけ","最上位機だけ"],"a":0,"check":"使用時間"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・既存配管・室外機・取り外し","家具の色","Wi-Fi","テレビ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切な提案は？","choices":["必要機能と予算を整理して選ぶ","安い機種だけ示す","高い機種だけ示す","メーカー名だけで決める"],"a":0,"check":"予算"}],"responses":["「寝る時だけ使うので、シンプルなもので大丈夫です。」","「賃貸マンションの6畳寝室です。」","「工事は管理会社への確認が必要だと思います。」","「静かで、予算内のシンプルな機種が希望です。」"]},{"id":"S011","title":"掃除を楽にしたいご家庭","type":"買い替え","difficulty":"標準","avatar":"👨‍👩‍👧","customer":"40代ご家族","home":"木造2階","room":"LDK16畳","extra":"フィルター掃除が苦手","budget":"27万円前後","first":"「なるべく掃除が少なくて済むものがいいです。」","checklist":["掃除の悩み","対象部位","使用時間","電源","既存配管","室外機","予算"],"steps":[{"label":"STEP 1　悩み","q":"最初に分けて確認する内容は？","choices":["フィルター・熱交換器・ファンのどこを重視するか","メーカー名だけ","本体色","価格だけ"],"a":0,"check":"掃除の悩み"},{"label":"STEP 2　機能比較","q":"説明時に大切なことは？","choices":["自動清掃の対象部位と手入れ方法を説明する","全社同じと伝える","完全に掃除不要と伝える","価格だけ伝える"],"a":0,"check":"対象部位"},{"label":"STEP 3　工事","q":"買い替えで確認することは？","choices":["電源・配管・室外機・取り外し","色だけ","リモコンだけ","ポイントだけ"],"a":0,"check":"電源"},{"label":"STEP 4　提案","q":"適切なまとめ方は？","choices":["お手入れ負担と予算のバランスで比較する","最上位機だけ勧める","人気だけで決める","メーカー名だけで決める"],"a":0,"check":"予算"}],"responses":["「なるべく掃除が少なくて済むものがいいです。」","「フィルター掃除と内部の汚れが気になります。」","「今のエアコンは買い替えで、配管と室外機は既存です。」","「手入れが簡単で、予算とのバランスが良いものが希望です。」"]},{"id":"S012","title":"2台まとめて新規設置","type":"新規設置","difficulty":"応用","avatar":"👨‍👩‍👧‍👦🏠","customer":"30代ご家族","home":"新築戸建て","room":"LDK18畳・寝室8畳","extra":"2台同時設置","budget":"45万円前後","first":"「リビングと寝室をまとめてお願いしたいです。」","checklist":["設置台数","各部屋","専用回路","穴あけ","室外機","配管経路","予算"],"steps":[{"label":"STEP 1　台数","q":"最初に整理することは？","choices":["各部屋の畳数・使い方・設置台数","メーカー名だけ","色だけ","値引きだけ"],"a":0,"check":"設置台数"},{"label":"STEP 2　電気","q":"2台新規設置で確認することは？","choices":["各部屋の専用回路・電圧・分電盤","テレビ回路","照明だけ","Wi-Fi"],"a":0,"check":"専用回路"},{"label":"STEP 3　工事","q":"工事で確認する内容は？","choices":["穴あけ・配管経路・室外機置場・化粧カバー","本体色","リモコン","保証だけ"],"a":0,"check":"穴あけ"},{"label":"STEP 4　提案","q":"まとめ買い提案で適切なのは？","choices":["部屋ごとの優先条件と総予算を整理する","両方同じ最上位機にする","価格だけで決める","メーカーを一社に限定する"],"a":0,"check":"予算"}],"responses":["「リビングと寝室をまとめてお願いしたいです。」","「LDK18畳と寝室8畳の2台です。」","「どちらも新規設置で、専用回路や穴あけの確認が必要です。」","「部屋ごとに必要な機能を分けて、総予算内で選びたいです。」"]}];
 let salesCase=null,salesStep=0,salesScore=0,salesDisplayedChoices=[];
 let salesCaseBag=[];
 let lastSalesCaseIndex=-1;
@@ -1747,6 +1747,8 @@ function updateSalesProgress(){
 }
 function renderSalesStep(){
   const step=salesCase.steps[salesStep];
+  const response=salesCase.responses[salesStep];
+
   renderCustomerCard();
   renderChecklist();
   updateSalesProgress();
@@ -1754,9 +1756,16 @@ function renderSalesStep(){
   const label=document.getElementById('salesStepLabel');
   const options=document.getElementById('salesOptions');
   const result=document.getElementById('salesResult');
+  const q=document.getElementById('fixedSalesQuestion');
+  const msg=document.getElementById('fixedCustomerMessage');
+  const guide=document.getElementById('fixedAnswerGuide');
 
-  label.textContent=step.label;
-  options.innerHTML='<div class="question">'+step.q+'</div>';
+  if(label)label.textContent=step.label;
+  if(q)q.textContent=step.q;
+  if(msg)msg.textContent=response.replace(/[「」]/g,'');
+  if(guide)guide.textContent='回答を選択してください';
+
+  options.innerHTML='';
   salesDisplayedChoices=arrangeChoicesAtBalancedPosition(step.choices,step.a);
 
   salesDisplayedChoices.forEach((item,displayIndex)=>{
@@ -1766,8 +1775,10 @@ function renderSalesStep(){
     b.onclick=()=>answerSales(item.index,b);
     options.appendChild(b);
   });
-  result.classList.add('hidden');
+
+  if(result)result.classList.add('hidden');
 }
+
 function answerSales(i,btn){
   const options=document.getElementById('salesOptions');
   [...options.querySelectorAll('button')].forEach(b=>b.disabled=true);
@@ -1781,13 +1792,23 @@ function answerSales(i,btn){
     if(step.check)salesCompletedChecks.add(step.check);
   }
 
+  const guide=document.getElementById('fixedAnswerGuide');
+  if(guide){
+    guide.textContent=ok
+      ? '正解です。次の確認へ進みます。'
+      : '不正解です。受付条件をもう一度整理しましょう。';
+  }
+
   renderChecklist();
 
   setTimeout(()=>{
     salesStep++;
-    if(salesStep<salesCase.steps.length)renderSalesStep();
-    else finishSales();
-  },650);
+    if(salesStep<salesCase.steps.length){
+      renderSalesStep();
+    }else{
+      finishSales();
+    }
+  },700);
 }
 function finishSales(){
   document.getElementById('salesProgressFill').style.width='100%';
@@ -1847,7 +1868,7 @@ function showCustomerLibrary(){
 }
 
 
-const APP_VERSION='22.4';
+const APP_VERSION='22.5';
 const UPDATE_DISMISS_KEY='aircon_update_dismissed_21_0';
 
 async function checkForAppUpdate(){
@@ -1858,7 +1879,7 @@ async function checkForAppUpdate(){
     if(reg){
       await reg.update();
       if(reg.waiting){
-        showUpdateBanner('最新版 Ver.22.4 Fixed UI を適用できます。');
+        showUpdateBanner('最新版 Ver.22.5 Fixed UI を適用できます。');
         return;
       }
     }
@@ -2031,32 +2052,22 @@ function updateFixedHome(){
 }
 window.addEventListener('load',updateFixedHome);
 
-const originalRenderSalesStepFixed=renderSalesStep;
-renderSalesStep=function(){
-  originalRenderSalesStepFixed();
-  const step=salesCase.steps[salesStep];
-  const q=document.getElementById('fixedSalesQuestion');
-  const msg=document.getElementById('fixedCustomerMessage');
-  const guide=document.getElementById('fixedAnswerGuide');
-  if(q)q.textContent=step.q;
-  if(msg){
-    const messages=[
-      salesCase.first.replace(/[「」]/g,''),
-      '設置場所や使い方について、詳しく知りたいです。',
-      '工事についても少し心配しています。',
-      '予算の中で、納得できる機種を選びたいです。'
-    ];
-    msg.innerHTML=messages[Math.min(salesStep,messages.length-1)];
-  }
-  if(guide)guide.textContent='回答を選択してください';
-};
 
-const originalAnswerSalesFixed=answerSales;
-answerSales=function(i,btn){
-  const guide=document.getElementById('fixedAnswerGuide');
-  const step=salesCase.steps[salesStep];
-  if(guide)guide.textContent=i===step.a?'正解です。次へ進みます。':'もう一度、受付の優先順位を考えてみましょう。';
-  originalAnswerSalesFixed(i,btn);
+
+function validateActiveSalesCase(){
+  if(!salesCase || !salesCase.id || !Array.isArray(salesCase.steps) || !Array.isArray(salesCase.responses)){
+    throw new Error('接客ケースデータが不正です');
+  }
+  if(salesCase.steps.length!==salesCase.responses.length){
+    throw new Error('質問とお客様返答の数が一致していません: '+salesCase.id);
+  }
+}
+const originalStartSalesModeCaseSync=startSalesMode;
+startSalesMode=function(){
+  originalStartSalesModeCaseSync();
+  validateActiveSalesCase();
+  const page=document.getElementById('sales');
+  if(page)page.dataset.caseId=salesCase.id;
 };
 
 </script></body></html>
