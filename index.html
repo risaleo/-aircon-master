@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>エアコン販買マスター Ver.31.5</title>
+<title>エアコン販買マスター Ver.31.6</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="styles.css?v=315">
+<link rel="stylesheet" href="styles.css?v=316">
 </head>
 <body>
 <div class="app">
@@ -32,8 +32,8 @@
 <button class="mainbtn" onclick="startRandomSales()"><div class="circle">👥</div><div><h2>販買モード</h2><b>実際の接客をシミュレーション</b><p>お客様対応を通して、販売スキルを磨きましょう。</p></div><span style="font-size:42px">›</span></button>
 <div class="menu">
 <button id="btnCases" onclick="showCases()"><span class="ico">👤</span><b>お客様カルテ</b><p>お客様を選んで接客練習</p></button>
-<button id="btnPractice" onclick="startQuiz('all')"><span class="ico">📖</span><b>練習問題</b><p>180問からランダム出題</p></button>
-<button id="btnPrice" onclick="startQuiz('price')"><span class="ico">🧮</span><b>工事料金</b><p>工事料金問題だけを出題</p></button>
+<button id="btnPractice" onclick="openLevelMenu('practice')"><span class="ico">📖</span><b>練習問題</b><p>180問からランダム出題</p></button>
+<button id="btnPrice" onclick="openLevelMenu('price')"><span class="ico">🧮</span><b>工事料金</b><p>工事料金問題だけを出題</p></button>
 <button onclick="showStats()"><span class="ico">📊</span><b>成績・分析</b><p>正答率と学習状況を確認</p></button>
 <button onclick="showHistory()"><span class="ico">🏆</span><b>学習記録・実績</b><p>学習履歴と達成数を確認</p></button>
 
@@ -49,7 +49,7 @@
 </section>
 
 <section id="cases" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>お客様カルテ</h2><button onclick="startRandomSales()">ランダム</button></header><div class="content"><div id="caseGrid" class="grid"></div></div></section>
-<section id="quiz" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2 id="quizTitle">練習問題</h2><button onclick="showPage('home')">終了</button></header><div class="content quizbox"><div id="quizProgress"></div><div id="quizQuestion" class="question"></div><div id="quizChoices" class="choices"></div><div id="quizExplain" class="explain hidden"></div><button id="quizNext" class="primary hidden" onclick="nextQuiz()" style="width:100%;margin-top:14px">次の問題</button></div></section>
+<section id="quiz" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2 id="quizTitle">練習問題</h2><button onclick="showPage('home')">終了</button></header><div class="content quizbox"><div class="quiz-meta"><span id="quizRankBadge"></span><div id="quizProgress"></div></div><div id="quizQuestion" class="question"></div><div id="quizChoices" class="choices"></div><div id="quizExplain" class="explain hidden"></div><button id="quizNext" class="primary hidden" onclick="nextQuiz()" style="width:100%;margin-top:14px">次の問題</button></div></section>
 <section id="sales" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>接客シミュレーション</h2><button onclick="showPage('home')">中断</button></header><div class="content"><div id="stepper" class="stepper"></div><div class="sim"><div id="customerPane" class="customerpane"></div><div id="answerPane" class="answerpane"></div></div></div></section>
 
 <section id="statsPage" class="page hidden"><header class="subhead"><button onclick="showPage('home')">‹</button><h2>成績・分析</h2><button onclick="showPage('home')">閉じる</button></header><div class="content"><div id="statsGrid" class="stats"></div></div></section>
@@ -62,8 +62,8 @@
 <div id="nameModal" class="modal hidden"><div class="modalcard"><h2>お名前を登録</h2><input id="firstName" maxlength="20" placeholder="例：リサ"><button class="primary" onclick="registerName()">登録して始める</button></div></div>
 <div id="missionModal" class="modal hidden"><div class="modalcard"><h2>今日のミッション</h2><p>販買モードを3件実施する</p><div class="progress"><span id="missionBar"></span></div><h3 id="missionText">0 / 3</h3><button class="primary" onclick="closeMission();startRandomSales()">販買モードを始める</button><button onclick="closeMission()">閉じる</button></div></div>
 
-<script src="app-data.js?v=315"></script>
-<script src="app.js?v=315"></script>
+<script src="app-data.js?v=316"></script>
+<script src="app.js?v=316"></script>
 
 <div id="levelModal" class="modal hidden">
   <div class="modalcard level-modal-card">

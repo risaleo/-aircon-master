@@ -398,3 +398,5 @@ button{cursor:pointer}
   .level-select-grid{grid-template-columns:1fr 1fr}
   .level-choice{min-height:108px;padding:12px}
 }
+
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.rank-badge{display:inline-block;padding:6px 12px;border-radius:999px;font-weight:900;font-size:13px}.rank-初級{background:#eaf8ed;color:#26813a}.rank-中級{background:#eaf3ff;color:#176fd0}.rank-上級{background:#fff0f0;color:#c64242}.rank-ランダム{background:#f3edff;color:#7441c8}

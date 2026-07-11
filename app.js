@@ -166,6 +166,11 @@ function startQuiz(type){
 function renderQuiz(){
   if(quizIndex>=Math.min(10,quizPool.length)){finishQuiz();return}
   currentQuiz=quizPool[quizIndex];
+  const rankBadge=document.getElementById("quizRankBadge");
+  if(rankBadge){
+    rankBadge.textContent=selectedQuizRank==="ランダム" ? "ランダム／"+currentQuiz.level : currentQuiz.level;
+    rankBadge.className="rank-badge rank-"+currentQuiz.level;
+  }
   document.getElementById("quizProgress").textContent=(quizIndex+1)+" / "+Math.min(10,quizPool.length);
   document.getElementById("quizQuestion").textContent=currentQuiz.q;
   const box=document.getElementById("quizChoices");
@@ -302,6 +307,7 @@ window.addEventListener("DOMContentLoaded",()=>{migrateProfileAndStats();migrate
 
 
 let pendingQuizType="practice";
+let selectedQuizRank="";
 
 function getRankCounts(type){
   const source=type==="price" ? PRICE_QUESTIONS : QUESTIONS;
@@ -350,14 +356,21 @@ function startSelectedLevel(level){
     return;
   }
 
+  selectedQuizRank=level;
   quizPool=shuffle(selected);
+  if(level!=="ランダム" && quizPool.some(q=>q.level!==level)){
+    alert("ランク抽出に失敗しました。");
+    return;
+  }
   quizIndex=0;
   quizCorrect=0;
   currentQuiz=null;
 
   const base=pendingQuizType==="price" ? "工事料金" : "練習問題";
   document.getElementById("quizTitle").textContent=base+"・"+level;
+  const badge=document.getElementById("quizRankBadge");
+  if(badge){badge.textContent=level;badge.className="rank-badge rank-"+level;}
   showPage("quiz");
-  renderQuizQuestion();
+  renderQuiz();
 }
 
